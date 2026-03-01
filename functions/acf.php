@@ -36,8 +36,13 @@ function my_acf_json_load_point($paths)
     // Remove original path (optional)
     unset($paths[0]);
 
-    // Add theme's acfjson directory
-    $paths[] = get_stylesheet_directory() . '/acfjson';
+    // Add parent theme's acfjson directory
+    $paths[] = get_template_directory() . '/acfjson';
+
+    // Also load from child theme if active
+    if (get_stylesheet_directory() !== get_template_directory()) {
+        $paths[] = get_stylesheet_directory() . '/acfjson';
+    }
 
     return $paths;
 }

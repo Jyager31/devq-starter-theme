@@ -65,6 +65,7 @@ require get_template_directory() . '/functions/navwalker.php';
 require get_template_directory() . '/functions/emailnotifications.php';
 require get_template_directory() . '/functions/page-builder.php';
 require get_template_directory() . '/functions/page-presets.php';
+require get_template_directory() . '/functions/theme-updater.php';
 
 
 function is_blog()

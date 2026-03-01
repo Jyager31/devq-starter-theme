@@ -217,6 +217,46 @@
 
   // --- Init ---
 
+  function showOopsFace() {
+    // Create an "O" shaped mouth and append to the SVG mouth group
+    var mouthGroup = document.querySelector('.mouth');
+    if (!mouthGroup) return;
+
+    var ns = 'http://www.w3.org/2000/svg';
+
+    // Create the "O" mouth
+    var oopsMouth = document.createElementNS(ns, 'ellipse');
+    oopsMouth.setAttribute('cx', '100');
+    oopsMouth.setAttribute('cy', '98');
+    oopsMouth.setAttribute('rx', '4');
+    oopsMouth.setAttribute('ry', '5');
+    oopsMouth.setAttribute('fill', '#617E92');
+    oopsMouth.setAttribute('stroke', '#3A5E77');
+    oopsMouth.setAttribute('stroke-width', '2');
+    oopsMouth.classList.add('oopsMouth');
+
+    // Start invisible
+    gsap.set(oopsMouth, { opacity: 0, scaleX: 0.3, scaleY: 0.3, transformOrigin: 'center center' });
+
+    mouthGroup.appendChild(oopsMouth);
+
+    // Hide normal mouth paths, show oops mouth
+    var mouthBG = document.querySelector('.mouthBG');
+    var mouthOutline = document.querySelector('.mouthOutline');
+
+    gsap.to([mouthBG, mouthOutline], { duration: 0.3, opacity: 0, ease: 'power2.in' });
+    gsap.to(oopsMouth, { duration: 0.4, opacity: 1, scaleX: 1, scaleY: 1, delay: 0.15, ease: 'back.out(2)' });
+
+    // Raise eyebrows in surprise
+    gsap.to(eyebrow, { duration: 0.5, y: -6, ease: 'back.out(1.5)' });
+
+    // Widen eyes slightly
+    gsap.to([eyeL, eyeR], { duration: 0.4, scaleX: 1.2, scaleY: 1.2, transformOrigin: 'center center', ease: 'back.out(1.5)' });
+
+    // Subtle head tilt
+    gsap.to(face, { duration: 0.6, rotation: -3, transformOrigin: 'center top', ease: 'power2.out' });
+  }
+
   function init() {
     // WordPress login form elements
     email = document.querySelector('#user_login');
@@ -224,7 +264,7 @@
     showPasswordBtn = document.querySelector('.wp-hide-pw');
     svgContainer = document.querySelector('.svgContainer');
 
-    if (!email || !svgContainer) return;
+    if (!svgContainer) return;
 
     // SVG character elements
     eyeL = document.querySelector('.eyeL');
@@ -242,6 +282,13 @@
     armL = document.querySelector('.armL');
     armR = document.querySelector('.armR');
     twoFingers = document.querySelector('.twoFingers');
+
+    // Check for login error — show oops face
+    if (document.querySelector('#login_error')) {
+      showOopsFace();
+    }
+
+    if (!email) return;
 
     // Calculate positions
     svgCoords = getPosition(svgContainer);

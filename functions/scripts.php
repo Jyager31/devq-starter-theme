@@ -57,7 +57,7 @@ add_action('wp_enqueue_scripts', 'devqbase_scripts');
 
 function devq_login_assets()
 {
-  $theme_uri = get_stylesheet_directory_uri();
+  $theme_uri = get_template_directory_uri();
   wp_enqueue_style('custom-login', $theme_uri . '/assets/css/style-login.css');
   wp_enqueue_script('gsap', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js', array(), '3.12.5', true);
   wp_enqueue_script('login-yeti', $theme_uri . '/assets/js/login-yeti.js', array('gsap'), '1.0', true);
