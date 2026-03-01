@@ -1,0 +1,498 @@
+/*
+Theme Name: DevQ Starter
+Author: Josh Yager
+Author URI: https://thedevq.com/
+Description: Custom Theme build by The Dev Q
+Version: 1.0.0
+*/
+
+/* -----------------------------------------------------------------------------
+ * CSS Variables
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Note: --spacing-small, --spacing-medium, --spacing-large are set dynamically in theme-settings-css.php */
+
+  /* Z-index layers */
+  --z-index-dropdown: 3;
+
+  /* Transitions */
+  --transition-fast: all 0.1s ease-in-out;
+  --transition-default: all 0.3s ease-in-out;
+
+  /* Other */
+  --video-aspect-ratio: 56.25%;
+  /* 16:9 */
+}
+
+/* -----------------------------------------------------------------------------
+ * Base Elements
+ * -------------------------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  position: relative;
+  font-family: var(--font2);
+  font-weight: 400;
+  color: #333131;
+  line-height: 1.5;
+}
+
+p, ul, li {
+  font-family: var(--font2);
+  font-weight: 400;
+  color: #333131;
+  line-height: 1.5;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* -----------------------------------------------------------------------------
+ * Typography
+ * -------------------------------------------------------------------------- */
+h1, h2, h3, h4, h5 {
+  font-family: var(--font1);
+  font-weight: 500;
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+h5 {
+  font-size: 1.25rem;
+}
+
+.bigger-title {
+  font-size: 4rem;
+}
+
+.sub-title {
+  font-size: 24px;
+}
+
+.cs-topper {
+  font-family: var(--font2);
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 800;
+  margin-top: 0;
+  color: var(--secondary);
+  letter-spacing: 3px;
+}
+
+.cs-title {
+  font-size: 34px;
+  margin: 0;
+  line-height: 1;
+  font-weight: 800;
+  max-width: 530px;
+  color: var(--primary);
+}
+
+/* -----------------------------------------------------------------------------
+ * Layout
+ * -------------------------------------------------------------------------- */
+.container-fluid {
+  max-width: 2400px;
+  margin: auto;
+}
+
+.videoWrapper {
+  position: relative;
+  padding-bottom: var(--video-aspect-ratio);
+  height: 0;
+}
+
+.videoWrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* -----------------------------------------------------------------------------
+ * Buttons
+ * -------------------------------------------------------------------------- */
+.btn {
+  text-decoration: none;
+  background: var(--primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  width: 300px;
+  padding: var(--button-padding, 15px);
+  font-weight: 600;
+  text-align: center;
+  transition: var(--transition-default);
+  border: 2px solid var(--primary);
+  border-radius: var(--button-radius, 4px);
+}
+
+.btn i {
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.btn:hover {
+  background: var(--tertiary) !important;
+  color: black;
+  border: 2px solid var(--tertiary);
+}
+
+/* Button Variants */
+.btn.btn-secondary {
+  background: var(--secondary);
+  border: 2px solid var(--secondary);
+}
+
+.btn.btn-secondary:hover {
+  background: var(--primary);
+  color: black;
+}
+
+.btn.btn-tertiary {
+  background: var(--tertiary);
+  border: 2px solid var(--tertiary);
+}
+
+.btn.btn-white {
+  background: white;
+  color: var(--primary);
+}
+
+.btn.white:hover {
+  background: var(--primary);
+  color: white;
+}
+
+.btn.btn-secondary.border {
+  background: transparent;
+  color: white;
+  border: 2px solid var(--secondary);
+}
+
+.btn.btn-secondary.border:hover {
+  background: var(--secondary);
+  border: 2px solid var(--secondary);
+  color: black;
+}
+
+/* -----------------------------------------------------------------------------
+ * Header & Navigation
+ * -------------------------------------------------------------------------- */
+.devq-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  padding: 15px 0;
+}
+
+.mainLogo {
+  padding: 0;
+  display: block;
+  width: 200px;
+  height: auto;
+  margin: 0;
+  position: relative;
+}
+
+/* Main Menu */
+.menutop ul {
+  display: flex;
+  list-style: none;
+}
+
+.menutop ul li a {
+  text-decoration: none;
+  margin-left: 30px;
+  font-weight: 500;
+  color: initial;
+  font-size: 18px;
+  transition: var(--transition-fast);
+  display: flex;
+  align-items: center;
+}
+
+.menutop ul li a:hover {
+  color: var(--secondary);
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  display: none;
+  transform-origin: center top 0;
+  transition: var(--transition-fast);
+  min-width: 270px;
+  left: -10px;
+  overflow: hidden;
+  padding-top: 10px;
+}
+
+ul.dropdown-menu {
+  display: none;
+}
+
+.dropdown:hover ul.dropdown-menu {
+  display: block;
+  position: absolute;
+  color: white;
+  padding-top: 10px;
+  z-index: var(--z-index-dropdown);
+}
+
+.dropdown-menu a {
+  margin: 0 !important;
+}
+
+.dropdown-menu li a {
+  background: var(--primary);
+  padding: 10px 15px;
+  color: white !important;
+  display: block;
+  border-bottom: 1px solid white;
+  transition: var(--transition-fast);
+}
+
+.dropdown-menu li:last-child a {
+  border-bottom: 0;
+}
+
+.dropdown-menu li a:hover {
+  background: var(--secondary);
+  color: white !important;
+}
+
+a.dropdown-toggle i {
+  padding-left: 5px;
+  font-size: 14px;
+}
+
+.menu-depth-1,
+.menu-item-has-children {
+  position: relative;
+}
+
+/* Mobile Menu */
+nav#menu:not(.mm-menu) {
+  display: none;
+}
+
+.mm-menu {
+  --mm-color-background: #fff;
+}
+
+.mm-listitem__text, .mm-navbar__title>span {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+/* Hamburger Menu */
+.mburger {
+  color: #fff;
+}
+
+.mburger:hover,
+.mburger:focus,
+.mburger:active {
+  color: #fff;
+}
+
+.mburger strong {
+  display: block;
+  position: absolute;
+  left: calc(var(--mb-button-size)*((1 - var(--mb-bar-width))/2));
+  width: calc(var(--mb-button-size)*var(--mb-bar-width));
+  height: var(--mb-bar-height);
+  background: black;
+  color: inherit;
+  opacity: 1;
+  border-radius: 0;
+}
+
+.mburger strong:nth-of-type(1) {
+  bottom: calc(45% + var(--mb-bar-spacing));
+}
+
+.mburger strong:nth-of-type(3) {
+  top: calc(45% + var(--mb-bar-spacing));
+}
+
+.mburger span {
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+/* Mobile Header */
+.flextophead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+img.mobilelogo {
+  width: 230px;
+  margin: 0 15px;
+}
+
+.mobilemen {
+  margin: -10px 10px 0 0;
+  display: none;
+}
+
+img.mobileLogo {
+  padding: 30px;
+}
+
+/* -----------------------------------------------------------------------------
+ * Footer
+ * -------------------------------------------------------------------------- */
+.footerfluid2 {
+  padding: 15px 0;
+  background: var(--secondary);
+}
+
+.footerfluid2 p {
+  color: white;
+  margin: 0;
+  padding: 10px 0;
+  font-size: 16px;
+}
+
+/* -----------------------------------------------------------------------------
+ * Utility Classes
+ * -------------------------------------------------------------------------- */
+.mobileonly,
+.mobileOnly {
+  display: none;
+}
+
+/* -----------------------------------------------------------------------------
+ * Browser Customization
+ * -------------------------------------------------------------------------- */
+::selection {
+  background: var(--tertiary);
+  color: var(--secondary);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: var(--tertiary);
+}
+
+/* -----------------------------------------------------------------------------
+ * Content Styles
+ * -------------------------------------------------------------------------- */
+.maincopy ul li {
+  list-style: none;
+  position: relative;
+  margin-bottom: 15px;
+}
+
+/* -----------------------------------------------------------------------------
+ * Media Queries
+ * -------------------------------------------------------------------------- */
+@media (max-width: 1199px) {
+
+  /* Header & Navigation */
+  .mainLogo {
+    margin: 0 auto;
+    width: 200px;
+    height: auto;
+  }
+
+  .menutop {
+    display: none;
+  }
+
+  .mobilemen {
+    display: inherit;
+  }
+
+  /* Utility Classes */
+  .mobileonly,
+  .mobileOnly {
+    display: initial;
+  }
+
+  .desktopOnly {
+    display: none;
+  }
+
+  /* Footer */
+  .footerfluidcolor {
+    padding: 70px 0 40px;
+  }
+
+  .footerfluid2 p {
+    text-align: center;
+  }
+}
+
+/* Mobile Styles - 767px and below */
+@media (max-width: 767px) {
+
+  /* Typography */
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 2.25rem;
+  }
+
+  h3 {
+    font-size: 2rem;
+  }
+
+  h4 {
+    font-size: 1.75rem;
+  }
+
+  h5 {
+    font-size: 1.5rem;
+  }
+
+  .bigger-title {
+    font-size: 3rem;
+  }
+
+  .sub-title {
+    font-size: 20px;
+  }
+}
