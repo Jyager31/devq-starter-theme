@@ -11,6 +11,39 @@
 - **Page presets:** `functions/page-presets.php` — common page layouts
 - **Theme settings CSS:** `theme-settings-css.php` — generates CSS variables from ACF options
 - **Main stylesheet:** `style.css`
+- **Theme updater:** `functions/theme-updater.php` — GitHub release update checker
+- **Release workflow:** `.github/workflows/release.yml` — auto-builds release zip on tag push
+- **Child theme boilerplate:** `devq-starter-child/` — copy per client site
+
+## Releasing Updates
+
+This theme auto-updates on all sites via a public GitHub repo and `plugin-update-checker`. When a new GitHub release is published, every site running this theme will see the update in WP Admin.
+
+### Release Steps
+
+1. Bump `Version:` in `style.css` (this is the single source of truth)
+2. Commit the change
+3. Tag and push:
+   ```bash
+   git tag vX.Y.Z && git push origin master vX.Y.Z
+   ```
+4. GitHub Actions automatically builds the zip and creates the release — done
+
+### Version Format
+
+Use semver: `MAJOR.MINOR.PATCH`
+- **Patch** (1.0.1) — bug fixes, copy changes
+- **Minor** (1.1.0) — new blocks, new features
+- **Major** (2.0.0) — breaking changes to child themes or block structure
+
+### Do NOT
+
+- Manually create releases on GitHub (the Actions workflow handles this)
+- Edit anything in the `plugin-update-checker/` directory (third-party library)
+
+### Child Themes
+
+Per-site customizations (colors, fonts, extra blocks, templates) belong in child themes, not in this repo. Copy `devq-starter-child/` as a starting point for each client.
 
 ## Creating a New Block
 
@@ -276,6 +309,64 @@ The spacing system is centralized in `functions/spacing.php`:
 | CTA | `acf/cta` | heading, content, button, background_color | Call-to-action banner |
 | FAQ | `acf/faq` | heading, items (repeater: question, answer) | Accordion FAQ using BeefUp |
 
+## New Site Setup
+
+When asked to set up a new client site, follow this two-phase sequence:
+
+### Phase 1 — Bootstrap (before theme is active)
+
+1. **Read config:** `~/.devq/config.json` — contains plugin zip paths, license keys, and default page list.
+
+2. **Install plugins:**
+   ```bash
+   wp plugin install "{acf_zip_path}" --activate
+   wp plugin install "{gf_zip_path}" --activate
+   wp plugin install wordpress-seo --activate
+   ```
+
+3. **Activate licenses:**
+   ```bash
+   # ACF Pro
+   wp eval 'update_option("acf_pro_license", "{acf_license_key}");'
+
+   # Gravity Forms
+   wp eval 'GFFormsModel::save_key("{gf_license_key}");'
+   ```
+
+4. **Bootstrap theme + child theme:**
+   ```bash
+   wp eval-file "wp-content/themes/devq-starter/scripts/bootstrap.php" "Client Name"
+   ```
+   This copies `devq-starter-child/` → `clientname-child/`, replaces "Client Name" in `style.css`, and activates the child theme.
+
+### Phase 2 — Content scaffold (requires active theme)
+
+5. **Scaffold content:**
+   ```bash
+   wp eval-file "wp-content/themes/devq-starter/scripts/setup-site.php"
+   ```
+   This creates pages from presets, sets Home as front page, builds the Primary Menu, deletes default content (Sample Page, Hello world!), and sets permalinks to `/%postname%/`.
+
+   To use custom pages: `wp eval-file "...setup-site.php" home about services contact landing`
+
+### Verification
+
+6. **Verify everything worked:**
+   ```bash
+   wp theme status
+   wp plugin list
+   wp post list --post_type=page --fields=ID,post_title,post_status
+   wp option get page_on_front
+   wp menu list
+   ```
+
+### Important Notes
+
+- `~/.devq/config.json` is machine-level config (secrets stay out of git)
+- `scripts/bootstrap.php` is standalone — no theme dependency
+- `scripts/setup-site.php` requires the theme to be active (uses `devq_create_page()`)
+- Available presets: `home`, `about`, `contact`, `services`, `landing`
+
 ## Programmatic Page Creation
 
 ### Creating a Page with Blocks
@@ -352,6 +443,6 @@ curl -X POST http://localhost/wp-json/devq/v1/create-page \
 ### Bulk Page Creation Workflow
 
 1. Create pages from presets: `wp devq create-page --title="Home" --preset=home --status=publish`
-2. Or run the setup script: `wp eval-file "wp-content/themes/DevQ Starter/scripts/setup-site-example.php"`
+2. Or run the setup script: `wp eval-file "wp-content/themes/devq-starter/scripts/setup-site.php"`
 3. Edit pages in WP admin to fill in real content
-4. See `scripts/setup-site-example.php` for a complete site setup example
+4. See the "New Site Setup" section above for the full orchestration workflow
