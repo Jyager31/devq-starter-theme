@@ -22,7 +22,7 @@ $custom_class = get_field('custom_class');
 $custom_id = get_field('custom_id');
 
 // Animation Tab Fields
-$animation_type = get_field('animation_type') ?: 'fade-up';
+$animation_type = get_field('animation_type') ?: 'recommended';
 $animation_duration = get_field('animation_duration') ?: 800;
 $disable_animation = get_field('disable_animation');
 
@@ -38,13 +38,16 @@ if ($custom_class) {
 $block_id = $custom_id ? $custom_id : $unique_block_id;
 
 // Build AOS attributes
+$is_recommended = ($animation_type === 'recommended');
 $aos_attributes = '';
-if (!$disable_animation) {
-    $aos_attributes .= 'data-aos="' . esc_attr($animation_type) . '"';
+if (!$disable_animation && !$is_recommended) {
+    $aos_attributes = 'data-aos="' . esc_attr($animation_type) . '"';
     if ($animation_duration != 800) {
         $aos_attributes .= ' data-aos-duration="' . esc_attr($animation_duration) . '"';
     }
 }
+$header_aos = (!$disable_animation && $is_recommended) ? devq_aos('fade-up', 0, $animation_duration) : '';
+$stagger = (!$disable_animation && $is_recommended);
 
 // Collect all gallery items and unique categories in a single pass
 $gallery_items = array();
@@ -76,7 +79,7 @@ if (empty($gallery_items)) {
 <div class="<?php echo esc_attr($block_classes); ?>" <?php echo $block_id ? 'id="' . esc_attr($block_id) . '"' : ''; ?> <?php echo $aos_attributes; ?> data-block-category="media">
     <div class="container">
         <?php if ($heading) : ?>
-            <h2 class="gallery-heading"><?php echo esc_html($heading); ?></h2>
+            <h2 class="gallery-heading" <?php echo $header_aos; ?>><?php echo esc_html($heading); ?></h2>
         <?php endif; ?>
 
         <?php if ($show_filters && !empty($categories)) : ?>
@@ -89,13 +92,14 @@ if (empty($gallery_items)) {
         <?php endif; ?>
 
         <div class="gallery-grid">
-            <?php foreach ($gallery_items as $item) :
+            <?php $gallery_item_index = 0; foreach ($gallery_items as $item) :
                 $image = $item['image'];
                 $category = $item['category'];
                 $caption = $item['caption'];
                 if (!$image) continue;
+                $item_delay = $gallery_item_index * 100;
                 ?>
-                <div class="gallery-item" <?php echo $category ? 'data-category="' . esc_attr($category) . '"' : ''; ?>>
+                <div class="gallery-item" <?php echo $category ? 'data-category="' . esc_attr($category) . '"' : ''; ?> <?php if ($stagger) echo devq_aos('fade-up', $item_delay, $animation_duration); ?>>
                     <a href="<?php echo esc_url($image['url']); ?>" class="gallery-lightbox" <?php echo $caption ? 'data-caption="' . esc_attr($caption) . '"' : ''; ?>>
                         <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
                         <?php if ($caption) : ?>
@@ -103,7 +107,7 @@ if (empty($gallery_items)) {
                         <?php endif; ?>
                     </a>
                 </div>
-            <?php endforeach; ?>
+            <?php $gallery_item_index++; endforeach; ?>
         </div>
     </div>
 </div>

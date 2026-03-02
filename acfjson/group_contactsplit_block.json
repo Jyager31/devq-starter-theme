@@ -445,6 +445,7 @@
                 "id": ""
             },
             "choices": {
+                "recommended": "Recommended",
                 "fade-up": "Fade Up",
                 "fade-down": "Fade Down",
                 "fade-left": "Fade Left",
@@ -468,7 +469,7 @@
                 "zoom-in-right": "Zoom In Right",
                 "zoom-out": "Zoom Out"
             },
-            "default_value": "fade-up",
+            "default_value": "recommended",
             "allow_null": 0,
             "multiple": 0,
             "ui": 0,
@@ -524,7 +525,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/contactsplit"
+                "value": "acf/contactsplit"
             }
         ]
     ],

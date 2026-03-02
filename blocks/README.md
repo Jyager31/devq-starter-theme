@@ -63,7 +63,7 @@ $custom_class = get_field('custom_class');
 $custom_id = get_field('custom_id');
 
 // Animation Tab Fields (always include these)
-$animation_type = get_field('animation_type') ?: 'fade-up';
+$animation_type = get_field('animation_type') ?: 'recommended';
 $animation_duration = get_field('animation_duration') ?: 800;
 $disable_animation = get_field('disable_animation');
 
@@ -80,13 +80,16 @@ if ($custom_class) {
 $block_id = $custom_id ? $custom_id : $unique_block_id;
 
 // Build AOS attributes
+$is_recommended = ($animation_type === 'recommended');
 $aos_attributes = '';
-if (!$disable_animation) {
-    $aos_attributes .= 'data-aos="' . esc_attr($animation_type) . '"';
+if (!$disable_animation && !$is_recommended) {
+    $aos_attributes = 'data-aos="' . esc_attr($animation_type) . '"';
     if ($animation_duration != 800) {
         $aos_attributes .= ' data-aos-duration="' . esc_attr($animation_duration) . '"';
     }
 }
+// For recommended mode, apply devq_aos() to individual elements instead
+// $animate = (!$disable_animation && $is_recommended);
 
 ?>
 
@@ -163,7 +166,7 @@ The Options tab must always include these fields:
 
 The Animation tab must always include these fields for AOS integration:
 
-- **Animation Type** - Select field with AOS animation choices (default: fade-up, width: 50%)
+- **Animation Type** - Select field with AOS animation choices (default: recommended, width: 50%)
 - **Animation Duration** - Number field (default: 800, append: "ms", min: 300, max: 3000, width: 25%)
 - **Disable Animation** - True/False field (width: 25%)
 

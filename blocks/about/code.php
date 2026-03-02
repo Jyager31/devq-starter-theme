@@ -27,9 +27,10 @@ $custom_class = get_field('custom_class');
 $custom_id = get_field('custom_id');
 
 // Animation Tab Fields
-$animation_type = get_field('animation_type') ?: 'fade-up';
+$animation_type = get_field('animation_type') ?: 'recommended';
 $animation_duration = get_field('animation_duration') ?: 800;
 $disable_animation = get_field('disable_animation');
+$is_recommended = ($animation_type === 'recommended');
 
 // Generate unique block ID
 $unique_block_id = generate_unique_block_id('about');
@@ -44,12 +45,13 @@ $block_id = $custom_id ? $custom_id : $unique_block_id;
 
 // Build AOS attributes
 $aos_attributes = '';
-if (!$disable_animation) {
-    $aos_attributes .= 'data-aos="' . esc_attr($animation_type) . '"';
+if (!$disable_animation && !$is_recommended) {
+    $aos_attributes = 'data-aos="' . esc_attr($animation_type) . '"';
     if ($animation_duration != 800) {
         $aos_attributes .= ' data-aos-duration="' . esc_attr($animation_duration) . '"';
     }
 }
+$animate = (!$disable_animation && $is_recommended);
 
 // Check required fields
 if (!$heading) {
@@ -62,30 +64,30 @@ if (!$heading) {
 <div class="<?php echo esc_attr($block_classes); ?>" <?php echo $block_id ? 'id="' . esc_attr($block_id) . '"' : ''; ?> <?php echo $aos_attributes; ?> data-block-category="content">
     <div class="container">
         <div class="about-grid">
-            <div class="about-image-col">
+            <div class="about-image-col" <?php if ($animate) echo devq_aos('fade-right', 0, $animation_duration); ?>>
                 <?php if ($image) : ?>
                     <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" class="about-image">
                 <?php endif; ?>
             </div>
             <div class="about-text-col">
                 <?php if ($eyebrow) : ?>
-                    <span class="cs-topper about-eyebrow"><?php echo esc_html($eyebrow); ?></span>
+                    <span class="cs-topper about-eyebrow" <?php if ($animate) echo devq_aos('fade-left', 0, $animation_duration); ?>><?php echo esc_html($eyebrow); ?></span>
                 <?php endif; ?>
 
-                <h2 class="about-heading"><?php echo esc_html($heading); ?></h2>
+                <h2 class="about-heading" <?php if ($animate) echo devq_aos('fade-left', 100, $animation_duration); ?>><?php echo esc_html($heading); ?></h2>
 
                 <?php if ($content) : ?>
-                    <div class="about-content">
+                    <div class="about-content" <?php if ($animate) echo devq_aos('fade-left', 200, $animation_duration); ?>>
                         <?php echo wp_kses_post($content); ?>
                     </div>
                 <?php endif; ?>
 
                 <?php if ($button) : ?>
-                    <a href="<?php echo esc_url($button['url']); ?>" class="btn" <?php echo !empty($button['target']) ? 'target="' . esc_attr($button['target']) . '"' : ''; ?>><?php echo esc_html($button['title']); ?></a>
+                    <a href="<?php echo esc_url($button['url']); ?>" class="btn" <?php if ($animate) echo devq_aos('fade-left', 300, $animation_duration); ?> <?php echo !empty($button['target']) ? 'target="' . esc_attr($button['target']) . '"' : ''; ?>><?php echo esc_html($button['title']); ?></a>
                 <?php endif; ?>
 
                 <?php if ($show_stats && have_rows('stats')) : ?>
-                    <div class="about-stats">
+                    <div class="about-stats" <?php if ($animate) echo devq_aos('fade-up', 400, $animation_duration); ?>>
                         <?php while (have_rows('stats')) : the_row();
                             $number = get_sub_field('number');
                             $label = get_sub_field('label');

@@ -25,9 +25,10 @@ $custom_class = get_field('custom_class');
 $custom_id = get_field('custom_id');
 
 // Animation Tab Fields
-$animation_type = get_field('animation_type') ?: 'fade-up';
+$animation_type = get_field('animation_type') ?: 'recommended';
 $animation_duration = get_field('animation_duration') ?: 800;
 $disable_animation = get_field('disable_animation');
+$is_recommended = ($animation_type === 'recommended');
 
 // Generate unique block ID
 $unique_block_id = generate_unique_block_id('image');
@@ -47,9 +48,13 @@ $block_style = '';
 // Build AOS attributes
 $aos_attributes = '';
 if (!$disable_animation) {
-    $aos_attributes .= 'data-aos="' . esc_attr($animation_type) . '"';
-    if ($animation_duration != 800) {
-        $aos_attributes .= ' data-aos-duration="' . esc_attr($animation_duration) . '"';
+    if ($is_recommended) {
+        $aos_attributes = devq_aos('zoom-in', 0, $animation_duration);
+    } else {
+        $aos_attributes = 'data-aos="' . esc_attr($animation_type) . '"';
+        if ($animation_duration != 800) {
+            $aos_attributes .= ' data-aos-duration="' . esc_attr($animation_duration) . '"';
+        }
     }
 }
 

@@ -25,9 +25,10 @@ $custom_class = get_field('custom_class');
 $custom_id = get_field('custom_id');
 
 // Animation Tab Fields
-$animation_type = get_field('animation_type') ?: 'fade-up';
+$animation_type = get_field('animation_type') ?: 'recommended';
 $animation_duration = get_field('animation_duration') ?: 800;
 $disable_animation = get_field('disable_animation');
+$is_recommended = ($animation_type === 'recommended');
 
 // Generate unique block ID
 $unique_block_id = generate_unique_block_id('comparisontable');
@@ -42,12 +43,13 @@ $block_id = $custom_id ? $custom_id : $unique_block_id;
 
 // Build AOS attributes
 $aos_attributes = '';
-if (!$disable_animation) {
-    $aos_attributes .= 'data-aos="' . esc_attr($animation_type) . '"';
+if (!$disable_animation && !$is_recommended) {
+    $aos_attributes = 'data-aos="' . esc_attr($animation_type) . '"';
     if ($animation_duration != 800) {
         $aos_attributes .= ' data-aos-duration="' . esc_attr($animation_duration) . '"';
     }
 }
+$animate = (!$disable_animation && $is_recommended);
 
 // Count columns
 $col_count = 0;
@@ -82,7 +84,7 @@ function comparisontable_render_value($value, $custom_text = '') {
 <div class="<?php echo esc_attr($block_classes); ?>" <?php echo $block_id ? 'id="' . esc_attr($block_id) . '"' : ''; ?> <?php echo $aos_attributes; ?> data-block-category="cards">
     <div class="container">
         <?php if ($eyebrow || $heading || $subheading) : ?>
-            <div class="comparisontable-header">
+            <div class="comparisontable-header" <?php if ($animate) echo devq_aos('fade-up', 0, $animation_duration); ?>>
                 <?php if ($eyebrow) : ?>
                     <span class="cs-topper comparisontable-eyebrow"><?php echo esc_html($eyebrow); ?></span>
                 <?php endif; ?>
@@ -95,7 +97,7 @@ function comparisontable_render_value($value, $custom_text = '') {
             </div>
         <?php endif; ?>
 
-        <div class="comparisontable-wrapper">
+        <div class="comparisontable-wrapper" <?php if ($animate) echo devq_aos('fade-up', 200, $animation_duration); ?>>
             <div class="comparisontable-scroll-hint"></div>
             <div class="comparisontable-grid" style="grid-template-columns: minmax(180px, 1.5fr) repeat(<?php echo esc_attr($col_count); ?>, 1fr);">
 

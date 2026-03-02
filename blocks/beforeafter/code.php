@@ -27,9 +27,10 @@ $custom_class = get_field('custom_class');
 $custom_id = get_field('custom_id');
 
 // Animation Tab Fields
-$animation_type = get_field('animation_type') ?: 'fade-up';
+$animation_type = get_field('animation_type') ?: 'recommended';
 $animation_duration = get_field('animation_duration') ?: 800;
 $disable_animation = get_field('disable_animation');
+$is_recommended = ($animation_type === 'recommended');
 
 // Generate unique block ID
 $unique_block_id = generate_unique_block_id('beforeafter');
@@ -44,12 +45,13 @@ $block_id = $custom_id ? $custom_id : $unique_block_id;
 
 // Build AOS attributes
 $aos_attributes = '';
-if (!$disable_animation) {
-    $aos_attributes .= 'data-aos="' . esc_attr($animation_type) . '"';
+if (!$disable_animation && !$is_recommended) {
+    $aos_attributes = 'data-aos="' . esc_attr($animation_type) . '"';
     if ($animation_duration != 800) {
         $aos_attributes .= ' data-aos-duration="' . esc_attr($animation_duration) . '"';
     }
 }
+$animate = (!$disable_animation && $is_recommended);
 
 // Check required fields
 if (!$before_image || !$after_image) {
@@ -62,7 +64,7 @@ if (!$before_image || !$after_image) {
 <div class="<?php echo esc_attr($block_classes); ?>" <?php echo $block_id ? 'id="' . esc_attr($block_id) . '"' : ''; ?> <?php echo $aos_attributes; ?> data-block-category="media">
     <div class="container">
         <?php if ($eyebrow || $heading) : ?>
-            <div class="beforeafter-header">
+            <div class="beforeafter-header" <?php if ($animate) echo devq_aos('fade-up', 0, $animation_duration); ?>>
                 <?php if ($eyebrow) : ?>
                     <span class="cs-topper beforeafter-eyebrow"><?php echo esc_html($eyebrow); ?></span>
                 <?php endif; ?>
@@ -72,7 +74,7 @@ if (!$before_image || !$after_image) {
             </div>
         <?php endif; ?>
 
-        <div class="beforeafter-container" data-position="<?php echo esc_attr($default_position); ?>">
+        <div class="beforeafter-container" <?php if ($animate) echo devq_aos('fade-up', 200, $animation_duration); ?> data-position="<?php echo esc_attr($default_position); ?>">
             <div class="beforeafter-after">
                 <img src="<?php echo esc_url($after_image['url']); ?>" alt="<?php echo esc_attr($after_image['alt']); ?>" draggable="false">
             </div>

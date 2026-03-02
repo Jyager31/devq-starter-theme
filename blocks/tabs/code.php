@@ -24,9 +24,10 @@ $custom_class = get_field('custom_class');
 $custom_id = get_field('custom_id');
 
 // Animation Tab Fields
-$animation_type = get_field('animation_type') ?: 'fade-up';
+$animation_type = get_field('animation_type') ?: 'recommended';
 $animation_duration = get_field('animation_duration') ?: 800;
 $disable_animation = get_field('disable_animation');
+$is_recommended = ($animation_type === 'recommended');
 
 // Generate unique block ID
 $unique_block_id = generate_unique_block_id('tabs');
@@ -41,12 +42,13 @@ $block_id = $custom_id ? $custom_id : $unique_block_id;
 
 // Build AOS attributes
 $aos_attributes = '';
-if (!$disable_animation) {
-    $aos_attributes .= 'data-aos="' . esc_attr($animation_type) . '"';
+if (!$disable_animation && !$is_recommended) {
+    $aos_attributes = 'data-aos="' . esc_attr($animation_type) . '"';
     if ($animation_duration != 800) {
         $aos_attributes .= ' data-aos-duration="' . esc_attr($animation_duration) . '"';
     }
 }
+$animate = (!$disable_animation && $is_recommended);
 
 // Check required fields
 if (!have_rows('tabs')) {
@@ -75,7 +77,7 @@ if (count($tabs_data) < 2) {
 <div class="<?php echo esc_attr($block_classes); ?>" <?php echo $block_id ? 'id="' . esc_attr($block_id) . '"' : ''; ?> <?php echo $aos_attributes; ?> data-block-category="content">
     <div class="container">
         <?php if ($eyebrow || $heading || $subheading) : ?>
-            <div class="tabs-header">
+            <div class="tabs-header" <?php if ($animate) echo devq_aos('fade-up', 0, $animation_duration); ?>>
                 <?php if ($eyebrow) : ?>
                     <span class="cs-topper tabs-eyebrow"><?php echo esc_html($eyebrow); ?></span>
                 <?php endif; ?>
@@ -88,7 +90,7 @@ if (count($tabs_data) < 2) {
             </div>
         <?php endif; ?>
 
-        <div class="tabs-wrapper">
+        <div class="tabs-wrapper" <?php if ($animate) echo devq_aos('fade-up', 200, $animation_duration); ?>>
             <!-- Tab Buttons -->
             <div class="tabs-nav" role="tablist">
                 <?php foreach ($tabs_data as $index => $tab) : ?>

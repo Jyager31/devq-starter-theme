@@ -27,9 +27,10 @@ $custom_class = get_field('custom_class');
 $custom_id = get_field('custom_id');
 
 // Animation Tab Fields
-$animation_type = get_field('animation_type') ?: 'fade-up';
+$animation_type = get_field('animation_type') ?: 'recommended';
 $animation_duration = get_field('animation_duration') ?: 800;
 $disable_animation = get_field('disable_animation');
+$is_recommended = ($animation_type === 'recommended');
 
 // Generate unique block ID
 $unique_block_id = generate_unique_block_id('textimage');
@@ -47,11 +48,21 @@ $block_id = $custom_id ? $custom_id : $unique_block_id;
 
 // Build AOS attributes
 $aos_attributes = '';
-if (!$disable_animation) {
-    $aos_attributes .= 'data-aos="' . esc_attr($animation_type) . '"';
+if (!$disable_animation && !$is_recommended) {
+    $aos_attributes = 'data-aos="' . esc_attr($animation_type) . '"';
     if ($animation_duration != 800) {
         $aos_attributes .= ' data-aos-duration="' . esc_attr($animation_duration) . '"';
     }
+}
+$animate = (!$disable_animation && $is_recommended);
+
+// Directional animations for recommended mode
+if ($image_position === 'left') {
+    $text_dir = 'fade-left';
+    $img_dir = 'fade-right';
+} else {
+    $text_dir = 'fade-right';
+    $img_dir = 'fade-left';
 }
 
 // Check required fields
@@ -67,21 +78,21 @@ if (!$heading && !$content && !$image) {
         <div class="textimage-grid">
             <div class="textimage-text">
                 <?php if ($eyebrow) : ?>
-                    <span class="cs-topper textimage-eyebrow"><?php echo esc_html($eyebrow); ?></span>
+                    <span class="cs-topper textimage-eyebrow" <?php if ($animate) echo devq_aos($text_dir, 0, $animation_duration); ?>><?php echo esc_html($eyebrow); ?></span>
                 <?php endif; ?>
                 <?php if ($heading) : ?>
-                    <h2 class="textimage-heading"><?php echo esc_html($heading); ?></h2>
+                    <h2 class="textimage-heading" <?php if ($animate) echo devq_aos($text_dir, 100, $animation_duration); ?>><?php echo esc_html($heading); ?></h2>
                 <?php endif; ?>
                 <?php if ($content) : ?>
-                    <div class="textimage-content">
+                    <div class="textimage-content" <?php if ($animate) echo devq_aos($text_dir, 200, $animation_duration); ?>>
                         <?php echo wp_kses_post($content); ?>
                     </div>
                 <?php endif; ?>
                 <?php if ($button) : ?>
-                    <a href="<?php echo esc_url($button['url']); ?>" class="btn textimage-button" <?php echo $button['target'] ? 'target="' . esc_attr($button['target']) . '"' : ''; ?>><?php echo esc_html($button['title']); ?></a>
+                    <a href="<?php echo esc_url($button['url']); ?>" class="btn textimage-button" <?php if ($animate) echo devq_aos($text_dir, 300, $animation_duration); ?> <?php echo $button['target'] ? 'target="' . esc_attr($button['target']) . '"' : ''; ?>><?php echo esc_html($button['title']); ?></a>
                 <?php endif; ?>
             </div>
-            <div class="textimage-image">
+            <div class="textimage-image" <?php if ($animate) echo devq_aos($img_dir, 200, $animation_duration); ?>>
                 <?php if ($image) : ?>
                     <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
                 <?php endif; ?>

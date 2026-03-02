@@ -23,9 +23,10 @@ $custom_class = get_field('custom_class');
 $custom_id = get_field('custom_id');
 
 // Animation Tab Fields
-$animation_type = get_field('animation_type') ?: 'fade-up';
+$animation_type = get_field('animation_type') ?: 'recommended';
 $animation_duration = get_field('animation_duration') ?: 800;
 $disable_animation = get_field('disable_animation');
+$is_recommended = ($animation_type === 'recommended');
 
 // Generate unique block ID
 $unique_block_id = generate_unique_block_id('stats');
@@ -38,14 +39,16 @@ if ($custom_class) {
 
 $block_id = $custom_id ? $custom_id : $unique_block_id;
 
-// Build AOS attributes for header
+// Build AOS attributes (manual mode only — recommended uses per-element animations)
 $aos_attributes = '';
-if (!$disable_animation) {
-    $aos_attributes .= 'data-aos="' . esc_attr($animation_type) . '"';
+if (!$disable_animation && !$is_recommended) {
+    $aos_attributes = 'data-aos="' . esc_attr($animation_type) . '"';
     if ($animation_duration != 800) {
         $aos_attributes .= ' data-aos-duration="' . esc_attr($animation_duration) . '"';
     }
 }
+$header_aos = (!$disable_animation && $is_recommended) ? devq_aos('fade-up', 0, $animation_duration) : '';
+$stagger = (!$disable_animation && $is_recommended);
 
 // Check required fields
 if (!have_rows('stats')) {
@@ -55,10 +58,10 @@ if (!have_rows('stats')) {
 
 ?>
 
-<div class="<?php echo esc_attr($block_classes); ?>" <?php echo $block_id ? 'id="' . esc_attr($block_id) . '"' : ''; ?> data-block-category="socialproof">
+<div class="<?php echo esc_attr($block_classes); ?>" <?php echo $block_id ? 'id="' . esc_attr($block_id) . '"' : ''; ?> <?php echo $aos_attributes; ?> data-block-category="socialproof">
     <div class="container">
         <?php if ($eyebrow || $heading) : ?>
-            <div class="stats-header" <?php echo $aos_attributes; ?>>
+            <div class="stats-header" <?php echo $header_aos; ?>>
                 <?php if ($eyebrow) : ?>
                     <span class="cs-topper stats-eyebrow"><?php echo esc_html($eyebrow); ?></span>
                 <?php endif; ?>
@@ -80,7 +83,7 @@ if (!have_rows('stats')) {
                     // Parse number to get just digits for data-count
                     $count_value = preg_replace('/[^0-9.]/', '', $number);
                     ?>
-                    <div class="stats-item" <?php if (!$disable_animation) : ?>data-aos="fade-up" data-aos-delay="<?php echo esc_attr($delay); ?>"<?php endif; ?>>
+                    <div class="stats-item" <?php if ($stagger) : ?><?php echo devq_aos('fade-up', $delay, $animation_duration); ?><?php endif; ?>>
                         <div class="stats-number" data-count="<?php echo esc_attr($count_value); ?>" data-prefix="<?php echo esc_attr($prefix); ?>" data-suffix="<?php echo esc_attr($suffix); ?>">
                             <?php echo esc_html($prefix); ?>0<?php echo esc_html($suffix); ?>
                         </div>

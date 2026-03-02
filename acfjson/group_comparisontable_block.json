@@ -219,9 +219,9 @@
                         "id": ""
                     },
                     "choices": {
-                        "check": "\u2705 Yes",
-                        "cross": "\u274c No",
-                        "custom": "\u270f Custom Text"
+                        "check": "✅ Yes",
+                        "cross": "❌ No",
+                        "custom": "✏ Custom Text"
                     },
                     "default_value": "check",
                     "allow_null": 1,
@@ -276,9 +276,9 @@
                         "id": ""
                     },
                     "choices": {
-                        "check": "\u2705 Yes",
-                        "cross": "\u274c No",
-                        "custom": "\u270f Custom Text"
+                        "check": "✅ Yes",
+                        "cross": "❌ No",
+                        "custom": "✏ Custom Text"
                     },
                     "default_value": "check",
                     "allow_null": 1,
@@ -333,9 +333,9 @@
                         "id": ""
                     },
                     "choices": {
-                        "check": "\u2705 Yes",
-                        "cross": "\u274c No",
-                        "custom": "\u270f Custom Text"
+                        "check": "✅ Yes",
+                        "cross": "❌ No",
+                        "custom": "✏ Custom Text"
                     },
                     "default_value": "check",
                     "allow_null": 1,
@@ -390,9 +390,9 @@
                         "id": ""
                     },
                     "choices": {
-                        "check": "\u2705 Yes",
-                        "cross": "\u274c No",
-                        "custom": "\u270f Custom Text"
+                        "check": "✅ Yes",
+                        "cross": "❌ No",
+                        "custom": "✏ Custom Text"
                     },
                     "default_value": "check",
                     "allow_null": 1,
@@ -643,6 +643,7 @@
                 "id": ""
             },
             "choices": {
+                "recommended": "Recommended",
                 "fade-up": "Fade Up",
                 "fade-down": "Fade Down",
                 "fade-left": "Fade Left",
@@ -666,7 +667,7 @@
                 "zoom-in-right": "Zoom In Right",
                 "zoom-out": "Zoom Out"
             },
-            "default_value": "fade-up",
+            "default_value": "recommended",
             "allow_null": 0,
             "multiple": 0,
             "ui": 0,
@@ -722,7 +723,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/comparisontable"
+                "value": "acf/comparisontable"
             }
         ]
     ],

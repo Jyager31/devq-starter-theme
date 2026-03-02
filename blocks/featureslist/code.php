@@ -24,9 +24,10 @@ $custom_class = get_field('custom_class');
 $custom_id = get_field('custom_id');
 
 // Animation Tab Fields
-$animation_type = get_field('animation_type') ?: 'fade-up';
+$animation_type = get_field('animation_type') ?: 'recommended';
 $animation_duration = get_field('animation_duration') ?: 800;
 $disable_animation = get_field('disable_animation');
+$is_recommended = ($animation_type === 'recommended');
 
 // Generate unique block ID
 $unique_block_id = generate_unique_block_id('featureslist');
@@ -39,14 +40,16 @@ if ($custom_class) {
 
 $block_id = $custom_id ? $custom_id : $unique_block_id;
 
-// Build AOS attributes (block-level for header only; features get individual AOS)
+// Build AOS attributes (manual mode only — recommended uses per-element animations)
 $aos_attributes = '';
-if (!$disable_animation) {
-    $aos_attributes .= 'data-aos="' . esc_attr($animation_type) . '"';
+if (!$disable_animation && !$is_recommended) {
+    $aos_attributes = 'data-aos="' . esc_attr($animation_type) . '"';
     if ($animation_duration != 800) {
         $aos_attributes .= ' data-aos-duration="' . esc_attr($animation_duration) . '"';
     }
 }
+$header_aos = (!$disable_animation && $is_recommended) ? devq_aos('fade-up', 0, $animation_duration) : '';
+$stagger = (!$disable_animation && $is_recommended);
 
 // Check required fields
 if (!$heading && !have_rows('features')) {
@@ -56,10 +59,10 @@ if (!$heading && !have_rows('features')) {
 
 ?>
 
-<div class="<?php echo esc_attr($block_classes); ?>" <?php echo $block_id ? 'id="' . esc_attr($block_id) . '"' : ''; ?> data-block-category="lists">
+<div class="<?php echo esc_attr($block_classes); ?>" <?php echo $block_id ? 'id="' . esc_attr($block_id) . '"' : ''; ?> <?php echo $aos_attributes; ?> data-block-category="lists">
     <div class="container">
         <?php if ($eyebrow || $heading || $subheading) : ?>
-            <div class="featureslist-header" <?php echo $aos_attributes; ?>>
+            <div class="featureslist-header" <?php echo $header_aos; ?>>
                 <?php if ($eyebrow) : ?>
                     <span class="cs-topper featureslist-eyebrow"><?php echo esc_html($eyebrow); ?></span>
                 <?php endif; ?>
@@ -80,7 +83,7 @@ if (!$heading && !have_rows('features')) {
                     $description = get_sub_field('description');
                     $delay = $feat_index * 80;
                     ?>
-                    <div class="featureslist-item" <?php if (!$disable_animation) : ?>data-aos="fade-up" data-aos-delay="<?php echo esc_attr($delay); ?>"<?php endif; ?>>
+                    <div class="featureslist-item" <?php if ($stagger) : ?><?php echo devq_aos('fade-up', $delay, $animation_duration); ?><?php endif; ?>>
                         <?php if ($icon_class) : ?>
                             <div class="featureslist-icon">
                                 <i class="<?php echo esc_attr($icon_class); ?>"></i>

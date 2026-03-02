@@ -11,7 +11,11 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "", "class": "", "id": ""},
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "placement": "left",
             "endpoint": 0,
             "selected": 0
@@ -25,7 +29,11 @@
             "instructions": "Small text displayed above the heading",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "", "class": "", "id": ""},
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "default_value": "",
             "placeholder": "",
             "prepend": "",
@@ -41,7 +49,11 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "", "class": "", "id": ""},
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "default_value": "",
             "placeholder": "",
             "prepend": "",
@@ -57,7 +69,11 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "", "class": "", "id": ""},
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "default_value": "",
             "placeholder": "",
             "maxlength": "",
@@ -73,7 +89,11 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "", "class": "", "id": ""},
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "layout": "block",
             "button_label": "Add Step",
             "min": 0,
@@ -89,7 +109,11 @@
                     "instructions": "FontAwesome class, e.g. fa-solid fa-lightbulb. Leave empty to show step number.",
                     "required": 0,
                     "conditional_logic": 0,
-                    "wrapper": {"width": "", "class": "", "id": ""},
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
                     "default_value": "",
                     "placeholder": "fa-solid fa-lightbulb",
                     "prepend": "",
@@ -106,7 +130,11 @@
                     "instructions": "",
                     "required": 1,
                     "conditional_logic": 0,
-                    "wrapper": {"width": "", "class": "", "id": ""},
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
                     "default_value": "",
                     "placeholder": "",
                     "prepend": "",
@@ -123,7 +151,11 @@
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
-                    "wrapper": {"width": "", "class": "", "id": ""},
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
                     "default_value": "",
                     "placeholder": "",
                     "maxlength": "",
@@ -142,7 +174,11 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "", "class": "", "id": ""},
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "placement": "left",
             "endpoint": 0,
             "selected": 0
@@ -156,8 +192,18 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "50", "class": "", "id": ""},
-            "choices": {"none": "None", "small": "Small", "medium": "Medium", "large": "Large", "other": "Other"},
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "none": "None",
+                "small": "Small",
+                "medium": "Medium",
+                "large": "Large",
+                "other": "Other"
+            },
             "default_value": "none",
             "allow_null": 0,
             "multiple": 0,
@@ -174,8 +220,20 @@
             "type": "number",
             "instructions": "",
             "required": 0,
-            "conditional_logic": [[{"field": "field_process_margin_top", "operator": "==", "value": "other"}]],
-            "wrapper": {"width": "50", "class": "", "id": ""},
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_process_margin_top",
+                        "operator": "==",
+                        "value": "other"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
             "default_value": "",
             "placeholder": "",
             "prepend": "",
@@ -193,8 +251,18 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "50", "class": "", "id": ""},
-            "choices": {"none": "None", "small": "Small", "medium": "Medium", "large": "Large", "other": "Other"},
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "none": "None",
+                "small": "Small",
+                "medium": "Medium",
+                "large": "Large",
+                "other": "Other"
+            },
             "default_value": "none",
             "allow_null": 0,
             "multiple": 0,
@@ -211,8 +279,20 @@
             "type": "number",
             "instructions": "",
             "required": 0,
-            "conditional_logic": [[{"field": "field_process_margin_bottom", "operator": "==", "value": "other"}]],
-            "wrapper": {"width": "50", "class": "", "id": ""},
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_process_margin_bottom",
+                        "operator": "==",
+                        "value": "other"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
             "default_value": "",
             "placeholder": "",
             "prepend": "",
@@ -230,7 +310,11 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "50", "class": "", "id": ""},
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
             "default_value": "",
             "placeholder": "",
             "prepend": ".",
@@ -246,7 +330,11 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "50", "class": "", "id": ""},
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
             "default_value": "",
             "placeholder": "",
             "prepend": "#",
@@ -262,7 +350,11 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "", "class": "", "id": ""},
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "placement": "left",
             "endpoint": 0,
             "selected": 0
@@ -276,8 +368,13 @@
             "instructions": "Choose the AOS animation effect",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "50", "class": "", "id": ""},
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
             "choices": {
+                "recommended": "Recommended",
                 "fade-up": "Fade Up",
                 "fade-down": "Fade Down",
                 "fade-left": "Fade Left",
@@ -301,7 +398,7 @@
                 "zoom-in-right": "Zoom In Right",
                 "zoom-out": "Zoom Out"
             },
-            "default_value": "fade-up",
+            "default_value": "recommended",
             "allow_null": 0,
             "multiple": 0,
             "ui": 0,
@@ -318,7 +415,11 @@
             "instructions": "Duration in milliseconds",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "25", "class": "", "id": ""},
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
             "default_value": 800,
             "placeholder": "",
             "prepend": "",
@@ -336,7 +437,11 @@
             "instructions": "Disable the animation effect for this block",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "25", "class": "", "id": ""},
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
             "message": "",
             "default_value": 0,
             "ui": 1,
@@ -344,7 +449,15 @@
             "ui_off_text": ""
         }
     ],
-    "location": [[{"param": "block", "operator": "==", "value": "acf\/process"}]],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/process"
+            }
+        ]
+    ],
     "menu_order": 0,
     "position": "normal",
     "style": "default",

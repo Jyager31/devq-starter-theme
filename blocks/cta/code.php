@@ -27,9 +27,10 @@ $custom_class = get_field('custom_class');
 $custom_id = get_field('custom_id');
 
 // Animation Tab Fields
-$animation_type = get_field('animation_type') ?: 'fade-up';
+$animation_type = get_field('animation_type') ?: 'recommended';
 $animation_duration = get_field('animation_duration') ?: 800;
 $disable_animation = get_field('disable_animation');
+$is_recommended = ($animation_type === 'recommended');
 
 // Generate unique block ID
 $unique_block_id = generate_unique_block_id('cta');
@@ -44,12 +45,13 @@ $block_id = $custom_id ? $custom_id : $unique_block_id;
 
 // Build AOS attributes
 $aos_attributes = '';
-if (!$disable_animation) {
-    $aos_attributes .= 'data-aos="' . esc_attr($animation_type) . '"';
+if (!$disable_animation && !$is_recommended) {
+    $aos_attributes = 'data-aos="' . esc_attr($animation_type) . '"';
     if ($animation_duration != 800) {
         $aos_attributes .= ' data-aos-duration="' . esc_attr($animation_duration) . '"';
     }
 }
+$animate = (!$disable_animation && $is_recommended);
 
 // Check required fields
 if (!$heading) {
@@ -69,17 +71,17 @@ if ($background === 'custom' && $custom_background_color) {
     <div class="container">
         <div class="cta-content">
             <?php if ($eyebrow) : ?>
-                <span class="cs-topper cta-eyebrow"><?php echo esc_html($eyebrow); ?></span>
+                <span class="cs-topper cta-eyebrow" <?php if ($animate) echo devq_aos('fade-up', 0, $animation_duration); ?>><?php echo esc_html($eyebrow); ?></span>
             <?php endif; ?>
 
-            <h2 class="cta-heading"><?php echo esc_html($heading); ?></h2>
+            <h2 class="cta-heading" <?php if ($animate) echo devq_aos('fade-up', 100, $animation_duration); ?>><?php echo esc_html($heading); ?></h2>
 
             <?php if ($content) : ?>
-                <p class="cta-text"><?php echo esc_html($content); ?></p>
+                <p class="cta-text" <?php if ($animate) echo devq_aos('fade-up', 200, $animation_duration); ?>><?php echo esc_html($content); ?></p>
             <?php endif; ?>
 
             <?php if ($button) : ?>
-                <a href="<?php echo esc_url($button['url']); ?>" class="btn btn-white" <?php echo !empty($button['target']) ? 'target="' . esc_attr($button['target']) . '"' : ''; ?>><?php echo esc_html($button['title']); ?></a>
+                <a href="<?php echo esc_url($button['url']); ?>" class="btn btn-white" <?php if ($animate) echo devq_aos('fade-up', 300, $animation_duration); ?> <?php echo !empty($button['target']) ? 'target="' . esc_attr($button['target']) . '"' : ''; ?>><?php echo esc_html($button['title']); ?></a>
             <?php endif; ?>
         </div>
     </div>

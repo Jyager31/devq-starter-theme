@@ -11,7 +11,11 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "", "class": "", "id": ""},
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "placement": "left",
             "endpoint": 0,
             "selected": 0
@@ -25,7 +29,11 @@
             "instructions": "Small text displayed above the heading",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "", "class": "", "id": ""},
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "default_value": "",
             "placeholder": "",
             "prepend": "",
@@ -41,7 +49,11 @@
             "instructions": "Section heading above the FAQ items",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "", "class": "", "id": ""},
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "default_value": "",
             "placeholder": "",
             "prepend": "",
@@ -57,7 +69,11 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "", "class": "", "id": ""},
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "default_value": "",
             "placeholder": "",
             "maxlength": "",
@@ -73,7 +89,11 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "", "class": "", "id": ""},
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "layout": "block",
             "button_label": "Add FAQ Item",
             "min": 0,
@@ -89,7 +109,11 @@
                     "instructions": "",
                     "required": 1,
                     "conditional_logic": 0,
-                    "wrapper": {"width": "", "class": "", "id": ""},
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
                     "default_value": "",
                     "placeholder": "",
                     "prepend": "",
@@ -106,7 +130,11 @@
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
-                    "wrapper": {"width": "", "class": "", "id": ""},
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
                     "default_value": "",
                     "tabs": "all",
                     "toolbar": "full",
@@ -125,7 +153,11 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "", "class": "", "id": ""},
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "placement": "left",
             "endpoint": 0,
             "selected": 0
@@ -139,8 +171,18 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "50", "class": "", "id": ""},
-            "choices": {"none": "None", "small": "Small", "medium": "Medium", "large": "Large", "other": "Other"},
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "none": "None",
+                "small": "Small",
+                "medium": "Medium",
+                "large": "Large",
+                "other": "Other"
+            },
             "default_value": "none",
             "allow_null": 0,
             "multiple": 0,
@@ -157,8 +199,20 @@
             "type": "number",
             "instructions": "",
             "required": 0,
-            "conditional_logic": [[{"field": "field_faq_margin_top", "operator": "==", "value": "other"}]],
-            "wrapper": {"width": "50", "class": "", "id": ""},
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_faq_margin_top",
+                        "operator": "==",
+                        "value": "other"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
             "default_value": "",
             "placeholder": "",
             "prepend": "",
@@ -176,8 +230,18 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "50", "class": "", "id": ""},
-            "choices": {"none": "None", "small": "Small", "medium": "Medium", "large": "Large", "other": "Other"},
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "none": "None",
+                "small": "Small",
+                "medium": "Medium",
+                "large": "Large",
+                "other": "Other"
+            },
             "default_value": "none",
             "allow_null": 0,
             "multiple": 0,
@@ -194,8 +258,20 @@
             "type": "number",
             "instructions": "",
             "required": 0,
-            "conditional_logic": [[{"field": "field_faq_margin_bottom", "operator": "==", "value": "other"}]],
-            "wrapper": {"width": "50", "class": "", "id": ""},
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_faq_margin_bottom",
+                        "operator": "==",
+                        "value": "other"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
             "default_value": "",
             "placeholder": "",
             "prepend": "",
@@ -213,7 +289,11 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "50", "class": "", "id": ""},
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
             "default_value": "",
             "placeholder": "",
             "prepend": ".",
@@ -229,7 +309,11 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "50", "class": "", "id": ""},
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
             "default_value": "",
             "placeholder": "",
             "prepend": "#",
@@ -245,7 +329,11 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "", "class": "", "id": ""},
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "placement": "left",
             "endpoint": 0,
             "selected": 0
@@ -259,8 +347,13 @@
             "instructions": "Choose the AOS animation effect",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "50", "class": "", "id": ""},
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
             "choices": {
+                "recommended": "Recommended",
                 "fade-up": "Fade Up",
                 "fade-down": "Fade Down",
                 "fade-left": "Fade Left",
@@ -284,7 +377,7 @@
                 "zoom-in-right": "Zoom In Right",
                 "zoom-out": "Zoom Out"
             },
-            "default_value": "fade-up",
+            "default_value": "recommended",
             "allow_null": 0,
             "multiple": 0,
             "ui": 0,
@@ -301,7 +394,11 @@
             "instructions": "Duration in milliseconds",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "25", "class": "", "id": ""},
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
             "default_value": 800,
             "placeholder": "",
             "prepend": "",
@@ -319,7 +416,11 @@
             "instructions": "Disable the animation effect for this block",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "25", "class": "", "id": ""},
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
             "message": "",
             "default_value": 0,
             "ui": 1,
@@ -327,7 +428,15 @@
             "ui_off_text": ""
         }
     ],
-    "location": [[{"param": "block", "operator": "==", "value": "acf\/faq"}]],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/faq"
+            }
+        ]
+    ],
     "menu_order": 0,
     "position": "normal",
     "style": "default",

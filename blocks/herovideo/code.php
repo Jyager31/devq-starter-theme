@@ -38,9 +38,10 @@ $custom_class = get_field('custom_class');
 $custom_id = get_field('custom_id');
 
 // Animation Tab Fields
-$animation_type = get_field('animation_type') ?: 'fade-up';
+$animation_type = get_field('animation_type') ?: 'recommended';
 $animation_duration = get_field('animation_duration') ?: 800;
 $disable_animation = get_field('disable_animation');
+$is_recommended = ($animation_type === 'recommended');
 
 // Generate unique block ID
 $unique_block_id = generate_unique_block_id('herovideo');
@@ -59,12 +60,13 @@ $block_id = $custom_id ? $custom_id : $unique_block_id;
 
 // Build AOS attributes
 $aos_attributes = '';
-if (!$disable_animation) {
-    $aos_attributes .= 'data-aos="' . esc_attr($animation_type) . '"';
+if (!$disable_animation && !$is_recommended) {
+    $aos_attributes = 'data-aos="' . esc_attr($animation_type) . '"';
     if ($animation_duration != 800) {
         $aos_attributes .= ' data-aos-duration="' . esc_attr($animation_duration) . '"';
     }
 }
+$animate = (!$disable_animation && $is_recommended);
 
 // Check required fields
 if (!$heading) {
@@ -117,17 +119,17 @@ if ($video_source === 'upload' && $video_file) {
     <div class="container">
         <div class="herovideo-content">
             <?php if ($eyebrow) : ?>
-                <span class="cs-topper herovideo-eyebrow"><?php echo esc_html($eyebrow); ?></span>
+                <span class="cs-topper herovideo-eyebrow" <?php if ($animate) echo devq_aos('fade-up', 0, $animation_duration); ?>><?php echo esc_html($eyebrow); ?></span>
             <?php endif; ?>
 
-            <h1 class="herovideo-heading"><?php echo esc_html($heading); ?></h1>
+            <h1 class="herovideo-heading" <?php if ($animate) echo devq_aos('fade-up', 100, $animation_duration); ?>><?php echo esc_html($heading); ?></h1>
 
             <?php if ($subheading) : ?>
-                <p class="herovideo-subheading"><?php echo esc_html($subheading); ?></p>
+                <p class="herovideo-subheading" <?php if ($animate) echo devq_aos('fade-up', 200, $animation_duration); ?>><?php echo esc_html($subheading); ?></p>
             <?php endif; ?>
 
             <?php if ($primary_button || $secondary_button) : ?>
-                <div class="herovideo-buttons">
+                <div class="herovideo-buttons" <?php if ($animate) echo devq_aos('fade-up', 300, $animation_duration); ?>>
                     <?php if ($primary_button) : ?>
                         <a href="<?php echo esc_url($primary_button['url']); ?>" class="btn" <?php echo !empty($primary_button['target']) ? 'target="' . esc_attr($primary_button['target']) . '"' : ''; ?>><?php echo esc_html($primary_button['title']); ?></a>
                     <?php endif; ?>

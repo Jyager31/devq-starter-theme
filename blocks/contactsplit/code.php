@@ -35,9 +35,10 @@ $custom_class = get_field('custom_class');
 $custom_id = get_field('custom_id');
 
 // Animation Tab Fields
-$animation_type = get_field('animation_type') ?: 'fade-up';
+$animation_type = get_field('animation_type') ?: 'recommended';
 $animation_duration = get_field('animation_duration') ?: 800;
 $disable_animation = get_field('disable_animation');
+$is_recommended = ($animation_type === 'recommended');
 
 // Generate unique block ID
 $unique_block_id = generate_unique_block_id('contactsplit');
@@ -50,12 +51,26 @@ if ($custom_class) {
 
 $block_id = $custom_id ? $custom_id : $unique_block_id;
 
-// Build AOS attributes
-$aos_attributes = '';
+// Build AOS attributes for info column
+$info_aos = '';
 if (!$disable_animation) {
-    $aos_attributes .= 'data-aos="' . esc_attr($animation_type) . '"';
-    if ($animation_duration != 800) {
-        $aos_attributes .= ' data-aos-duration="' . esc_attr($animation_duration) . '"';
+    if ($is_recommended) {
+        $info_aos = devq_aos('fade-right', 0, $animation_duration);
+    } else {
+        $info_aos = 'data-aos="' . esc_attr($animation_type) . '"';
+        if ($animation_duration != 800) {
+            $info_aos .= ' data-aos-duration="' . esc_attr($animation_duration) . '"';
+        }
+    }
+}
+
+// Build AOS attributes for form column
+$form_aos = '';
+if (!$disable_animation) {
+    if ($is_recommended) {
+        $form_aos = devq_aos('fade-left', 200, $animation_duration);
+    } else {
+        $form_aos = 'data-aos="fade-up" data-aos-delay="100"';
     }
 }
 
@@ -64,7 +79,7 @@ if (!$disable_animation) {
 <div class="<?php echo esc_attr($block_classes); ?>" <?php echo $block_id ? 'id="' . esc_attr($block_id) . '"' : ''; ?> data-block-category="conversion">
     <div class="container">
         <div class="contactsplit-grid">
-            <div class="contactsplit-info" <?php echo $aos_attributes; ?>>
+            <div class="contactsplit-info" <?php echo $info_aos; ?>>
                 <?php if ($eyebrow || $heading) : ?>
                     <div class="contactsplit-header">
                         <?php if ($eyebrow) : ?>
@@ -149,7 +164,7 @@ if (!$disable_animation) {
             </div>
 
             <?php if ($form_shortcode) : ?>
-                <div class="contactsplit-form" <?php if (!$disable_animation) : ?>data-aos="fade-up" data-aos-delay="100"<?php endif; ?>>
+                <div class="contactsplit-form" <?php echo $form_aos; ?>>
                     <?php echo do_shortcode($form_shortcode); ?>
                 </div>
             <?php endif; ?>

@@ -24,9 +24,10 @@ $custom_class = get_field('custom_class');
 $custom_id = get_field('custom_id');
 
 // Animation Tab Fields
-$animation_type = get_field('animation_type') ?: 'fade-up';
+$animation_type = get_field('animation_type') ?: 'recommended';
 $animation_duration = get_field('animation_duration') ?: 800;
 $disable_animation = get_field('disable_animation');
+$is_recommended = ($animation_type === 'recommended');
 
 // Generate unique block ID
 $unique_block_id = generate_unique_block_id('testimonials');
@@ -39,14 +40,16 @@ if ($custom_class) {
 
 $block_id = $custom_id ? $custom_id : $unique_block_id;
 
-// Build AOS attributes
+// Build AOS attributes (manual mode only — recommended uses per-element animations)
 $aos_attributes = '';
-if (!$disable_animation) {
-    $aos_attributes .= 'data-aos="' . esc_attr($animation_type) . '"';
+if (!$disable_animation && !$is_recommended) {
+    $aos_attributes = 'data-aos="' . esc_attr($animation_type) . '"';
     if ($animation_duration != 800) {
         $aos_attributes .= ' data-aos-duration="' . esc_attr($animation_duration) . '"';
     }
 }
+$header_aos = (!$disable_animation && $is_recommended) ? devq_aos('fade-up', 0, $animation_duration) : '';
+$stagger = (!$disable_animation && $is_recommended);
 
 // Check required fields
 if (!have_rows('testimonials')) {
@@ -62,7 +65,7 @@ $wrapper_class = ($style === 'carousel') ? 'testimonials-carousel' : 'testimonia
 <div class="<?php echo esc_attr($block_classes); ?>" <?php echo $block_id ? 'id="' . esc_attr($block_id) . '"' : ''; ?> <?php echo $aos_attributes; ?> data-block-category="socialproof">
     <div class="container">
         <?php if ($eyebrow || $heading) : ?>
-            <div class="testimonials-header">
+            <div class="testimonials-header" <?php echo $header_aos; ?>>
                 <?php if ($eyebrow) : ?>
                     <span class="cs-topper testimonials-eyebrow"><?php echo esc_html($eyebrow); ?></span>
                 <?php endif; ?>
@@ -83,11 +86,11 @@ $wrapper_class = ($style === 'carousel') ? 'testimonials-carousel' : 'testimonia
                     $photo = devq_get_image_or_placeholder('photo', 110, 110, 'testimonial-' . $testimonial_index, true);
                     $rating = get_sub_field('rating') ?: 5;
 
-                    // Staggered animation for grid mode only
+                    // Staggered animation for grid mode only (recommended mode)
                     $card_aos = '';
-                    if ($style === 'grid' && !$disable_animation) {
+                    if ($style === 'grid' && $stagger) {
                         $delay = $testimonial_index * 150;
-                        $card_aos = 'data-aos="fade-up" data-aos-delay="' . esc_attr($delay) . '"';
+                        $card_aos = devq_aos('fade-up', $delay, $animation_duration);
                     }
                     ?>
                     <div class="testimonials-card" <?php echo $card_aos; ?>>

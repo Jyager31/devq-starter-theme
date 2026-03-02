@@ -28,9 +28,10 @@ $custom_class = get_field('custom_class');
 $custom_id = get_field('custom_id');
 
 // Animation Tab Fields
-$animation_type = get_field('animation_type') ?: 'fade-up';
+$animation_type = get_field('animation_type') ?: 'recommended';
 $animation_duration = get_field('animation_duration') ?: 800;
 $disable_animation = get_field('disable_animation');
+$is_recommended = ($animation_type === 'recommended');
 
 // Generate unique block ID
 $unique_block_id = generate_unique_block_id('herosplit');
@@ -48,11 +49,21 @@ $block_id = $custom_id ? $custom_id : $unique_block_id;
 
 // Build AOS attributes
 $aos_attributes = '';
-if (!$disable_animation) {
-    $aos_attributes .= 'data-aos="' . esc_attr($animation_type) . '"';
+if (!$disable_animation && !$is_recommended) {
+    $aos_attributes = 'data-aos="' . esc_attr($animation_type) . '"';
     if ($animation_duration != 800) {
         $aos_attributes .= ' data-aos-duration="' . esc_attr($animation_duration) . '"';
     }
+}
+$animate = (!$disable_animation && $is_recommended);
+
+// Directional animations for recommended mode
+if ($image_position === 'left') {
+    $text_dir = 'fade-left';
+    $img_dir = 'fade-right';
+} else {
+    $text_dir = 'fade-right';
+    $img_dir = 'fade-left';
 }
 
 // Check required fields
@@ -67,16 +78,16 @@ if (!$heading && !$image) {
     <div class="herosplit-grid">
         <div class="herosplit-text">
             <?php if ($eyebrow) : ?>
-                <span class="cs-topper"><?php echo esc_html($eyebrow); ?></span>
+                <span class="cs-topper" <?php if ($animate) echo devq_aos($text_dir, 0, $animation_duration); ?>><?php echo esc_html($eyebrow); ?></span>
             <?php endif; ?>
             <?php if ($heading) : ?>
-                <h1 class="herosplit-heading"><?php echo esc_html($heading); ?></h1>
+                <h1 class="herosplit-heading" <?php if ($animate) echo devq_aos($text_dir, 100, $animation_duration); ?>><?php echo esc_html($heading); ?></h1>
             <?php endif; ?>
             <?php if ($content) : ?>
-                <p class="herosplit-content"><?php echo esc_html($content); ?></p>
+                <p class="herosplit-content" <?php if ($animate) echo devq_aos($text_dir, 200, $animation_duration); ?>><?php echo esc_html($content); ?></p>
             <?php endif; ?>
             <?php if ($primary_button || $secondary_button) : ?>
-                <div class="herosplit-buttons">
+                <div class="herosplit-buttons" <?php if ($animate) echo devq_aos($text_dir, 300, $animation_duration); ?>>
                     <?php if ($primary_button) : ?>
                         <a href="<?php echo esc_url($primary_button['url']); ?>" class="btn" <?php echo $primary_button['target'] ? 'target="' . esc_attr($primary_button['target']) . '"' : ''; ?>><?php echo esc_html($primary_button['title']); ?></a>
                     <?php endif; ?>
@@ -86,7 +97,7 @@ if (!$heading && !$image) {
                 </div>
             <?php endif; ?>
         </div>
-        <div class="herosplit-image">
+        <div class="herosplit-image" <?php if ($animate) echo devq_aos($img_dir, 200, $animation_duration); ?>>
             <?php if ($image) : ?>
                 <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
             <?php endif; ?>

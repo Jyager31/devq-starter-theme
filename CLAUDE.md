@@ -7,6 +7,7 @@
 - **Block registration:** `functions/blocks.php` — `$basefunctions` array
 - **ACF JSON:** `acfjson/group_[blockname]_block.json`
 - **Spacing system:** `functions/spacing.php` — centralized responsive spacing
+- **Animation helper:** `functions/animations.php` — `devq_aos()` helper for AOS attribute generation
 - **Page builder:** `functions/page-builder.php` — programmatic page creation
 - **Page presets:** `functions/page-presets.php` — common page layouts
 - **Theme settings CSS:** `theme-settings-css.php` — generates CSS variables from ACF options
@@ -93,7 +94,7 @@ $custom_class = get_field('custom_class');
 $custom_id = get_field('custom_id');
 
 // Animation Tab Fields (ALWAYS include these)
-$animation_type = get_field('animation_type') ?: 'fade-up';
+$animation_type = get_field('animation_type') ?: 'recommended';
 $animation_duration = get_field('animation_duration') ?: 800;
 $disable_animation = get_field('disable_animation');
 
@@ -109,13 +110,16 @@ if ($custom_class) {
 $block_id = $custom_id ? $custom_id : $unique_block_id;
 
 // Build AOS attributes
+$is_recommended = ($animation_type === 'recommended');
 $aos_attributes = '';
-if (!$disable_animation) {
-    $aos_attributes .= 'data-aos="' . esc_attr($animation_type) . '"';
+if (!$disable_animation && !$is_recommended) {
+    $aos_attributes = 'data-aos="' . esc_attr($animation_type) . '"';
     if ($animation_duration != 800) {
         $aos_attributes .= ' data-aos-duration="' . esc_attr($animation_duration) . '"';
     }
 }
+// For recommended mode, use devq_aos() helper on individual elements
+// $animate = (!$disable_animation && $is_recommended);
 
 // Check required fields
 if (!$field1) {
@@ -192,11 +196,41 @@ All field keys must be prefixed with the block name to avoid collisions:
 
 | Field | Type | Width | Default |
 |-------|------|-------|---------|
-| Animation Type | select | 50% | fade-up |
+| Animation Type | select | 50% | recommended |
 | Animation Duration | number | 25% | 800, append: "ms", min: 300, max: 3000 |
 | Disable Animation | true_false | 25% | 0 |
 
-Animation Type choices: fade-up, fade-down, fade-left, fade-right, fade-up-right, fade-up-left, fade-down-right, fade-down-left, flip-up, flip-down, flip-left, flip-right, slide-up, slide-down, slide-left, slide-right, zoom-in, zoom-in-up, zoom-in-down, zoom-in-left, zoom-in-right, zoom-out
+Animation Type choices: **recommended** (first/default), fade-up, fade-down, fade-left, fade-right, fade-up-right, fade-up-left, fade-down-right, fade-down-left, flip-up, flip-down, flip-left, flip-right, slide-up, slide-down, slide-left, slide-right, zoom-in, zoom-in-up, zoom-in-down, zoom-in-left, zoom-in-right, zoom-out
+
+### Animation System
+
+The animation system has two modes controlled by the Animation Type field:
+
+**Recommended mode** (`$is_recommended = true`): Smart per-element animations tailored to each block type. No AOS on the outer container. Instead, individual elements get `devq_aos()` calls with staggered delays. Use `functions/animations.php` helper:
+
+```php
+// Helper: devq_aos($type, $delay, $duration) returns AOS data attributes string
+echo devq_aos('fade-up', 100, $animation_duration);
+// Output: data-aos="fade-up" data-aos-delay="100"
+```
+
+**Manual mode** (any other type): AOS applied to the outer container as a whole. No per-element animation.
+
+#### Recommended Animation Patterns by Block Type
+
+| Category | Blocks | Recommended Behavior |
+|----------|--------|---------------------|
+| Hero stagger | hero, herovideo, herofullscreen | Per-element fade-up with 100ms stagger |
+| Hero slider | heroslider | No AOS (Slick handles transitions) |
+| Split layouts | herosplit, textimage, about, contactsplit | Opposing directions based on layout (text fades from its side, image from opposite) |
+| Card/grid stagger | cards, team, pricing, stats, featureslist, process, blogposts, testimonials | Header fade-up, items stagger fade-up |
+| Timeline | timeline | Header fade-up, items directional (left items fade-right, right items fade-left) |
+| Gallery/logobar | gallery, logobar | Header fade-up, items stagger fade-up |
+| CTA stagger | cta | Per-element fade-up stagger |
+| Banner | banner | fade-down (slides from top) |
+| Header+content | video, beforeafter, tabs, comparisontable | Header fade-up, content fade-up with delay |
+| Simple | content, faq, map, marquee | fade-up on container |
+| Image | image | zoom-in on container |
 
 ## CSS Rules
 
