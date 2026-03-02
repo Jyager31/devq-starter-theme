@@ -303,6 +303,146 @@ $blocks[] = array(
     ),
 );
 
+// ── BANNER ──────────────────────────────────────────────────────────────
+
+$blocks[] = array(
+    'name' => 'Banner',
+    'fields' => array(
+        'text' => 'New: We just launched our redesigned portfolio. Check it out!',
+        'link' => array('title' => 'View Portfolio', 'url' => '#', 'target' => ''),
+        'background' => 'primary',
+        'dismissible' => 0,
+    ),
+);
+
+// ── BLOG POSTS ──────────────────────────────────────────────────────────
+
+$blocks[] = array(
+    'name' => 'Blog Posts',
+    'fields' => array(
+        'eyebrow' => 'From the Blog',
+        'heading' => 'Latest Insights & Articles',
+        'subheading' => 'Stay up to date with the latest trends in web design, development, and digital marketing.',
+        'posts_per_page' => 3,
+        'columns' => '3',
+        'show_date' => 1,
+        'show_excerpt' => 1,
+        'button' => array('title' => 'View All Posts', 'url' => '#', 'target' => ''),
+    ),
+);
+
+// ── TABS ────────────────────────────────────────────────────────────────
+
+$blocks[] = array(
+    'name' => 'Tabs',
+    'fields' => array(
+        'eyebrow' => 'Our Services',
+        'heading' => 'What We Bring to the Table',
+        'subheading' => 'Explore our core service areas and discover how we can help your business grow.',
+        'style' => 'horizontal',
+        'tabs' => array(
+            array('title' => 'Web Design', 'icon_class' => 'fa-solid fa-palette', 'content' => '<p>Our design team creates visually stunning, user-centered websites that capture your brand\'s essence. We focus on clean layouts, intuitive navigation, and responsive design that looks beautiful on every device.</p><ul><li>Custom UI/UX design</li><li>Responsive layouts</li><li>Brand-aligned aesthetics</li><li>Conversion-focused design</li></ul>'),
+            array('title' => 'Development', 'icon_class' => 'fa-solid fa-code', 'content' => '<p>We build fast, scalable, and secure websites using modern technologies. Our development process follows best practices for performance, accessibility, and maintainability.</p><ul><li>Custom WordPress development</li><li>E-commerce solutions</li><li>API integrations</li><li>Performance optimization</li></ul>'),
+            array('title' => 'Marketing', 'icon_class' => 'fa-solid fa-bullhorn', 'content' => '<p>Drive traffic and conversions with our data-driven digital marketing strategies. From SEO to social media, we help you reach the right audience at the right time.</p><ul><li>Search engine optimization</li><li>Content strategy</li><li>Social media management</li><li>Analytics and reporting</li></ul>'),
+            array('title' => 'Support', 'icon_class' => 'fa-solid fa-life-ring', 'content' => '<p>We don\'t disappear after launch. Our ongoing support and maintenance plans ensure your site stays secure, up-to-date, and performing at its best.</p><ul><li>24/7 monitoring</li><li>Security updates</li><li>Performance tuning</li><li>Content updates</li></ul>'),
+        ),
+    ),
+);
+
+// ── MARQUEE ─────────────────────────────────────────────────────────────
+
+$blocks[] = array(
+    'name' => 'Marquee',
+    'fields' => array(
+        'style' => 'text',
+        'speed' => 'medium',
+        'direction' => 'left',
+        'pause_on_hover' => 1,
+        'separator' => '•',
+        'items' => array(
+            array('text' => 'Web Design'),
+            array('text' => 'Development'),
+            array('text' => 'Branding'),
+            array('text' => 'SEO'),
+            array('text' => 'E-Commerce'),
+            array('text' => 'UI/UX'),
+            array('text' => 'Strategy'),
+            array('text' => 'Marketing'),
+        ),
+    ),
+);
+
+// ── MAP ─────────────────────────────────────────────────────────────────
+
+$blocks[] = array(
+    'name' => 'Map',
+    'fields' => array(
+        'eyebrow' => 'Find Us',
+        'heading' => 'Visit Our Office',
+        'content' => 'We\'re located in the heart of downtown. Stop by for a coffee and a chat about your next project.',
+        'map_embed' => '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.215!2d-73.9857!3d40.7484!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>',
+        'map_height' => 450,
+        'style' => 'contained',
+    ),
+);
+
+// ── TIMELINE ────────────────────────────────────────────────────────────
+
+$blocks[] = array(
+    'name' => 'Timeline',
+    'fields' => array(
+        'eyebrow' => 'Our Journey',
+        'heading' => 'Company Milestones',
+        'subheading' => 'From a small startup to a full-service agency — here\'s how we got here.',
+        'items' => array(
+            array('date' => '2015', 'icon_class' => 'fa-solid fa-flag', 'title' => 'Founded', 'description' => 'Started as a two-person freelance team working out of a co-working space with a passion for great web design.'),
+            array('date' => '2017', 'icon_class' => 'fa-solid fa-users', 'title' => 'Team of 5', 'description' => 'Hired our first full-time employees and moved into our first dedicated office space.'),
+            array('date' => '2019', 'icon_class' => 'fa-solid fa-trophy', 'title' => '100th Project', 'description' => 'Celebrated our 100th completed project and won our first industry design award.'),
+            array('date' => '2021', 'icon_class' => 'fa-solid fa-building', 'title' => 'New HQ', 'description' => 'Moved into our current headquarters with room for 20+ team members and a dedicated client meeting space.'),
+            array('date' => '2024', 'icon_class' => 'fa-solid fa-rocket', 'title' => 'Going Global', 'description' => 'Expanded our services internationally, working with clients across three continents.'),
+        ),
+    ),
+);
+
+// ── COMPARISON TABLE ────────────────────────────────────────────────────
+
+$blocks[] = array(
+    'name' => 'Comparison Table',
+    'fields' => array(
+        'eyebrow' => 'Compare Plans',
+        'heading' => 'Find the Right Fit',
+        'subheading' => 'See how our plans stack up against each other. Choose the one that best suits your needs.',
+        'columns' => array(
+            array('name' => 'Starter', 'is_highlighted' => 0, 'button' => array('title' => 'Choose Starter', 'url' => '#', 'target' => '')),
+            array('name' => 'Professional', 'is_highlighted' => 1, 'button' => array('title' => 'Choose Pro', 'url' => '#', 'target' => '')),
+            array('name' => 'Enterprise', 'is_highlighted' => 0, 'button' => array('title' => 'Contact Us', 'url' => '#', 'target' => '')),
+        ),
+        'features' => array(
+            array('feature_name' => 'Pages', 'col_1' => 'Up to 5', 'col_2' => 'Up to 15', 'col_3' => 'Unlimited'),
+            array('feature_name' => 'Custom Design', 'col_1' => '✗', 'col_2' => '✓', 'col_3' => '✓'),
+            array('feature_name' => 'SEO Setup', 'col_1' => 'Basic', 'col_2' => 'Advanced', 'col_3' => 'Advanced'),
+            array('feature_name' => 'E-Commerce', 'col_1' => '✗', 'col_2' => '✗', 'col_3' => '✓'),
+            array('feature_name' => 'Blog', 'col_1' => '✗', 'col_2' => '✓', 'col_3' => '✓'),
+            array('feature_name' => 'Support', 'col_1' => '30 days', 'col_2' => '90 days', 'col_3' => '1 year'),
+            array('feature_name' => 'Revisions', 'col_1' => '1 round', 'col_2' => '3 rounds', 'col_3' => 'Unlimited'),
+            array('feature_name' => 'Analytics', 'col_1' => '✗', 'col_2' => '✓', 'col_3' => '✓'),
+        ),
+    ),
+);
+
+// ── BEFORE/AFTER ────────────────────────────────────────────────────────
+
+$blocks[] = array(
+    'name' => 'Before After',
+    'fields' => array(
+        'eyebrow' => 'The Difference',
+        'heading' => 'See the Transformation',
+        'before_label' => 'Before',
+        'after_label' => 'After',
+        'default_position' => 50,
+    ),
+);
+
 // ── CREATE THE PAGE ─────────────────────────────────────────────────────
 
 $post_id = devq_create_page(array(

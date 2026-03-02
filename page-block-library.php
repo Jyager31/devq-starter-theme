@@ -199,7 +199,15 @@ document.addEventListener('DOMContentLoaded', function() {
         'faq-block': 'FAQ',
         'process-block': 'Process',
         'featureslist-block': 'Features List',
-        'image-block': 'Image'
+        'image-block': 'Image',
+        'banner-block': 'Banner',
+        'blogposts-block': 'Blog Posts',
+        'tabs-block': 'Tabs',
+        'marquee-block': 'Marquee',
+        'map-block': 'Map',
+        'timeline-block': 'Timeline',
+        'comparisontable-block': 'Comparison Table',
+        'beforeafter-block': 'Before/After'
     };
 
     var allBlocks = content.querySelectorAll('[data-block-category]');

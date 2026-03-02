@@ -70,6 +70,14 @@ function devq_get_blocks()
         "FAQ",
         "Process",
         "Features List",
+        "Banner",
+        "Blog Posts",
+        "Tabs",
+        "Marquee",
+        "Map",
+        "Timeline",
+        "Comparison Table",
+        "Before After",
     );
 }
 

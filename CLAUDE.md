@@ -297,17 +297,62 @@ The spacing system is centralized in `functions/spacing.php`:
 - Desktop values: Small (20px), Medium (40px), Large (80px) — configurable in Theme Settings
 - Mobile values: Small (15px), Medium (25px), Large (40px) — auto-applied at 767px
 
-## Available Blocks
+## Available Blocks (27 total)
 
-| Block | Slug | Fields | Description |
-|-------|------|--------|-------------|
-| Image | `acf/image` | image, fluid, custom_mobile_image, mobile_image | Full/contained image with mobile variant |
-| WYSIWYG | `acf/wysiwyg` | wysiwyg | Rich text content |
-| Hero | `acf/hero` | heading, subheading, button, background_image, overlay_opacity | Full-width hero with background image and overlay |
-| Text Image | `acf/textimage` | heading, content, image, button, image_position | Two-column text + image layout |
-| Cards | `acf/cards` | heading, subheading, columns, cards (repeater: icon, title, description, link) | Grid of cards with 2/3/4 column options |
-| CTA | `acf/cta` | heading, content, button, background_color | Call-to-action banner |
-| FAQ | `acf/faq` | heading, items (repeater: question, answer) | Accordion FAQ using BeefUp |
+### Heroes
+| Block | Slug | Description |
+|-------|------|-------------|
+| Hero | `acf/hero` | Full-width hero with background image/gradient/solid, overlay, CTAs |
+| Hero Split | `acf/herosplit` | Two-column hero: text + image, position toggle |
+
+### Content
+| Block | Slug | Description |
+|-------|------|-------------|
+| Text Image | `acf/textimage` | Two-column text + image with position toggle |
+| WYSIWYG | `acf/wysiwyg` | Rich text content with width options (narrow/default/wide) |
+| About | `acf/about` | Company intro with image, text, optional stat boxes |
+| Blog Posts | `acf/blogposts` | Dynamic post grid via WP_Query, category filter, 2/3/4 columns |
+| Tabs | `acf/tabs` | Tabbed content (horizontal/vertical), accordion on mobile |
+
+### Cards & Grids
+| Block | Slug | Description |
+|-------|------|-------------|
+| Cards | `acf/cards` | Icon/image cards in 2/3/4 columns with hover lift |
+| Team | `acf/team` | Team member cards with photo, role, social links |
+| Pricing | `acf/pricing` | Pricing tier cards with featured highlight |
+| Comparison Table | `acf/comparisontable` | Feature comparison matrix with highlighted columns |
+
+### Social Proof
+| Block | Slug | Description |
+|-------|------|-------------|
+| Testimonials | `acf/testimonials` | Quote cards with carousel or grid mode |
+| Logo Bar | `acf/logobar` | Client/partner logos, grayscale option |
+| Stats | `acf/stats` | Animated counter numbers with light/dark/primary bg |
+| Marquee | `acf/marquee` | Infinite scrolling text or logos, CSS animation |
+
+### Media
+| Block | Slug | Description |
+|-------|------|-------------|
+| Image | `acf/image` | Full/contained image with mobile swap option |
+| Gallery | `acf/gallery` | Filterable image grid with lightbox |
+| Video | `acf/video` | YouTube/Vimeo embed with thumbnail play button |
+| Map | `acf/map` | Map iframe embed, contained or full-width |
+| Before/After | `acf/beforeafter` | Draggable image comparison slider |
+
+### Conversion
+| Block | Slug | Description |
+|-------|------|-------------|
+| Banner | `acf/banner` | Thin announcement/promo strip, dismissible |
+| CTA | `acf/cta` | Full-width accent section with heading + button |
+| Contact Split | `acf/contactsplit` | Two-column: contact info + form embed |
+
+### Lists
+| Block | Slug | Description |
+|-------|------|-------------|
+| FAQ | `acf/faq` | Accordion FAQ using BeefUp |
+| Process | `acf/process` | Numbered steps with icons |
+| Features List | `acf/featureslist` | Two-column icon + text feature items |
+| Timeline | `acf/timeline` | Alternating vertical timeline for milestones |
 
 ## New Site Setup
 
