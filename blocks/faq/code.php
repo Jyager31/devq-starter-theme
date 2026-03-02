@@ -1,5 +1,4 @@
 <?php
-
 /**
  * FAQ Block
  */
@@ -11,7 +10,9 @@ if (!function_exists('get_field')) {
 }
 
 // ACF Fields - Content Tab
+$eyebrow = get_field('eyebrow');
 $heading = get_field('heading');
+$subheading = get_field('subheading');
 
 // Options Tab Fields (always include these)
 $margin_top = get_field('margin_top') ?: '';
@@ -54,10 +55,20 @@ if (!have_rows('items')) {
 
 ?>
 
-<div class="<?php echo esc_attr($block_classes); ?>" <?php echo $block_id ? 'id="' . esc_attr($block_id) . '"' : ''; ?> <?php echo $aos_attributes; ?>>
+<div class="<?php echo esc_attr($block_classes); ?>" <?php echo $block_id ? 'id="' . esc_attr($block_id) . '"' : ''; ?> <?php echo $aos_attributes; ?> data-block-category="lists">
     <div class="container">
-        <?php if ($heading) : ?>
-            <h2 class="faq-heading"><?php echo esc_html($heading); ?></h2>
+        <?php if ($eyebrow || $heading || $subheading) : ?>
+            <div class="faq-header">
+                <?php if ($eyebrow) : ?>
+                    <span class="cs-topper faq-eyebrow"><?php echo esc_html($eyebrow); ?></span>
+                <?php endif; ?>
+                <?php if ($heading) : ?>
+                    <h2 class="faq-heading"><?php echo esc_html($heading); ?></h2>
+                <?php endif; ?>
+                <?php if ($subheading) : ?>
+                    <p class="faq-subheading"><?php echo esc_html($subheading); ?></p>
+                <?php endif; ?>
+            </div>
         <?php endif; ?>
 
         <div class="faq-accordion">
@@ -85,9 +96,20 @@ output_block_spacing_css($margin_top, $margin_bottom, $margin_top_other, $margin
         padding: var(--section-padding-top) 0 var(--section-padding-bottom) 0;
     }
 
-    .faq-block .faq-heading {
+    .faq-block .faq-header {
         text-align: center;
-        margin-bottom: 40px;
+        max-width: 700px;
+        margin: 0 auto 50px;
+    }
+
+    .faq-block .faq-heading {
+        margin-bottom: 0;
+    }
+
+    .faq-block .faq-subheading {
+        color: #666;
+        margin-top: 15px;
+        line-height: 1.6;
     }
 
     .faq-block .faq-accordion {
@@ -104,11 +126,12 @@ output_block_spacing_css($margin_top, $margin_bottom, $margin_top_other, $margin
     }
 
     .faq-block .faq-question {
-        padding: 20px 40px 20px 0;
+        padding: 22px 45px 22px 0;
         margin: 0;
         cursor: pointer;
         position: relative;
         transition: var(--transition-default);
+        font-weight: 600;
     }
 
     .faq-block .faq-question:hover {
@@ -125,14 +148,15 @@ output_block_spacing_css($margin_top, $margin_bottom, $margin_top_other, $margin
         font-weight: 300;
         line-height: 1;
         transition: var(--transition-default);
+        color: var(--primary);
     }
 
     .faq-block .faq-item.is-open .faq-question::after {
-        content: '−';
+        content: '\2212';
     }
 
     .faq-block .faq-answer {
-        padding: 0 40px 20px 0;
+        padding: 0 45px 22px 0;
         display: none;
     }
 
@@ -142,19 +166,19 @@ output_block_spacing_css($margin_top, $margin_bottom, $margin_top_other, $margin
 
     /* Tablet - 1199px and below */
     @media (max-width: 1199px) {
-        .faq-block .faq-heading {
-            margin-bottom: 30px;
+        .faq-block .faq-header {
+            margin-bottom: 40px;
         }
     }
 
     /* Mobile - 767px and below */
     @media (max-width: 767px) {
         .faq-block .faq-question {
-            padding: 15px 35px 15px 0;
+            padding: 18px 40px 18px 0;
         }
 
         .faq-block .faq-answer {
-            padding: 0 35px 15px 0;
+            padding: 0 40px 18px 0;
         }
     }
 </style>

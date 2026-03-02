@@ -11,10 +11,34 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "", "class": "", "id": ""},
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "placement": "left",
             "endpoint": 0,
             "selected": 0
+        },
+        {
+            "key": "field_cta_eyebrow",
+            "label": "Eyebrow",
+            "name": "eyebrow",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Small text displayed above the heading",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
         },
         {
             "key": "field_cta_heading",
@@ -23,9 +47,13 @@
             "aria-label": "",
             "type": "text",
             "instructions": "",
-            "required": 0,
+            "required": 1,
             "conditional_logic": 0,
-            "wrapper": {"width": "", "class": "", "id": ""},
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "default_value": "",
             "placeholder": "",
             "prepend": "",
@@ -41,7 +69,11 @@
             "instructions": "Supporting text for the call to action",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "", "class": "", "id": ""},
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "default_value": "",
             "placeholder": "",
             "maxlength": "",
@@ -57,19 +89,63 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "", "class": "", "id": ""},
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "return_format": "array"
         },
         {
-            "key": "field_cta_background_color",
-            "label": "Background Color",
-            "name": "background_color",
+            "key": "field_cta_background",
+            "label": "Background",
+            "name": "background",
             "aria-label": "",
-            "type": "color_picker",
-            "instructions": "Leave empty to use primary brand color",
+            "type": "select",
+            "instructions": "Choose the background color style",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "50", "class": "", "id": ""},
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "primary": "Primary",
+                "secondary": "Secondary",
+                "dark": "Dark",
+                "custom": "Custom"
+            },
+            "default_value": "primary",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_cta_custom_background_color",
+            "label": "Custom Background Color",
+            "name": "custom_background_color",
+            "aria-label": "",
+            "type": "color_picker",
+            "instructions": "Choose a custom background color",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_cta_background",
+                        "operator": "==",
+                        "value": "custom"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
             "default_value": "",
             "enable_opacity": 0,
             "return_format": "string"
@@ -83,7 +159,11 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "", "class": "", "id": ""},
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "placement": "left",
             "endpoint": 0,
             "selected": 0
@@ -97,8 +177,18 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "50", "class": "", "id": ""},
-            "choices": {"none": "None", "small": "Small", "medium": "Medium", "large": "Large", "other": "Other"},
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "none": "None",
+                "small": "Small",
+                "medium": "Medium",
+                "large": "Large",
+                "other": "Other"
+            },
             "default_value": "none",
             "allow_null": 0,
             "multiple": 0,
@@ -115,8 +205,20 @@
             "type": "number",
             "instructions": "",
             "required": 0,
-            "conditional_logic": [[{"field": "field_cta_margin_top", "operator": "==", "value": "other"}]],
-            "wrapper": {"width": "50", "class": "", "id": ""},
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_cta_margin_top",
+                        "operator": "==",
+                        "value": "other"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
             "default_value": "",
             "placeholder": "",
             "prepend": "",
@@ -134,8 +236,18 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "50", "class": "", "id": ""},
-            "choices": {"none": "None", "small": "Small", "medium": "Medium", "large": "Large", "other": "Other"},
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "none": "None",
+                "small": "Small",
+                "medium": "Medium",
+                "large": "Large",
+                "other": "Other"
+            },
             "default_value": "none",
             "allow_null": 0,
             "multiple": 0,
@@ -152,8 +264,20 @@
             "type": "number",
             "instructions": "",
             "required": 0,
-            "conditional_logic": [[{"field": "field_cta_margin_bottom", "operator": "==", "value": "other"}]],
-            "wrapper": {"width": "50", "class": "", "id": ""},
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_cta_margin_bottom",
+                        "operator": "==",
+                        "value": "other"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
             "default_value": "",
             "placeholder": "",
             "prepend": "",
@@ -171,7 +295,11 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "50", "class": "", "id": ""},
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
             "default_value": "",
             "placeholder": "",
             "prepend": ".",
@@ -187,7 +315,11 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "50", "class": "", "id": ""},
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
             "default_value": "",
             "placeholder": "",
             "prepend": "#",
@@ -203,7 +335,11 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "", "class": "", "id": ""},
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "placement": "left",
             "endpoint": 0,
             "selected": 0
@@ -217,7 +353,11 @@
             "instructions": "Choose the AOS animation effect",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "50", "class": "", "id": ""},
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
             "choices": {
                 "fade-up": "Fade Up",
                 "fade-down": "Fade Down",
@@ -259,7 +399,11 @@
             "instructions": "Duration in milliseconds",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "25", "class": "", "id": ""},
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
             "default_value": 800,
             "placeholder": "",
             "prepend": "",
@@ -277,7 +421,11 @@
             "instructions": "Disable the animation effect for this block",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {"width": "25", "class": "", "id": ""},
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
             "message": "",
             "default_value": 0,
             "ui": 1,
@@ -285,7 +433,15 @@
             "ui_off_text": ""
         }
     ],
-    "location": [[{"param": "block", "operator": "==", "value": "acf\/cta"}]],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/cta"
+            }
+        ]
+    ],
     "menu_order": 0,
     "position": "normal",
     "style": "default",

@@ -11,10 +11,12 @@ if (!function_exists('get_field')) {
 }
 
 // ACF Fields - Content Tab
+$eyebrow = get_field('eyebrow');
 $heading = get_field('heading');
 $content = get_field('content');
 $button = get_field('button');
-$background_color = get_field('background_color') ?: '';
+$background = get_field('background') ?: 'primary';
+$custom_background_color = get_field('custom_background_color') ?: '';
 
 // Options Tab Fields (always include these)
 $margin_top = get_field('margin_top') ?: '';
@@ -33,7 +35,7 @@ $disable_animation = get_field('disable_animation');
 $unique_block_id = generate_unique_block_id('cta');
 
 // Build dynamic attributes
-$block_classes = 'container-fluid cta-block';
+$block_classes = 'container-fluid cta-block cta-bg-' . esc_attr($background);
 if ($custom_class) {
     $block_classes .= ' ' . $custom_class;
 }
@@ -50,30 +52,34 @@ if (!$disable_animation) {
 }
 
 // Check required fields
-if (!$heading && !$content) {
-    echo 'Please add a heading or content for this block.';
+if (!$heading) {
+    echo 'Please add a heading for the CTA block.';
     return;
 }
 
-// Build background color style
+// Build background style for custom color
 $bg_style = '';
-if ($background_color) {
-    $bg_style = 'background-color: ' . wp_strip_all_tags($background_color) . ';';
+if ($background === 'custom' && $custom_background_color) {
+    $bg_style = 'background-color: ' . wp_strip_all_tags($custom_background_color) . ';';
 }
 
 ?>
 
-<div class="<?php echo esc_attr($block_classes); ?>" <?php echo $block_id ? 'id="' . esc_attr($block_id) . '"' : ''; ?> <?php echo $aos_attributes; ?> <?php echo $bg_style ? 'style="' . esc_attr($bg_style) . '"' : ''; ?>>
+<div class="<?php echo esc_attr($block_classes); ?>" <?php echo $block_id ? 'id="' . esc_attr($block_id) . '"' : ''; ?> <?php echo $aos_attributes; ?> <?php echo $bg_style ? 'style="' . esc_attr($bg_style) . '"' : ''; ?> data-block-category="conversion">
     <div class="container">
         <div class="cta-content">
-            <?php if ($heading) : ?>
-                <h2 class="cta-heading"><?php echo esc_html($heading); ?></h2>
+            <?php if ($eyebrow) : ?>
+                <span class="cs-topper cta-eyebrow"><?php echo esc_html($eyebrow); ?></span>
             <?php endif; ?>
+
+            <h2 class="cta-heading"><?php echo esc_html($heading); ?></h2>
+
             <?php if ($content) : ?>
                 <p class="cta-text"><?php echo esc_html($content); ?></p>
             <?php endif; ?>
+
             <?php if ($button) : ?>
-                <a href="<?php echo esc_url($button['url']); ?>" class="cta-button" <?php echo $button['target'] ? 'target="' . esc_attr($button['target']) . '"' : ''; ?>><?php echo esc_html($button['title']); ?></a>
+                <a href="<?php echo esc_url($button['url']); ?>" class="btn-inline btn-white" <?php echo !empty($button['target']) ? 'target="' . esc_attr($button['target']) . '"' : ''; ?>><?php echo esc_html($button['title']); ?></a>
             <?php endif; ?>
         </div>
     </div>
@@ -85,14 +91,31 @@ output_block_spacing_css($margin_top, $margin_bottom, $margin_top_other, $margin
 
 <style>
     .cta-block {
+        padding: 100px 0;
+    }
+
+    .cta-block.cta-bg-primary {
         background-color: var(--primary);
-        padding: 80px 0;
+    }
+
+    .cta-block.cta-bg-secondary {
+        background-color: var(--secondary);
+    }
+
+    .cta-block.cta-bg-dark {
+        background-color: #1a1a2e;
     }
 
     .cta-block .cta-content {
         text-align: center;
-        max-width: 700px;
+        max-width: 750px;
         margin: 0 auto;
+    }
+
+    .cta-block .cta-eyebrow {
+        display: block;
+        margin-bottom: 15px;
+        color: rgba(255, 255, 255, 0.85);
     }
 
     .cta-block .cta-heading {
@@ -102,29 +125,14 @@ output_block_spacing_css($margin_top, $margin_bottom, $margin_top_other, $margin
 
     .cta-block .cta-text {
         color: rgba(255, 255, 255, 0.9);
-        margin-bottom: 30px;
-    }
-
-    .cta-block .cta-button {
-        display: inline-block;
-        padding: var(--button-padding);
-        background-color: #fff;
-        color: var(--primary);
-        text-decoration: none;
-        border-radius: var(--button-radius);
-        font-weight: 600;
-        transition: var(--transition-default);
-    }
-
-    .cta-block .cta-button:hover {
-        opacity: 0.9;
-        color: var(--primary);
+        margin-bottom: 35px;
+        line-height: 1.7;
     }
 
     /* Tablet - 1199px and below */
     @media (max-width: 1199px) {
         .cta-block {
-            padding: 60px 0;
+            padding: 70px 0;
         }
     }
 

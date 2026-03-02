@@ -11,9 +11,9 @@ if (!function_exists('get_field')) {
 }
 
 // ACF Fields - Get all fields first
-$image = get_field('image');
+$image = devq_get_image_or_placeholder('image', 1200, 600, 'image-block');
 $custom_mobile_image = get_field('custom_mobile_image'); // true/false
-$mobile_image = get_field('mobile_image'); // image array
+$mobile_image = devq_get_image_or_placeholder('mobile_image', 600, 800, 'image-mobile');
 $fluid = get_field('fluid'); // true/false for container vs container-fluid
 
 // Options Tab Fields (always include these)
@@ -64,7 +64,7 @@ $inner_container_class = $fluid ? 'container' : '';
 
 ?>
 
-<div class="<?php echo esc_attr($block_classes); ?>" <?php echo $block_id ? 'id="' . esc_attr($block_id) . '"' : ''; ?> <?php echo $block_style ? 'style="' . esc_attr($block_style) . '"' : ''; ?> <?php echo $aos_attributes; ?>>
+<div class="<?php echo esc_attr($block_classes); ?>" <?php echo $block_id ? 'id="' . esc_attr($block_id) . '"' : ''; ?> <?php echo $block_style ? 'style="' . esc_attr($block_style) . '"' : ''; ?> <?php echo $aos_attributes; ?> data-block-category="media">
     <?php if ($fluid) : ?>
         <div class="container">
             <div class="image-content">

@@ -26,7 +26,7 @@ function devqbase_scripts()
   wp_enqueue_style('devq-style', $theme_uri . '/style.css', array(), filemtime($theme_dir . '/style.css'));
 
   // --- Conditionally loaded CSS (uncomment when needed for a project) ---
-  // wp_enqueue_style('magnific-popup', $theme_uri . '/assets/css/magnific-popup.css');
+  wp_enqueue_style('magnific-popup', $theme_uri . '/assets/css/magnific-popup.css');
   wp_enqueue_style('jquery-beefup', $theme_uri . '/assets/css/jquery.beefup.css');
 
   // --- Always loaded JS ---
@@ -47,7 +47,7 @@ function devqbase_scripts()
   wp_enqueue_script('devq-custom', $theme_uri . '/assets/js/custom.js', array('jquery'), filemtime($theme_dir . '/assets/js/custom.js'), true);
 
   // --- Conditionally loaded JS (uncomment when needed for a project) ---
-  // wp_enqueue_script('magnific-popup', $theme_uri . '/assets/js/jquery.magnific-popup.min.js', array('jquery'), '', true);
+  wp_enqueue_script('magnific-popup', $theme_uri . '/assets/js/jquery.magnific-popup.min.js', array('jquery'), '', true);
   // wp_enqueue_script('jquery-validate', $theme_uri . '/assets/js/jquery.validate.min.js', array('jquery'), '', true);
   // wp_enqueue_script('jquery-validate-additional', $theme_uri . '/assets/js/additional-methods.min.js', array('jquery'), '', true);
   wp_enqueue_script('jquery-beefup', $theme_uri . '/assets/js/jquery.beefup.min.js', array('jquery'), '', true);

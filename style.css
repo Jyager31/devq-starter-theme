@@ -393,6 +393,92 @@ img.mobileLogo {
   display: none;
 }
 
+/* Section background variants */
+.section-light {
+  background-color: #f8f7f4;
+}
+
+.section-offwhite {
+  background-color: #f5f4f0;
+}
+
+.section-dark {
+  background-color: #1a1a2e;
+}
+
+.section-dark h1,
+.section-dark h2,
+.section-dark h3,
+.section-dark h4,
+.section-dark h5,
+.section-dark p,
+.section-dark li {
+  color: #fff;
+}
+
+.section-dark .cs-topper {
+  color: var(--tertiary);
+}
+
+/* Inline button style */
+.btn-inline {
+  display: inline-block;
+  padding: var(--button-padding, 15px 30px);
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  transition: var(--transition-default);
+  border-radius: var(--button-radius, 4px);
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.btn-inline.btn-primary {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+.btn-inline.btn-primary:hover {
+  background: var(--tertiary);
+  color: #000;
+  border-color: var(--tertiary);
+}
+
+.btn-inline.btn-outline {
+  background: transparent;
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn-inline.btn-outline:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+.btn-inline.btn-white {
+  background: #fff;
+  color: var(--primary);
+  border-color: #fff;
+}
+
+.btn-inline.btn-white:hover {
+  background: var(--tertiary);
+  color: #000;
+  border-color: var(--tertiary);
+}
+
+.btn-inline.btn-outline-white {
+  background: transparent;
+  color: #fff;
+  border-color: #fff;
+}
+
+.btn-inline.btn-outline-white:hover {
+  background: #fff;
+  color: var(--primary);
+}
+
 /* -----------------------------------------------------------------------------
  * Browser Customization
  * -------------------------------------------------------------------------- */

@@ -1,9 +1,9 @@
 {
-    "key": "group_hero_block",
-    "title": "Hero Block",
+    "key": "group_pricing_block",
+    "title": "Pricing Block",
     "fields": [
         {
-            "key": "field_hero_content_tab",
+            "key": "field_pricing_content_tab",
             "label": "Content",
             "name": "",
             "aria-label": "",
@@ -21,39 +21,12 @@
             "selected": 0
         },
         {
-            "key": "field_hero_style",
-            "label": "Background Style",
-            "name": "style",
-            "aria-label": "",
-            "type": "select",
-            "instructions": "Choose the hero background style",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "image": "Image",
-                "gradient": "Gradient",
-                "solid": "Solid Color"
-            },
-            "default_value": "image",
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
-            "return_format": "value",
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_hero_eyebrow",
+            "key": "field_pricing_eyebrow",
             "label": "Eyebrow",
             "name": "eyebrow",
             "aria-label": "",
             "type": "text",
-            "instructions": "Small text displayed above the heading",
+            "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -68,13 +41,13 @@
             "maxlength": ""
         },
         {
-            "key": "field_hero_heading",
+            "key": "field_pricing_heading",
             "label": "Heading",
             "name": "heading",
             "aria-label": "",
             "type": "text",
-            "instructions": "Main hero heading",
-            "required": 1,
+            "instructions": "",
+            "required": 0,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
@@ -88,12 +61,12 @@
             "maxlength": ""
         },
         {
-            "key": "field_hero_subheading",
+            "key": "field_pricing_subheading",
             "label": "Subheading",
             "name": "subheading",
             "aria-label": "",
             "type": "textarea",
-            "instructions": "Supporting text below the heading",
+            "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -104,209 +77,177 @@
             "default_value": "",
             "placeholder": "",
             "maxlength": "",
-            "rows": 3,
+            "rows": 2,
             "new_lines": ""
         },
         {
-            "key": "field_hero_primary_button",
-            "label": "Primary Button",
-            "name": "primary_button",
+            "key": "field_pricing_plans",
+            "label": "Plans",
+            "name": "plans",
             "aria-label": "",
-            "type": "link",
-            "instructions": "Main call-to-action button",
+            "type": "repeater",
+            "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "array"
-        },
-        {
-            "key": "field_hero_secondary_button",
-            "label": "Secondary Button",
-            "name": "secondary_button",
-            "aria-label": "",
-            "type": "link",
-            "instructions": "Secondary call-to-action button",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "array"
-        },
-        {
-            "key": "field_hero_background_image",
-            "label": "Background Image",
-            "name": "background_image",
-            "aria-label": "",
-            "type": "image",
-            "instructions": "Full-width background image",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_hero_style",
-                        "operator": "==",
-                        "value": "image"
-                    }
-                ]
-            ],
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
             },
-            "return_format": "array",
-            "preview_size": "medium",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": ""
-        },
-        {
-            "key": "field_hero_overlay_color",
-            "label": "Overlay Color",
-            "name": "overlay_color",
-            "aria-label": "",
-            "type": "color_picker",
-            "instructions": "Color of the overlay on top of the background image",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_hero_style",
-                        "operator": "==",
-                        "value": "image"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "#000000",
-            "enable_opacity": 0,
-            "return_format": "string"
-        },
-        {
-            "key": "field_hero_overlay_opacity",
-            "label": "Overlay Opacity",
-            "name": "overlay_opacity",
-            "aria-label": "",
-            "type": "range",
-            "instructions": "Overlay opacity percentage",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_hero_style",
-                        "operator": "==",
-                        "value": "image"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 50,
+            "layout": "block",
+            "button_label": "Add Plan",
             "min": 0,
-            "max": 100,
-            "step": 5,
-            "prepend": "",
-            "append": "%"
+            "max": 0,
+            "collapsed": "",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_pricing_plan_name",
+                    "label": "Name",
+                    "name": "name",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "parent_repeater": "field_pricing_plans"
+                },
+                {
+                    "key": "field_pricing_plan_price",
+                    "label": "Price",
+                    "name": "price",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "e.g. $49",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "25",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "parent_repeater": "field_pricing_plans"
+                },
+                {
+                    "key": "field_pricing_plan_period",
+                    "label": "Period",
+                    "name": "period",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "e.g. /month",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "25",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "parent_repeater": "field_pricing_plans"
+                },
+                {
+                    "key": "field_pricing_plan_description",
+                    "label": "Description",
+                    "name": "description",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "parent_repeater": "field_pricing_plans"
+                },
+                {
+                    "key": "field_pricing_plan_features",
+                    "label": "Features",
+                    "name": "features",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "One feature per line",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "rows": 5,
+                    "new_lines": "",
+                    "parent_repeater": "field_pricing_plans"
+                },
+                {
+                    "key": "field_pricing_plan_button",
+                    "label": "Button",
+                    "name": "button",
+                    "aria-label": "",
+                    "type": "link",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "parent_repeater": "field_pricing_plans"
+                },
+                {
+                    "key": "field_pricing_plan_is_featured",
+                    "label": "Featured",
+                    "name": "is_featured",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "Highlight as recommended plan",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui": 1,
+                    "ui_on_text": "",
+                    "ui_off_text": "",
+                    "parent_repeater": "field_pricing_plans"
+                }
+            ]
         },
         {
-            "key": "field_hero_gradient_start",
-            "label": "Gradient Start Color",
-            "name": "gradient_start",
-            "aria-label": "",
-            "type": "color_picker",
-            "instructions": "Starting color of the gradient",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_hero_style",
-                        "operator": "==",
-                        "value": "gradient"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "#0a0a0a",
-            "enable_opacity": 0,
-            "return_format": "string"
-        },
-        {
-            "key": "field_hero_gradient_end",
-            "label": "Gradient End Color",
-            "name": "gradient_end",
-            "aria-label": "",
-            "type": "color_picker",
-            "instructions": "Ending color of the gradient",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_hero_style",
-                        "operator": "==",
-                        "value": "gradient"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "#1a1a2e",
-            "enable_opacity": 0,
-            "return_format": "string"
-        },
-        {
-            "key": "field_hero_background_color",
-            "label": "Background Color",
-            "name": "background_color",
-            "aria-label": "",
-            "type": "color_picker",
-            "instructions": "Solid background color",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_hero_style",
-                        "operator": "==",
-                        "value": "solid"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "#0a0a0a",
-            "enable_opacity": 0,
-            "return_format": "string"
-        },
-        {
-            "key": "field_hero_options_tab",
+            "key": "field_pricing_options_tab",
             "label": "Options",
             "name": "",
             "aria-label": "",
@@ -324,7 +265,7 @@
             "selected": 0
         },
         {
-            "key": "field_hero_margin_top",
+            "key": "field_pricing_margin_top",
             "label": "Margin Top",
             "name": "margin_top",
             "aria-label": "",
@@ -353,7 +294,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_hero_margin_top_other",
+            "key": "field_pricing_margin_top_other",
             "label": "Margin Top Other",
             "name": "margin_top_other",
             "aria-label": "",
@@ -363,7 +304,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_hero_margin_top",
+                        "field": "field_pricing_margin_top",
                         "operator": "==",
                         "value": "other"
                     }
@@ -383,7 +324,7 @@
             "step": ""
         },
         {
-            "key": "field_hero_margin_bottom",
+            "key": "field_pricing_margin_bottom",
             "label": "Margin Bottom",
             "name": "margin_bottom",
             "aria-label": "",
@@ -412,7 +353,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_hero_margin_bottom_other",
+            "key": "field_pricing_margin_bottom_other",
             "label": "Margin Bottom Other",
             "name": "margin_bottom_other",
             "aria-label": "",
@@ -422,7 +363,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_hero_margin_bottom",
+                        "field": "field_pricing_margin_bottom",
                         "operator": "==",
                         "value": "other"
                     }
@@ -442,7 +383,7 @@
             "step": ""
         },
         {
-            "key": "field_hero_custom_class",
+            "key": "field_pricing_custom_class",
             "label": "Custom Class",
             "name": "custom_class",
             "aria-label": "",
@@ -462,7 +403,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_hero_custom_id",
+            "key": "field_pricing_custom_id",
             "label": "Custom ID",
             "name": "custom_id",
             "aria-label": "",
@@ -482,7 +423,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_hero_animation_tab",
+            "key": "field_pricing_animation_tab",
             "label": "Animation",
             "name": "",
             "aria-label": "",
@@ -500,7 +441,7 @@
             "selected": 0
         },
         {
-            "key": "field_hero_animation_type",
+            "key": "field_pricing_animation_type",
             "label": "Animation Type",
             "name": "animation_type",
             "aria-label": "",
@@ -546,7 +487,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_hero_animation_duration",
+            "key": "field_pricing_animation_duration",
             "label": "Animation Duration",
             "name": "animation_duration",
             "aria-label": "",
@@ -568,7 +509,7 @@
             "step": ""
         },
         {
-            "key": "field_hero_disable_animation",
+            "key": "field_pricing_disable_animation",
             "label": "Disable Animation",
             "name": "disable_animation",
             "aria-label": "",
@@ -593,7 +534,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/hero"
+                "value": "acf\/pricing"
             }
         ]
     ],

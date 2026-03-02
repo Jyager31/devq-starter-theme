@@ -23,7 +23,7 @@
         {
             "key": "field_wysiwyg_main",
             "label": "Content",
-            "name": "wysiwyg",
+            "name": "content",
             "aria-label": "",
             "type": "wysiwyg",
             "instructions": "Enter the content for this block",
@@ -39,6 +39,33 @@
             "toolbar": "full",
             "media_upload": 1,
             "delay": 0
+        },
+        {
+            "key": "field_wysiwyg_max_width",
+            "label": "Max Width",
+            "name": "max_width",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Control the maximum width of the content area",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "narrow": "Narrow",
+                "default": "Default",
+                "wide": "Wide"
+            },
+            "default_value": "default",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
         },
         {
             "key": "field_wysiwyg_options_tab",

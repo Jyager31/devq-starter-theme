@@ -54,10 +54,22 @@ function devq_get_blocks()
         "Image",
         "Wysiwyg",
         "Hero",
+        "Hero Split",
         "Text Image",
+        "About",
         "Cards",
+        "Team",
+        "Pricing",
+        "Testimonials",
+        "Logo Bar",
+        "Stats",
+        "Gallery",
+        "Video",
         "CTA",
+        "Contact Split",
         "FAQ",
+        "Process",
+        "Features List",
     );
 }
 

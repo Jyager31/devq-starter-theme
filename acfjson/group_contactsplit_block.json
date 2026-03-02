@@ -1,9 +1,9 @@
 {
-    "key": "group_hero_block",
-    "title": "Hero Block",
+    "key": "group_contactsplit_block",
+    "title": "Contact Split Block",
     "fields": [
         {
-            "key": "field_hero_content_tab",
+            "key": "field_contactsplit_content_tab",
             "label": "Content",
             "name": "",
             "aria-label": "",
@@ -21,34 +21,7 @@
             "selected": 0
         },
         {
-            "key": "field_hero_style",
-            "label": "Background Style",
-            "name": "style",
-            "aria-label": "",
-            "type": "select",
-            "instructions": "Choose the hero background style",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "image": "Image",
-                "gradient": "Gradient",
-                "solid": "Solid Color"
-            },
-            "default_value": "image",
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
-            "return_format": "value",
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_hero_eyebrow",
+            "key": "field_contactsplit_eyebrow",
             "label": "Eyebrow",
             "name": "eyebrow",
             "aria-label": "",
@@ -68,13 +41,13 @@
             "maxlength": ""
         },
         {
-            "key": "field_hero_heading",
+            "key": "field_contactsplit_heading",
             "label": "Heading",
             "name": "heading",
             "aria-label": "",
             "type": "text",
-            "instructions": "Main hero heading",
-            "required": 1,
+            "instructions": "",
+            "required": 0,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
@@ -88,14 +61,102 @@
             "maxlength": ""
         },
         {
-            "key": "field_hero_subheading",
-            "label": "Subheading",
-            "name": "subheading",
+            "key": "field_contactsplit_show_phone",
+            "label": "Show Phone",
+            "name": "show_phone",
             "aria-label": "",
-            "type": "textarea",
-            "instructions": "Supporting text below the heading",
+            "type": "true_false",
+            "instructions": "",
             "required": 0,
             "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_contactsplit_show_email",
+            "label": "Show Email",
+            "name": "show_email",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_contactsplit_show_address",
+            "label": "Show Address",
+            "name": "show_address",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_contactsplit_show_hours",
+            "label": "Show Hours",
+            "name": "show_hours",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_contactsplit_hours",
+            "label": "Hours",
+            "name": "hours",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Business hours, one per line",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_contactsplit_show_hours",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -108,51 +169,39 @@
             "new_lines": ""
         },
         {
-            "key": "field_hero_primary_button",
-            "label": "Primary Button",
-            "name": "primary_button",
+            "key": "field_contactsplit_show_map",
+            "label": "Show Map",
+            "name": "show_map",
             "aria-label": "",
-            "type": "link",
-            "instructions": "Main call-to-action button",
+            "type": "true_false",
+            "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "50",
+                "width": "",
                 "class": "",
                 "id": ""
             },
-            "return_format": "array"
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
         },
         {
-            "key": "field_hero_secondary_button",
-            "label": "Secondary Button",
-            "name": "secondary_button",
+            "key": "field_contactsplit_map_embed",
+            "label": "Map Embed",
+            "name": "map_embed",
             "aria-label": "",
-            "type": "link",
-            "instructions": "Secondary call-to-action button",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "array"
-        },
-        {
-            "key": "field_hero_background_image",
-            "label": "Background Image",
-            "name": "background_image",
-            "aria-label": "",
-            "type": "image",
-            "instructions": "Full-width background image",
+            "type": "textarea",
+            "instructions": "Paste Google Maps embed code",
             "required": 0,
             "conditional_logic": [
                 [
                     {
-                        "field": "field_hero_style",
+                        "field": "field_contactsplit_show_map",
                         "operator": "==",
-                        "value": "image"
+                        "value": "1"
                     }
                 ]
             ],
@@ -161,152 +210,34 @@
                 "class": "",
                 "id": ""
             },
-            "return_format": "array",
-            "preview_size": "medium",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": ""
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": 3,
+            "new_lines": ""
         },
         {
-            "key": "field_hero_overlay_color",
-            "label": "Overlay Color",
-            "name": "overlay_color",
+            "key": "field_contactsplit_form_shortcode",
+            "label": "Form Shortcode",
+            "name": "form_shortcode",
             "aria-label": "",
-            "type": "color_picker",
-            "instructions": "Color of the overlay on top of the background image",
+            "type": "text",
+            "instructions": "e.g. [gravityform id=\"1\" title=\"false\"]",
             "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_hero_style",
-                        "operator": "==",
-                        "value": "image"
-                    }
-                ]
-            ],
+            "conditional_logic": 0,
             "wrapper": {
-                "width": "50",
+                "width": "",
                 "class": "",
                 "id": ""
             },
-            "default_value": "#000000",
-            "enable_opacity": 0,
-            "return_format": "string"
-        },
-        {
-            "key": "field_hero_overlay_opacity",
-            "label": "Overlay Opacity",
-            "name": "overlay_opacity",
-            "aria-label": "",
-            "type": "range",
-            "instructions": "Overlay opacity percentage",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_hero_style",
-                        "operator": "==",
-                        "value": "image"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 50,
-            "min": 0,
-            "max": 100,
-            "step": 5,
+            "default_value": "",
+            "placeholder": "[gravityform id=\"1\" title=\"false\"]",
             "prepend": "",
-            "append": "%"
+            "append": "",
+            "maxlength": ""
         },
         {
-            "key": "field_hero_gradient_start",
-            "label": "Gradient Start Color",
-            "name": "gradient_start",
-            "aria-label": "",
-            "type": "color_picker",
-            "instructions": "Starting color of the gradient",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_hero_style",
-                        "operator": "==",
-                        "value": "gradient"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "#0a0a0a",
-            "enable_opacity": 0,
-            "return_format": "string"
-        },
-        {
-            "key": "field_hero_gradient_end",
-            "label": "Gradient End Color",
-            "name": "gradient_end",
-            "aria-label": "",
-            "type": "color_picker",
-            "instructions": "Ending color of the gradient",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_hero_style",
-                        "operator": "==",
-                        "value": "gradient"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "#1a1a2e",
-            "enable_opacity": 0,
-            "return_format": "string"
-        },
-        {
-            "key": "field_hero_background_color",
-            "label": "Background Color",
-            "name": "background_color",
-            "aria-label": "",
-            "type": "color_picker",
-            "instructions": "Solid background color",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_hero_style",
-                        "operator": "==",
-                        "value": "solid"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "#0a0a0a",
-            "enable_opacity": 0,
-            "return_format": "string"
-        },
-        {
-            "key": "field_hero_options_tab",
+            "key": "field_contactsplit_options_tab",
             "label": "Options",
             "name": "",
             "aria-label": "",
@@ -324,7 +255,7 @@
             "selected": 0
         },
         {
-            "key": "field_hero_margin_top",
+            "key": "field_contactsplit_margin_top",
             "label": "Margin Top",
             "name": "margin_top",
             "aria-label": "",
@@ -353,7 +284,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_hero_margin_top_other",
+            "key": "field_contactsplit_margin_top_other",
             "label": "Margin Top Other",
             "name": "margin_top_other",
             "aria-label": "",
@@ -363,7 +294,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_hero_margin_top",
+                        "field": "field_contactsplit_margin_top",
                         "operator": "==",
                         "value": "other"
                     }
@@ -383,7 +314,7 @@
             "step": ""
         },
         {
-            "key": "field_hero_margin_bottom",
+            "key": "field_contactsplit_margin_bottom",
             "label": "Margin Bottom",
             "name": "margin_bottom",
             "aria-label": "",
@@ -412,7 +343,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_hero_margin_bottom_other",
+            "key": "field_contactsplit_margin_bottom_other",
             "label": "Margin Bottom Other",
             "name": "margin_bottom_other",
             "aria-label": "",
@@ -422,7 +353,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_hero_margin_bottom",
+                        "field": "field_contactsplit_margin_bottom",
                         "operator": "==",
                         "value": "other"
                     }
@@ -442,7 +373,7 @@
             "step": ""
         },
         {
-            "key": "field_hero_custom_class",
+            "key": "field_contactsplit_custom_class",
             "label": "Custom Class",
             "name": "custom_class",
             "aria-label": "",
@@ -462,7 +393,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_hero_custom_id",
+            "key": "field_contactsplit_custom_id",
             "label": "Custom ID",
             "name": "custom_id",
             "aria-label": "",
@@ -482,7 +413,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_hero_animation_tab",
+            "key": "field_contactsplit_animation_tab",
             "label": "Animation",
             "name": "",
             "aria-label": "",
@@ -500,7 +431,7 @@
             "selected": 0
         },
         {
-            "key": "field_hero_animation_type",
+            "key": "field_contactsplit_animation_type",
             "label": "Animation Type",
             "name": "animation_type",
             "aria-label": "",
@@ -546,7 +477,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_hero_animation_duration",
+            "key": "field_contactsplit_animation_duration",
             "label": "Animation Duration",
             "name": "animation_duration",
             "aria-label": "",
@@ -568,7 +499,7 @@
             "step": ""
         },
         {
-            "key": "field_hero_disable_animation",
+            "key": "field_contactsplit_disable_animation",
             "label": "Disable Animation",
             "name": "disable_animation",
             "aria-label": "",
@@ -593,7 +524,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/hero"
+                "value": "acf\/contactsplit"
             }
         ]
     ],

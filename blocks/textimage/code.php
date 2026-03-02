@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Text + Image Block
+ * Text Image Block
  */
 
 // Error handling
@@ -11,10 +11,11 @@ if (!function_exists('get_field')) {
 }
 
 // ACF Fields - Content Tab
+$eyebrow = get_field('eyebrow');
 $heading = get_field('heading');
 $content = get_field('content');
-$image = get_field('image');
 $button = get_field('button');
+$image = devq_get_image_or_placeholder('image', 800, 600, 'textimage-img');
 $image_position = get_field('image_position') ?: 'right';
 
 // Options Tab Fields (always include these)
@@ -61,10 +62,13 @@ if (!$heading && !$content && !$image) {
 
 ?>
 
-<div class="<?php echo esc_attr($block_classes); ?>" <?php echo $block_id ? 'id="' . esc_attr($block_id) . '"' : ''; ?> <?php echo $aos_attributes; ?>>
+<div class="<?php echo esc_attr($block_classes); ?>" <?php echo $block_id ? 'id="' . esc_attr($block_id) . '"' : ''; ?> <?php echo $aos_attributes; ?> data-block-category="content">
     <div class="container">
         <div class="textimage-grid">
             <div class="textimage-text">
+                <?php if ($eyebrow) : ?>
+                    <span class="cs-topper textimage-eyebrow"><?php echo esc_html($eyebrow); ?></span>
+                <?php endif; ?>
                 <?php if ($heading) : ?>
                     <h2 class="textimage-heading"><?php echo esc_html($heading); ?></h2>
                 <?php endif; ?>
@@ -74,7 +78,7 @@ if (!$heading && !$content && !$image) {
                     </div>
                 <?php endif; ?>
                 <?php if ($button) : ?>
-                    <a href="<?php echo esc_url($button['url']); ?>" class="textimage-button" <?php echo $button['target'] ? 'target="' . esc_attr($button['target']) . '"' : ''; ?>><?php echo esc_html($button['title']); ?></a>
+                    <a href="<?php echo esc_url($button['url']); ?>" class="btn-inline btn-primary textimage-button" <?php echo $button['target'] ? 'target="' . esc_attr($button['target']) . '"' : ''; ?>><?php echo esc_html($button['title']); ?></a>
                 <?php endif; ?>
             </div>
             <div class="textimage-image">
@@ -98,7 +102,7 @@ output_block_spacing_css($margin_top, $margin_bottom, $margin_top_other, $margin
     .textimage-block .textimage-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 60px;
+        gap: 80px;
         align-items: center;
     }
 
@@ -110,34 +114,24 @@ output_block_spacing_css($margin_top, $margin_bottom, $margin_top_other, $margin
         direction: ltr;
     }
 
+    .textimage-block .textimage-eyebrow {
+        display: block;
+        margin-bottom: 12px;
+    }
+
     .textimage-block .textimage-heading {
         margin-bottom: 20px;
     }
 
     .textimage-block .textimage-content {
-        margin-bottom: 25px;
-    }
-
-    .textimage-block .textimage-button {
-        display: inline-block;
-        padding: var(--button-padding);
-        background-color: var(--primary);
-        color: #fff;
-        text-decoration: none;
-        border-radius: var(--button-radius);
-        transition: var(--transition-default);
-    }
-
-    .textimage-block .textimage-button:hover {
-        opacity: 0.9;
-        color: #fff;
+        margin-bottom: 30px;
     }
 
     .textimage-block .textimage-image img {
         width: 100%;
         height: auto;
         display: block;
-        border-radius: 4px;
+        border-radius: 12px;
     }
 
     /* Tablet - 1199px and below */

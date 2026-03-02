@@ -168,7 +168,7 @@ function output_block_spacing_css($margin_top, $margin_bottom, $margin_top_other
 
 /**
  * Get responsive breakpoint values
- * 
+ *
  * @return array Breakpoint values
  */
 function get_theme_breakpoints()
@@ -177,4 +177,52 @@ function get_theme_breakpoints()
         'tablet' => '1199px',
         'mobile' => '767px'  // Updated from 991px
     );
+}
+
+/**
+ * Get a placeholder image array matching ACF's image return format.
+ * Uses picsum.photos for beautiful random photos.
+ *
+ * @param int    $width  Image width (default: 800)
+ * @param int    $height Image height (default: 600)
+ * @param string $seed   Seed for deterministic image (same seed = same photo)
+ * @return array Array with 'url', 'alt', 'width', 'height' keys (ACF-compatible)
+ */
+function devq_placeholder_image($width = 800, $height = 600, $seed = '')
+{
+    if (empty($seed)) {
+        $seed = 'devq-' . mt_rand(1, 9999);
+    }
+
+    return array(
+        'url' => 'https://picsum.photos/seed/' . urlencode($seed) . '/' . intval($width) . '/' . intval($height),
+        'alt' => 'Placeholder image',
+        'width' => intval($width),
+        'height' => intval($height),
+    );
+}
+
+/**
+ * Get an ACF image field value, falling back to a placeholder if empty.
+ *
+ * @param string $field_name  ACF field name
+ * @param int    $width       Placeholder width
+ * @param int    $height      Placeholder height
+ * @param string $seed        Placeholder seed
+ * @param bool   $is_sub_field Whether to use get_sub_field instead of get_field
+ * @return array ACF image array (real or placeholder)
+ */
+function devq_get_image_or_placeholder($field_name, $width = 800, $height = 600, $seed = '', $is_sub_field = false)
+{
+    $image = $is_sub_field ? get_sub_field($field_name) : get_field($field_name);
+
+    if ($image && !empty($image['url'])) {
+        return $image;
+    }
+
+    if (empty($seed)) {
+        $seed = $field_name . '-' . mt_rand(1, 999);
+    }
+
+    return devq_placeholder_image($width, $height, $seed);
 }

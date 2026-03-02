@@ -1,9 +1,9 @@
 {
-    "key": "group_textimage_block",
-    "title": "Text Image Block",
+    "key": "group_process_block",
+    "title": "Process Block",
     "fields": [
         {
-            "key": "field_textimage_content_tab",
+            "key": "field_process_content_tab",
             "label": "Content",
             "name": "",
             "aria-label": "",
@@ -11,29 +11,21 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
+            "wrapper": {"width": "", "class": "", "id": ""},
             "placement": "left",
             "endpoint": 0,
             "selected": 0
         },
         {
-            "key": "field_textimage_eyebrow",
+            "key": "field_process_eyebrow",
             "label": "Eyebrow",
             "name": "eyebrow",
             "aria-label": "",
             "type": "text",
-            "instructions": "Small text above the heading",
+            "instructions": "Small text displayed above the heading",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
+            "wrapper": {"width": "", "class": "", "id": ""},
             "default_value": "",
             "placeholder": "",
             "prepend": "",
@@ -41,7 +33,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_textimage_heading",
+            "key": "field_process_heading",
             "label": "Heading",
             "name": "heading",
             "aria-label": "",
@@ -49,11 +41,7 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
+            "wrapper": {"width": "", "class": "", "id": ""},
             "default_value": "",
             "placeholder": "",
             "prepend": "",
@@ -61,94 +49,92 @@
             "maxlength": ""
         },
         {
-            "key": "field_textimage_content",
-            "label": "Content",
-            "name": "content",
+            "key": "field_process_subheading",
+            "label": "Subheading",
+            "name": "subheading",
             "aria-label": "",
-            "type": "wysiwyg",
+            "type": "textarea",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
+            "wrapper": {"width": "", "class": "", "id": ""},
             "default_value": "",
-            "tabs": "all",
-            "toolbar": "full",
-            "media_upload": 1,
-            "delay": 0
+            "placeholder": "",
+            "maxlength": "",
+            "rows": 2,
+            "new_lines": ""
         },
         {
-            "key": "field_textimage_button",
-            "label": "Button",
-            "name": "button",
+            "key": "field_process_steps",
+            "label": "Steps",
+            "name": "steps",
             "aria-label": "",
-            "type": "link",
+            "type": "repeater",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "array"
+            "wrapper": {"width": "", "class": "", "id": ""},
+            "layout": "block",
+            "button_label": "Add Step",
+            "min": 0,
+            "max": 0,
+            "collapsed": "field_process_step_title",
+            "sub_fields": [
+                {
+                    "key": "field_process_step_icon_class",
+                    "label": "Icon Class",
+                    "name": "icon_class",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "FontAwesome class, e.g. fa-solid fa-lightbulb. Leave empty to show step number.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {"width": "", "class": "", "id": ""},
+                    "default_value": "",
+                    "placeholder": "fa-solid fa-lightbulb",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "parent_repeater": "field_process_steps"
+                },
+                {
+                    "key": "field_process_step_title",
+                    "label": "Title",
+                    "name": "title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {"width": "", "class": "", "id": ""},
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "parent_repeater": "field_process_steps"
+                },
+                {
+                    "key": "field_process_step_description",
+                    "label": "Description",
+                    "name": "description",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {"width": "", "class": "", "id": ""},
+                    "default_value": "",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "rows": 3,
+                    "new_lines": "",
+                    "parent_repeater": "field_process_steps"
+                }
+            ]
         },
         {
-            "key": "field_textimage_image",
-            "label": "Image",
-            "name": "image",
-            "aria-label": "",
-            "type": "image",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "array",
-            "preview_size": "medium",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": ""
-        },
-        {
-            "key": "field_textimage_image_position",
-            "label": "Image Position",
-            "name": "image_position",
-            "aria-label": "",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "right": "Right",
-                "left": "Left"
-            },
-            "default_value": "right",
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
-            "return_format": "value",
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_textimage_options_tab",
+            "key": "field_process_options_tab",
             "label": "Options",
             "name": "",
             "aria-label": "",
@@ -156,17 +142,13 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
+            "wrapper": {"width": "", "class": "", "id": ""},
             "placement": "left",
             "endpoint": 0,
             "selected": 0
         },
         {
-            "key": "field_textimage_margin_top",
+            "key": "field_process_margin_top",
             "label": "Margin Top",
             "name": "margin_top",
             "aria-label": "",
@@ -174,18 +156,8 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "none": "None",
-                "small": "Small",
-                "medium": "Medium",
-                "large": "Large",
-                "other": "Other"
-            },
+            "wrapper": {"width": "50", "class": "", "id": ""},
+            "choices": {"none": "None", "small": "Small", "medium": "Medium", "large": "Large", "other": "Other"},
             "default_value": "none",
             "allow_null": 0,
             "multiple": 0,
@@ -195,27 +167,15 @@
             "placeholder": ""
         },
         {
-            "key": "field_textimage_margin_top_other",
+            "key": "field_process_margin_top_other",
             "label": "Margin Top Other",
             "name": "margin_top_other",
             "aria-label": "",
             "type": "number",
             "instructions": "",
             "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_textimage_margin_top",
-                        "operator": "==",
-                        "value": "other"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
+            "conditional_logic": [[{"field": "field_process_margin_top", "operator": "==", "value": "other"}]],
+            "wrapper": {"width": "50", "class": "", "id": ""},
             "default_value": "",
             "placeholder": "",
             "prepend": "",
@@ -225,7 +185,7 @@
             "step": ""
         },
         {
-            "key": "field_textimage_margin_bottom",
+            "key": "field_process_margin_bottom",
             "label": "Margin Bottom",
             "name": "margin_bottom",
             "aria-label": "",
@@ -233,18 +193,8 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "none": "None",
-                "small": "Small",
-                "medium": "Medium",
-                "large": "Large",
-                "other": "Other"
-            },
+            "wrapper": {"width": "50", "class": "", "id": ""},
+            "choices": {"none": "None", "small": "Small", "medium": "Medium", "large": "Large", "other": "Other"},
             "default_value": "none",
             "allow_null": 0,
             "multiple": 0,
@@ -254,27 +204,15 @@
             "placeholder": ""
         },
         {
-            "key": "field_textimage_margin_bottom_other",
+            "key": "field_process_margin_bottom_other",
             "label": "Margin Bottom Other",
             "name": "margin_bottom_other",
             "aria-label": "",
             "type": "number",
             "instructions": "",
             "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_textimage_margin_bottom",
-                        "operator": "==",
-                        "value": "other"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
+            "conditional_logic": [[{"field": "field_process_margin_bottom", "operator": "==", "value": "other"}]],
+            "wrapper": {"width": "50", "class": "", "id": ""},
             "default_value": "",
             "placeholder": "",
             "prepend": "",
@@ -284,7 +222,7 @@
             "step": ""
         },
         {
-            "key": "field_textimage_custom_class",
+            "key": "field_process_custom_class",
             "label": "Custom Class",
             "name": "custom_class",
             "aria-label": "",
@@ -292,11 +230,7 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
+            "wrapper": {"width": "50", "class": "", "id": ""},
             "default_value": "",
             "placeholder": "",
             "prepend": ".",
@@ -304,7 +238,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_textimage_custom_id",
+            "key": "field_process_custom_id",
             "label": "Custom ID",
             "name": "custom_id",
             "aria-label": "",
@@ -312,11 +246,7 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
+            "wrapper": {"width": "50", "class": "", "id": ""},
             "default_value": "",
             "placeholder": "",
             "prepend": "#",
@@ -324,7 +254,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_textimage_animation_tab",
+            "key": "field_process_animation_tab",
             "label": "Animation",
             "name": "",
             "aria-label": "",
@@ -332,17 +262,13 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
+            "wrapper": {"width": "", "class": "", "id": ""},
             "placement": "left",
             "endpoint": 0,
             "selected": 0
         },
         {
-            "key": "field_textimage_animation_type",
+            "key": "field_process_animation_type",
             "label": "Animation Type",
             "name": "animation_type",
             "aria-label": "",
@@ -350,11 +276,7 @@
             "instructions": "Choose the AOS animation effect",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
+            "wrapper": {"width": "50", "class": "", "id": ""},
             "choices": {
                 "fade-up": "Fade Up",
                 "fade-down": "Fade Down",
@@ -388,7 +310,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_textimage_animation_duration",
+            "key": "field_process_animation_duration",
             "label": "Animation Duration",
             "name": "animation_duration",
             "aria-label": "",
@@ -396,11 +318,7 @@
             "instructions": "Duration in milliseconds",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {
-                "width": "25",
-                "class": "",
-                "id": ""
-            },
+            "wrapper": {"width": "25", "class": "", "id": ""},
             "default_value": 800,
             "placeholder": "",
             "prepend": "",
@@ -410,7 +328,7 @@
             "step": ""
         },
         {
-            "key": "field_textimage_disable_animation",
+            "key": "field_process_disable_animation",
             "label": "Disable Animation",
             "name": "disable_animation",
             "aria-label": "",
@@ -418,11 +336,7 @@
             "instructions": "Disable the animation effect for this block",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {
-                "width": "25",
-                "class": "",
-                "id": ""
-            },
+            "wrapper": {"width": "25", "class": "", "id": ""},
             "message": "",
             "default_value": 0,
             "ui": 1,
@@ -430,15 +344,7 @@
             "ui_off_text": ""
         }
     ],
-    "location": [
-        [
-            {
-                "param": "block",
-                "operator": "==",
-                "value": "acf\/textimage"
-            }
-        ]
-    ],
+    "location": [[{"param": "block", "operator": "==", "value": "acf\/process"}]],
     "menu_order": 0,
     "position": "normal",
     "style": "default",

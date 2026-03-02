@@ -62,10 +62,85 @@ function devq_get_acf_field_keys($block_name) {
 function devq_generate_block_markup($block_name, $block_id, $fields = array(), $field_keys = array()) {
     $data = array();
 
+    // Detect repeater fields from the ACF JSON definition
+    $repeater_fields = array();
+    $theme_dir = get_template_directory();
+    $json_file = $theme_dir . '/acfjson/group_' . $block_name . '_block.json';
+    if (file_exists($json_file)) {
+        $json = json_decode(file_get_contents($json_file), true);
+        if ($json && isset($json['fields'])) {
+            foreach ($json['fields'] as $field) {
+                if (isset($field['type']) && $field['type'] === 'repeater' && !empty($field['name'])) {
+                    $sub_map = array();
+                    if (isset($field['sub_fields'])) {
+                        foreach ($field['sub_fields'] as $sf) {
+                            if (!empty($sf['name']) && !empty($sf['key'])) {
+                                $sub_map[$sf['name']] = $sf['key'];
+                                // Check for nested repeaters
+                                if ($sf['type'] === 'repeater' && isset($sf['sub_fields'])) {
+                                    $nested_map = array();
+                                    foreach ($sf['sub_fields'] as $nsf) {
+                                        if (!empty($nsf['name']) && !empty($nsf['key'])) {
+                                            $nested_map[$nsf['name']] = $nsf['key'];
+                                        }
+                                    }
+                                    $sub_map['__nested_' . $sf['name']] = $nested_map;
+                                }
+                            }
+                        }
+                    }
+                    $repeater_fields[$field['name']] = array(
+                        'key' => $field['key'],
+                        'sub_fields' => $sub_map,
+                    );
+                }
+            }
+        }
+    }
+
     foreach ($fields as $name => $value) {
-        $data[$name] = $value;
-        if (isset($field_keys[$name])) {
-            $data['_' . $name] = $field_keys[$name];
+        // Flatten repeater arrays into ACF's expected format
+        if (is_array($value) && isset($repeater_fields[$name])) {
+            $rep = $repeater_fields[$name];
+            $data[$name] = count($value);
+            $data['_' . $name] = $rep['key'];
+
+            foreach ($value as $i => $row) {
+                if (!is_array($row)) continue;
+                foreach ($row as $sub_name => $sub_value) {
+                    $flat_key = $name . '_' . $i . '_' . $sub_name;
+
+                    // Check for nested repeater
+                    $nested_key = '__nested_' . $sub_name;
+                    if (is_array($sub_value) && isset($rep['sub_fields'][$nested_key])) {
+                        $nested_map = $rep['sub_fields'][$nested_key];
+                        $data[$flat_key] = count($sub_value);
+                        if (isset($rep['sub_fields'][$sub_name])) {
+                            $data['_' . $flat_key] = $rep['sub_fields'][$sub_name];
+                        }
+                        foreach ($sub_value as $ni => $nrow) {
+                            if (!is_array($nrow)) continue;
+                            foreach ($nrow as $nsub_name => $nsub_value) {
+                                $nflat_key = $flat_key . '_' . $ni . '_' . $nsub_name;
+                                $data[$nflat_key] = $nsub_value;
+                                if (isset($nested_map[$nsub_name])) {
+                                    $data['_' . $nflat_key] = $nested_map[$nsub_name];
+                                }
+                            }
+                        }
+                    } else {
+                        $data[$flat_key] = $sub_value;
+                        if (isset($rep['sub_fields'][$sub_name])) {
+                            $data['_' . $flat_key] = $rep['sub_fields'][$sub_name];
+                        }
+                    }
+                }
+            }
+        } else {
+            $data[$name] = $value;
+            if (isset($field_keys[$name])) {
+                $data['_' . $name] = $field_keys[$name];
+            }
         }
     }
 
@@ -228,7 +303,11 @@ function devq_create_page($args) {
         'post_parent' => absint($args['parent']),
     );
 
+    // Temporarily remove kses filters so HTML inside block comment JSON
+    // doesn't get mangled (e.g. WYSIWYG field content stored in data attrs).
+    kses_remove_filters();
     $post_id = wp_insert_post($post_data, true);
+    kses_init_filters();
 
     if (is_wp_error($post_id)) {
         return $post_id;
@@ -296,4 +375,91 @@ function devq_rest_create_page($request) {
         'edit_url' => get_edit_post_link($result, 'raw'),
         'view_url' => get_permalink($result),
     ), 201);
+}
+
+/**
+ * Admin page for Block Library generation.
+ */
+function devq_block_library_admin_menu() {
+    add_submenu_page(
+        'themes.php',
+        'Block Library',
+        'Block Library',
+        'edit_pages',
+        'devq-block-library',
+        'devq_block_library_admin_page'
+    );
+}
+add_action('admin_menu', 'devq_block_library_admin_menu');
+
+/**
+ * Handle Block Library admin page and generation.
+ */
+function devq_block_library_admin_page() {
+    $message = '';
+    $message_type = '';
+
+    if (isset($_POST['devq_generate_block_library']) && check_admin_referer('devq_generate_block_library_nonce')) {
+        $script_path = get_template_directory() . '/scripts/create-block-library.php';
+        if (file_exists($script_path)) {
+            ob_start();
+            include $script_path;
+            $output = ob_get_clean();
+            $message = 'Block Library page generated successfully! <a href="' . esc_url(get_permalink(get_page_by_path('block-library'))) . '" target="_blank">View page</a>';
+            $message_type = 'success';
+        } else {
+            $message = 'Error: create-block-library.php script not found.';
+            $message_type = 'error';
+        }
+    }
+
+    if (isset($_POST['devq_delete_block_library']) && check_admin_referer('devq_delete_block_library_nonce')) {
+        $page = get_page_by_path('block-library');
+        if ($page) {
+            wp_delete_post($page->ID, true);
+            $message = 'Block Library page deleted.';
+            $message_type = 'success';
+        } else {
+            $message = 'No Block Library page found to delete.';
+            $message_type = 'warning';
+        }
+    }
+
+    $existing = get_page_by_path('block-library');
+    ?>
+    <div class="wrap">
+        <h1>DevQ Block Library</h1>
+
+        <?php if ($message) : ?>
+            <div class="notice notice-<?php echo esc_attr($message_type); ?> is-dismissible">
+                <p><?php echo wp_kses_post($message); ?></p>
+            </div>
+        <?php endif; ?>
+
+        <div class="card" style="max-width:600px;">
+            <h2>Generate Block Library</h2>
+            <p>Creates a showcase page with every block filled with demo content. The page is <strong>noindexed</strong> automatically so it won't appear in search results.</p>
+
+            <?php if ($existing) : ?>
+                <p style="color:#2271b1;"><strong>Block Library page exists.</strong>
+                    <a href="<?php echo esc_url(get_permalink($existing)); ?>" target="_blank">View</a> |
+                    <a href="<?php echo esc_url(get_edit_post_link($existing)); ?>">Edit</a>
+                </p>
+                <form method="post" style="display:inline-flex;gap:10px;">
+                    <?php wp_nonce_field('devq_generate_block_library_nonce'); ?>
+                    <input type="submit" name="devq_generate_block_library" class="button button-primary" value="Regenerate Block Library" onclick="return confirm('This will delete and recreate the Block Library page. Continue?');">
+                </form>
+                <form method="post" style="display:inline-flex;gap:10px;margin-left:10px;">
+                    <?php wp_nonce_field('devq_delete_block_library_nonce'); ?>
+                    <input type="submit" name="devq_delete_block_library" class="button" value="Delete Block Library" onclick="return confirm('Delete the Block Library page?');">
+                </form>
+            <?php else : ?>
+                <form method="post">
+                    <?php wp_nonce_field('devq_generate_block_library_nonce'); ?>
+                    <input type="submit" name="devq_generate_block_library" class="button button-primary" value="Generate Block Library">
+                </form>
+            <?php endif; ?>
+        </div>
+    </div>
+    <?php
 }
