@@ -56,6 +56,84 @@ $blocks[] = array(
     ),
 );
 
+$blocks[] = array(
+    'name' => 'Hero Video',
+    'fields' => array(
+        'eyebrow' => 'See It In Motion',
+        'heading' => 'Bringing Your Brand to Life With Video',
+        'subheading' => 'Immersive video backgrounds that capture attention and tell your story from the moment visitors arrive.',
+        'primary_button' => array('title' => 'Watch Showreel', 'url' => '#', 'target' => ''),
+        'secondary_button' => array('title' => 'Start a Project', 'url' => '#', 'target' => ''),
+        'video_source' => 'youtube',
+        'youtube_url' => 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        'overlay_color' => '#000000',
+        'overlay_opacity' => 60,
+        'content_alignment' => 'center',
+        'content_width' => 'default',
+        'height' => 'large',
+        'vertical_position' => 'center',
+        'show_scroll_indicator' => 0,
+    ),
+);
+
+$blocks[] = array(
+    'name' => 'Hero Slider',
+    'fields' => array(
+        'content_alignment' => 'left',
+        'content_width' => 'wide',
+        'height' => 'large',
+        'vertical_position' => 'center',
+        'autoplay' => 1,
+        'autoplay_speed' => 5000,
+        'transition_style' => 'fade',
+        'show_arrows' => 1,
+        'show_dots' => 1,
+        'slides' => array(
+            array(
+                'eyebrow' => 'Web Design',
+                'heading' => 'Beautiful Websites That Drive Results',
+                'subheading' => 'Custom-designed websites that combine stunning aesthetics with conversion-focused strategy.',
+                'button' => array('title' => 'View Portfolio', 'url' => '#', 'target' => ''),
+                'overlay_color' => '#000000',
+                'overlay_opacity' => 55,
+            ),
+            array(
+                'eyebrow' => 'Development',
+                'heading' => 'Built With Performance in Mind',
+                'subheading' => 'Lightning-fast WordPress sites with clean code and scalable architecture.',
+                'button' => array('title' => 'Our Process', 'url' => '#', 'target' => ''),
+                'overlay_color' => '#0a0a2e',
+                'overlay_opacity' => 60,
+            ),
+            array(
+                'eyebrow' => 'Strategy',
+                'heading' => 'Digital Growth That Scales',
+                'subheading' => 'Data-driven strategies that turn your website into your most powerful sales tool.',
+                'button' => array('title' => 'Get Started', 'url' => '#', 'target' => ''),
+                'overlay_color' => '#1a0a0a',
+                'overlay_opacity' => 55,
+            ),
+        ),
+    ),
+);
+
+$blocks[] = array(
+    'name' => 'Hero Fullscreen',
+    'fields' => array(
+        'eyebrow' => 'Make a Statement',
+        'heading' => 'Bold Ideas Deserve a Bold Presence',
+        'subheading' => 'Full-screen impact that commands attention. When your story is worth the entire screen, this is how you tell it.',
+        'primary_button' => array('title' => 'Explore Our Work', 'url' => '#', 'target' => ''),
+        'secondary_button' => array('title' => 'Contact Us', 'url' => '#', 'target' => ''),
+        'overlay_color' => '#000000',
+        'overlay_opacity' => 50,
+        'content_alignment' => 'center',
+        'content_width' => 'default',
+        'vertical_position' => 'center',
+        'show_scroll_indicator' => 1,
+    ),
+);
+
 // ── CONTENT ─────────────────────────────────────────────────────────────
 
 $blocks[] = array(

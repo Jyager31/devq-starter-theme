@@ -297,13 +297,16 @@ The spacing system is centralized in `functions/spacing.php`:
 - Desktop values: Small (20px), Medium (40px), Large (80px) — configurable in Theme Settings
 - Mobile values: Small (15px), Medium (25px), Large (40px) — auto-applied at 767px
 
-## Available Blocks (27 total)
+## Available Blocks (30 total)
 
 ### Heroes
 | Block | Slug | Description |
 |-------|------|-------------|
-| Hero | `acf/hero` | Full-width hero with background image/gradient/solid, overlay, CTAs |
+| Hero | `acf/hero` | Full-width hero with background image/gradient/solid, overlay, CTAs. Layout tab: alignment, width, height, vertical position, scroll indicator |
 | Hero Split | `acf/herosplit` | Two-column hero: text + image, position toggle |
+| Hero Video | `acf/herovideo` | Background video hero (YouTube/upload) with overlay, fallback image for mobile, Layout tab |
+| Hero Slider | `acf/heroslider` | Multi-slide hero carousel using Slick, per-slide bg/overlay/content, Layout tab with slider options |
+| Hero Fullscreen | `acf/herofullscreen` | Always 100vh hero with animated scroll indicator, Layout tab |
 
 ### Content
 | Block | Slug | Description |

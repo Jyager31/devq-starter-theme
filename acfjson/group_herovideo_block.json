@@ -1,9 +1,9 @@
 {
-    "key": "group_hero_block",
-    "title": "Hero Block",
+    "key": "group_herovideo_block",
+    "title": "Hero Video Block",
     "fields": [
         {
-            "key": "field_hero_content_tab",
+            "key": "field_herovideo_content_tab",
             "label": "Content",
             "name": "",
             "aria-label": "",
@@ -21,34 +21,7 @@
             "selected": 0
         },
         {
-            "key": "field_hero_style",
-            "label": "Background Style",
-            "name": "style",
-            "aria-label": "",
-            "type": "select",
-            "instructions": "Choose the hero background style",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "image": "Image",
-                "gradient": "Gradient",
-                "solid": "Solid Color"
-            },
-            "default_value": "image",
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
-            "return_format": "value",
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_hero_eyebrow",
+            "key": "field_herovideo_eyebrow",
             "label": "Eyebrow",
             "name": "eyebrow",
             "aria-label": "",
@@ -68,7 +41,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_hero_heading",
+            "key": "field_herovideo_heading",
             "label": "Heading",
             "name": "heading",
             "aria-label": "",
@@ -88,7 +61,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_hero_subheading",
+            "key": "field_herovideo_subheading",
             "label": "Subheading",
             "name": "subheading",
             "aria-label": "",
@@ -108,7 +81,7 @@
             "new_lines": ""
         },
         {
-            "key": "field_hero_primary_button",
+            "key": "field_herovideo_primary_button",
             "label": "Primary Button",
             "name": "primary_button",
             "aria-label": "",
@@ -124,7 +97,7 @@
             "return_format": "array"
         },
         {
-            "key": "field_hero_secondary_button",
+            "key": "field_herovideo_secondary_button",
             "label": "Secondary Button",
             "name": "secondary_button",
             "aria-label": "",
@@ -140,22 +113,96 @@
             "return_format": "array"
         },
         {
-            "key": "field_hero_background_image",
-            "label": "Background Image",
-            "name": "background_image",
+            "key": "field_herovideo_video_source",
+            "label": "Video Source",
+            "name": "video_source",
             "aria-label": "",
-            "type": "image",
-            "instructions": "Full-width background image",
+            "type": "select",
+            "instructions": "Choose where the video comes from",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "youtube": "YouTube URL",
+                "upload": "Upload Video"
+            },
+            "default_value": "youtube",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_herovideo_youtube_url",
+            "label": "YouTube URL",
+            "name": "youtube_url",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Paste a YouTube video URL (e.g. https://www.youtube.com/watch?v=xxxxx)",
             "required": 0,
             "conditional_logic": [
                 [
                     {
-                        "field": "field_hero_style",
+                        "field": "field_herovideo_video_source",
                         "operator": "==",
-                        "value": "image"
+                        "value": "youtube"
                     }
                 ]
             ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "https://www.youtube.com/watch?v=...",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_herovideo_video_file",
+            "label": "Video File",
+            "name": "video_file",
+            "aria-label": "",
+            "type": "file",
+            "instructions": "Upload an MP4 video file",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_herovideo_video_source",
+                        "operator": "==",
+                        "value": "upload"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": "mp4,webm,ogg"
+        },
+        {
+            "key": "field_herovideo_fallback_image",
+            "label": "Fallback Image",
+            "name": "fallback_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Shown on mobile devices and when video cannot autoplay",
+            "required": 0,
+            "conditional_logic": 0,
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -173,22 +220,14 @@
             "mime_types": ""
         },
         {
-            "key": "field_hero_overlay_color",
+            "key": "field_herovideo_overlay_color",
             "label": "Overlay Color",
             "name": "overlay_color",
             "aria-label": "",
             "type": "color_picker",
-            "instructions": "Color of the overlay on top of the background image",
+            "instructions": "Color of the overlay on top of the video",
             "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_hero_style",
-                        "operator": "==",
-                        "value": "image"
-                    }
-                ]
-            ],
+            "conditional_logic": 0,
             "wrapper": {
                 "width": "50",
                 "class": "",
@@ -199,22 +238,14 @@
             "return_format": "string"
         },
         {
-            "key": "field_hero_overlay_opacity",
+            "key": "field_herovideo_overlay_opacity",
             "label": "Overlay Opacity",
             "name": "overlay_opacity",
             "aria-label": "",
             "type": "range",
             "instructions": "Overlay opacity percentage",
             "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_hero_style",
-                        "operator": "==",
-                        "value": "image"
-                    }
-                ]
-            ],
+            "conditional_logic": 0,
             "wrapper": {
                 "width": "50",
                 "class": "",
@@ -228,85 +259,7 @@
             "append": "%"
         },
         {
-            "key": "field_hero_gradient_start",
-            "label": "Gradient Start Color",
-            "name": "gradient_start",
-            "aria-label": "",
-            "type": "color_picker",
-            "instructions": "Starting color of the gradient",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_hero_style",
-                        "operator": "==",
-                        "value": "gradient"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "#0a0a0a",
-            "enable_opacity": 0,
-            "return_format": "string"
-        },
-        {
-            "key": "field_hero_gradient_end",
-            "label": "Gradient End Color",
-            "name": "gradient_end",
-            "aria-label": "",
-            "type": "color_picker",
-            "instructions": "Ending color of the gradient",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_hero_style",
-                        "operator": "==",
-                        "value": "gradient"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "#1a1a2e",
-            "enable_opacity": 0,
-            "return_format": "string"
-        },
-        {
-            "key": "field_hero_background_color",
-            "label": "Background Color",
-            "name": "background_color",
-            "aria-label": "",
-            "type": "color_picker",
-            "instructions": "Solid background color",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_hero_style",
-                        "operator": "==",
-                        "value": "solid"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "#0a0a0a",
-            "enable_opacity": 0,
-            "return_format": "string"
-        },
-        {
-            "key": "field_hero_layout_tab",
+            "key": "field_herovideo_layout_tab",
             "label": "Layout",
             "name": "",
             "aria-label": "",
@@ -324,7 +277,7 @@
             "selected": 0
         },
         {
-            "key": "field_hero_content_alignment",
+            "key": "field_herovideo_content_alignment",
             "label": "Content Alignment",
             "name": "content_alignment",
             "aria-label": "",
@@ -351,7 +304,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_hero_content_width",
+            "key": "field_herovideo_content_width",
             "label": "Content Width",
             "name": "content_width",
             "aria-label": "",
@@ -378,7 +331,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_hero_height",
+            "key": "field_herovideo_height",
             "label": "Height",
             "name": "height",
             "aria-label": "",
@@ -406,7 +359,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_hero_vertical_position",
+            "key": "field_herovideo_vertical_position",
             "label": "Vertical Position",
             "name": "vertical_position",
             "aria-label": "",
@@ -433,12 +386,12 @@
             "placeholder": ""
         },
         {
-            "key": "field_hero_show_scroll_indicator",
+            "key": "field_herovideo_show_scroll_indicator",
             "label": "Show Scroll Indicator",
             "name": "show_scroll_indicator",
             "aria-label": "",
             "type": "true_false",
-            "instructions": "Show an animated down arrow at the bottom of the hero",
+            "instructions": "Show an animated down arrow at the bottom",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -453,7 +406,7 @@
             "ui_off_text": ""
         },
         {
-            "key": "field_hero_options_tab",
+            "key": "field_herovideo_options_tab",
             "label": "Options",
             "name": "",
             "aria-label": "",
@@ -471,7 +424,7 @@
             "selected": 0
         },
         {
-            "key": "field_hero_margin_top",
+            "key": "field_herovideo_margin_top",
             "label": "Margin Top",
             "name": "margin_top",
             "aria-label": "",
@@ -500,7 +453,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_hero_margin_top_other",
+            "key": "field_herovideo_margin_top_other",
             "label": "Margin Top Other",
             "name": "margin_top_other",
             "aria-label": "",
@@ -510,7 +463,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_hero_margin_top",
+                        "field": "field_herovideo_margin_top",
                         "operator": "==",
                         "value": "other"
                     }
@@ -530,7 +483,7 @@
             "step": ""
         },
         {
-            "key": "field_hero_margin_bottom",
+            "key": "field_herovideo_margin_bottom",
             "label": "Margin Bottom",
             "name": "margin_bottom",
             "aria-label": "",
@@ -559,7 +512,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_hero_margin_bottom_other",
+            "key": "field_herovideo_margin_bottom_other",
             "label": "Margin Bottom Other",
             "name": "margin_bottom_other",
             "aria-label": "",
@@ -569,7 +522,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_hero_margin_bottom",
+                        "field": "field_herovideo_margin_bottom",
                         "operator": "==",
                         "value": "other"
                     }
@@ -589,7 +542,7 @@
             "step": ""
         },
         {
-            "key": "field_hero_custom_class",
+            "key": "field_herovideo_custom_class",
             "label": "Custom Class",
             "name": "custom_class",
             "aria-label": "",
@@ -609,7 +562,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_hero_custom_id",
+            "key": "field_herovideo_custom_id",
             "label": "Custom ID",
             "name": "custom_id",
             "aria-label": "",
@@ -629,7 +582,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_hero_animation_tab",
+            "key": "field_herovideo_animation_tab",
             "label": "Animation",
             "name": "",
             "aria-label": "",
@@ -647,7 +600,7 @@
             "selected": 0
         },
         {
-            "key": "field_hero_animation_type",
+            "key": "field_herovideo_animation_type",
             "label": "Animation Type",
             "name": "animation_type",
             "aria-label": "",
@@ -693,7 +646,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_hero_animation_duration",
+            "key": "field_herovideo_animation_duration",
             "label": "Animation Duration",
             "name": "animation_duration",
             "aria-label": "",
@@ -715,7 +668,7 @@
             "step": ""
         },
         {
-            "key": "field_hero_disable_animation",
+            "key": "field_herovideo_disable_animation",
             "label": "Disable Animation",
             "name": "disable_animation",
             "aria-label": "",
@@ -740,7 +693,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/hero"
+                "value": "acf\/herovideo"
             }
         ]
     ],

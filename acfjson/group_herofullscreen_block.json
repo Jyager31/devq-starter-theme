@@ -1,9 +1,9 @@
 {
-    "key": "group_hero_block",
-    "title": "Hero Block",
+    "key": "group_herofullscreen_block",
+    "title": "Hero Fullscreen Block",
     "fields": [
         {
-            "key": "field_hero_content_tab",
+            "key": "field_herofullscreen_content_tab",
             "label": "Content",
             "name": "",
             "aria-label": "",
@@ -21,34 +21,7 @@
             "selected": 0
         },
         {
-            "key": "field_hero_style",
-            "label": "Background Style",
-            "name": "style",
-            "aria-label": "",
-            "type": "select",
-            "instructions": "Choose the hero background style",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "image": "Image",
-                "gradient": "Gradient",
-                "solid": "Solid Color"
-            },
-            "default_value": "image",
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
-            "return_format": "value",
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_hero_eyebrow",
+            "key": "field_herofullscreen_eyebrow",
             "label": "Eyebrow",
             "name": "eyebrow",
             "aria-label": "",
@@ -68,7 +41,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_hero_heading",
+            "key": "field_herofullscreen_heading",
             "label": "Heading",
             "name": "heading",
             "aria-label": "",
@@ -88,7 +61,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_hero_subheading",
+            "key": "field_herofullscreen_subheading",
             "label": "Subheading",
             "name": "subheading",
             "aria-label": "",
@@ -108,7 +81,7 @@
             "new_lines": ""
         },
         {
-            "key": "field_hero_primary_button",
+            "key": "field_herofullscreen_primary_button",
             "label": "Primary Button",
             "name": "primary_button",
             "aria-label": "",
@@ -124,7 +97,7 @@
             "return_format": "array"
         },
         {
-            "key": "field_hero_secondary_button",
+            "key": "field_herofullscreen_secondary_button",
             "label": "Secondary Button",
             "name": "secondary_button",
             "aria-label": "",
@@ -140,22 +113,14 @@
             "return_format": "array"
         },
         {
-            "key": "field_hero_background_image",
+            "key": "field_herofullscreen_background_image",
             "label": "Background Image",
             "name": "background_image",
             "aria-label": "",
             "type": "image",
-            "instructions": "Full-width background image",
+            "instructions": "Full-screen background image",
             "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_hero_style",
-                        "operator": "==",
-                        "value": "image"
-                    }
-                ]
-            ],
+            "conditional_logic": 0,
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -173,22 +138,14 @@
             "mime_types": ""
         },
         {
-            "key": "field_hero_overlay_color",
+            "key": "field_herofullscreen_overlay_color",
             "label": "Overlay Color",
             "name": "overlay_color",
             "aria-label": "",
             "type": "color_picker",
             "instructions": "Color of the overlay on top of the background image",
             "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_hero_style",
-                        "operator": "==",
-                        "value": "image"
-                    }
-                ]
-            ],
+            "conditional_logic": 0,
             "wrapper": {
                 "width": "50",
                 "class": "",
@@ -199,22 +156,14 @@
             "return_format": "string"
         },
         {
-            "key": "field_hero_overlay_opacity",
+            "key": "field_herofullscreen_overlay_opacity",
             "label": "Overlay Opacity",
             "name": "overlay_opacity",
             "aria-label": "",
             "type": "range",
             "instructions": "Overlay opacity percentage",
             "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_hero_style",
-                        "operator": "==",
-                        "value": "image"
-                    }
-                ]
-            ],
+            "conditional_logic": 0,
             "wrapper": {
                 "width": "50",
                 "class": "",
@@ -228,85 +177,7 @@
             "append": "%"
         },
         {
-            "key": "field_hero_gradient_start",
-            "label": "Gradient Start Color",
-            "name": "gradient_start",
-            "aria-label": "",
-            "type": "color_picker",
-            "instructions": "Starting color of the gradient",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_hero_style",
-                        "operator": "==",
-                        "value": "gradient"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "#0a0a0a",
-            "enable_opacity": 0,
-            "return_format": "string"
-        },
-        {
-            "key": "field_hero_gradient_end",
-            "label": "Gradient End Color",
-            "name": "gradient_end",
-            "aria-label": "",
-            "type": "color_picker",
-            "instructions": "Ending color of the gradient",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_hero_style",
-                        "operator": "==",
-                        "value": "gradient"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "#1a1a2e",
-            "enable_opacity": 0,
-            "return_format": "string"
-        },
-        {
-            "key": "field_hero_background_color",
-            "label": "Background Color",
-            "name": "background_color",
-            "aria-label": "",
-            "type": "color_picker",
-            "instructions": "Solid background color",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_hero_style",
-                        "operator": "==",
-                        "value": "solid"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "#0a0a0a",
-            "enable_opacity": 0,
-            "return_format": "string"
-        },
-        {
-            "key": "field_hero_layout_tab",
+            "key": "field_herofullscreen_layout_tab",
             "label": "Layout",
             "name": "",
             "aria-label": "",
@@ -324,7 +195,7 @@
             "selected": 0
         },
         {
-            "key": "field_hero_content_alignment",
+            "key": "field_herofullscreen_content_alignment",
             "label": "Content Alignment",
             "name": "content_alignment",
             "aria-label": "",
@@ -351,7 +222,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_hero_content_width",
+            "key": "field_herofullscreen_content_width",
             "label": "Content Width",
             "name": "content_width",
             "aria-label": "",
@@ -378,35 +249,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_hero_height",
-            "label": "Height",
-            "name": "height",
-            "aria-label": "",
-            "type": "select",
-            "instructions": "Hero section height",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "33",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "full": "Full Screen (100vh)",
-                "large": "Large (85vh)",
-                "medium": "Medium (65vh)",
-                "auto": "Auto (content height)"
-            },
-            "default_value": "large",
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
-            "return_format": "value",
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_hero_vertical_position",
+            "key": "field_herofullscreen_vertical_position",
             "label": "Vertical Position",
             "name": "vertical_position",
             "aria-label": "",
@@ -415,7 +258,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "50",
+                "width": "33",
                 "class": "",
                 "id": ""
             },
@@ -433,12 +276,12 @@
             "placeholder": ""
         },
         {
-            "key": "field_hero_show_scroll_indicator",
+            "key": "field_herofullscreen_show_scroll_indicator",
             "label": "Show Scroll Indicator",
             "name": "show_scroll_indicator",
             "aria-label": "",
             "type": "true_false",
-            "instructions": "Show an animated down arrow at the bottom of the hero",
+            "instructions": "Show an animated scroll indicator at the bottom",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -447,13 +290,13 @@
                 "id": ""
             },
             "message": "",
-            "default_value": 0,
+            "default_value": 1,
             "ui": 1,
             "ui_on_text": "",
             "ui_off_text": ""
         },
         {
-            "key": "field_hero_options_tab",
+            "key": "field_herofullscreen_options_tab",
             "label": "Options",
             "name": "",
             "aria-label": "",
@@ -471,7 +314,7 @@
             "selected": 0
         },
         {
-            "key": "field_hero_margin_top",
+            "key": "field_herofullscreen_margin_top",
             "label": "Margin Top",
             "name": "margin_top",
             "aria-label": "",
@@ -500,7 +343,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_hero_margin_top_other",
+            "key": "field_herofullscreen_margin_top_other",
             "label": "Margin Top Other",
             "name": "margin_top_other",
             "aria-label": "",
@@ -510,7 +353,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_hero_margin_top",
+                        "field": "field_herofullscreen_margin_top",
                         "operator": "==",
                         "value": "other"
                     }
@@ -530,7 +373,7 @@
             "step": ""
         },
         {
-            "key": "field_hero_margin_bottom",
+            "key": "field_herofullscreen_margin_bottom",
             "label": "Margin Bottom",
             "name": "margin_bottom",
             "aria-label": "",
@@ -559,7 +402,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_hero_margin_bottom_other",
+            "key": "field_herofullscreen_margin_bottom_other",
             "label": "Margin Bottom Other",
             "name": "margin_bottom_other",
             "aria-label": "",
@@ -569,7 +412,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_hero_margin_bottom",
+                        "field": "field_herofullscreen_margin_bottom",
                         "operator": "==",
                         "value": "other"
                     }
@@ -589,7 +432,7 @@
             "step": ""
         },
         {
-            "key": "field_hero_custom_class",
+            "key": "field_herofullscreen_custom_class",
             "label": "Custom Class",
             "name": "custom_class",
             "aria-label": "",
@@ -609,7 +452,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_hero_custom_id",
+            "key": "field_herofullscreen_custom_id",
             "label": "Custom ID",
             "name": "custom_id",
             "aria-label": "",
@@ -629,7 +472,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_hero_animation_tab",
+            "key": "field_herofullscreen_animation_tab",
             "label": "Animation",
             "name": "",
             "aria-label": "",
@@ -647,7 +490,7 @@
             "selected": 0
         },
         {
-            "key": "field_hero_animation_type",
+            "key": "field_herofullscreen_animation_type",
             "label": "Animation Type",
             "name": "animation_type",
             "aria-label": "",
@@ -693,7 +536,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_hero_animation_duration",
+            "key": "field_herofullscreen_animation_duration",
             "label": "Animation Duration",
             "name": "animation_duration",
             "aria-label": "",
@@ -715,7 +558,7 @@
             "step": ""
         },
         {
-            "key": "field_hero_disable_animation",
+            "key": "field_herofullscreen_disable_animation",
             "label": "Disable Animation",
             "name": "disable_animation",
             "aria-label": "",
@@ -740,7 +583,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/hero"
+                "value": "acf\/herofullscreen"
             }
         ]
     ],

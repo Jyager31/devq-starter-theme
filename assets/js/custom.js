@@ -51,6 +51,30 @@ jQuery( document ).ready(function($) {
         });
     }
 
+    // Initialize Slick Carousel (Hero Slider)
+    if ($.fn.slick) {
+        $('.heroslider-carousel').each(function() {
+            var $carousel = $(this);
+            var config = $carousel.data('slider-config') || {};
+
+            $carousel.slick({
+                dots: config.dots !== false,
+                arrows: config.arrows !== false,
+                infinite: true,
+                speed: 800,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                autoplay: config.autoplay !== false,
+                autoplaySpeed: config.autoplaySpeed || 5000,
+                fade: config.fade !== false,
+                cssEase: 'ease-in-out',
+                pauseOnHover: false,
+                prevArrow: '<button type="button" class="slick-prev"><i class="fa-solid fa-chevron-left"></i></button>',
+                nextArrow: '<button type="button" class="slick-next"><i class="fa-solid fa-chevron-right"></i></button>'
+            });
+        });
+    }
+
     // Initialize Magnific Popup (Gallery lightbox)
     if ($.fn.magnificPopup) {
         $('.gallery-grid').magnificPopup({

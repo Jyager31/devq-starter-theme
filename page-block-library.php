@@ -183,6 +183,9 @@ document.addEventListener('DOMContentLoaded', function() {
     var blockMap = {
         'hero-block': 'Hero',
         'herosplit-block': 'Hero Split',
+        'herovideo-block': 'Hero Video',
+        'heroslider-block': 'Hero Slider',
+        'herofullscreen-block': 'Hero Fullscreen',
         'textimage-block': 'Text Image',
         'wysiwyg-block': 'WYSIWYG',
         'about-block': 'About',
@@ -238,6 +241,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     block.style.display = 'none';
                 }
+            });
+
+            // Force-animate any AOS elements that haven't triggered yet
+            content.querySelectorAll('[data-aos]:not(.aos-animate)').forEach(function(el) {
+                el.classList.add('aos-animate');
             });
         });
     });

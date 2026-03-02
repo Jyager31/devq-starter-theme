@@ -24,6 +24,13 @@ $gradient_start = get_field('gradient_start') ?: '#0a0a0a';
 $gradient_end = get_field('gradient_end') ?: '#1a1a2e';
 $background_color = get_field('background_color') ?: '#0a0a0a';
 
+// Layout Tab Fields
+$content_alignment = get_field('content_alignment') ?: 'center';
+$content_width = get_field('content_width') ?: 'default';
+$height = get_field('height') ?: 'large';
+$vertical_position = get_field('vertical_position') ?: 'center';
+$show_scroll_indicator = get_field('show_scroll_indicator');
+
 // Options Tab Fields (always include these)
 $margin_top = get_field('margin_top') ?: '';
 $margin_bottom = get_field('margin_bottom') ?: '';
@@ -42,6 +49,10 @@ $unique_block_id = generate_unique_block_id('hero');
 
 // Build dynamic attributes
 $block_classes = 'container-fluid hero-block hero-style-' . esc_attr($style);
+$block_classes .= ' hero-align-' . esc_attr($content_alignment);
+$block_classes .= ' hero-width-' . esc_attr($content_width);
+$block_classes .= ' hero-height-' . esc_attr($height);
+$block_classes .= ' hero-vpos-' . esc_attr($vertical_position);
 if ($custom_class) {
     $block_classes .= ' ' . $custom_class;
 }
@@ -121,6 +132,12 @@ $text_class = $is_dark_bg ? 'hero-text-light' : 'hero-text-dark';
             <?php endif; ?>
         </div>
     </div>
+
+    <?php if ($show_scroll_indicator) : ?>
+        <div class="hero-scroll-indicator">
+            <span class="hero-scroll-chevron"></span>
+        </div>
+    <?php endif; ?>
 </div>
 
 <?php
@@ -130,13 +147,21 @@ output_block_spacing_css($margin_top, $margin_bottom, $margin_top_other, $margin
 <style>
     .hero-block {
         position: relative;
-        min-height: 85vh;
         display: flex;
-        align-items: center;
-        justify-content: center;
         overflow: hidden;
         padding: var(--section-padding-top) 0 var(--section-padding-bottom) 0;
     }
+
+    /* Height variants */
+    .hero-block.hero-height-full { min-height: 100vh; }
+    .hero-block.hero-height-large { min-height: 85vh; }
+    .hero-block.hero-height-medium { min-height: 65vh; }
+    .hero-block.hero-height-auto { min-height: 0; }
+
+    /* Vertical position */
+    .hero-block.hero-vpos-center { align-items: center; }
+    .hero-block.hero-vpos-top { align-items: flex-start; padding-top: 120px; }
+    .hero-block.hero-vpos-bottom { align-items: flex-end; padding-bottom: 120px; }
 
     .hero-block .hero-background {
         position: absolute;
@@ -162,13 +187,39 @@ output_block_spacing_css($margin_top, $margin_bottom, $margin_top_other, $margin
     .hero-block .container {
         position: relative;
         z-index: 3;
+        width: 100%;
     }
 
     .hero-block .hero-content {
-        text-align: center;
         max-width: 800px;
+    }
+
+    /* Content width variants */
+    .hero-block.hero-width-narrow .hero-content { max-width: 600px; }
+    .hero-block.hero-width-default .hero-content { max-width: 800px; }
+    .hero-block.hero-width-wide .hero-content { max-width: 1000px; }
+
+    /* Content alignment variants */
+    .hero-block.hero-align-center .hero-content {
+        text-align: center;
         margin: 0 auto;
     }
+    .hero-block.hero-align-center .hero-buttons { justify-content: center; }
+    .hero-block.hero-align-center .hero-subheading { margin-left: auto; margin-right: auto; }
+
+    .hero-block.hero-align-left .hero-content {
+        text-align: left;
+        margin: 0;
+    }
+    .hero-block.hero-align-left .hero-buttons { justify-content: flex-start; }
+    .hero-block.hero-align-left .hero-subheading { margin-left: 0; margin-right: 0; }
+
+    .hero-block.hero-align-right .hero-content {
+        text-align: right;
+        margin: 0 0 0 auto;
+    }
+    .hero-block.hero-align-right .hero-buttons { justify-content: flex-end; }
+    .hero-block.hero-align-right .hero-subheading { margin-left: auto; margin-right: 0; }
 
     /* Light text for dark backgrounds (image / gradient) */
     .hero-block .hero-text-light {
@@ -213,31 +264,61 @@ output_block_spacing_css($margin_top, $margin_bottom, $margin_top_other, $margin
     .hero-block .hero-subheading {
         margin-bottom: 32px;
         max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
         line-height: 1.6;
     }
 
     .hero-block .hero-buttons {
         display: flex;
         align-items: center;
-        justify-content: center;
         gap: 16px;
         flex-wrap: wrap;
     }
 
+    /* Scroll indicator */
+    .hero-scroll-indicator {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 4;
+    }
+
+    .hero-scroll-chevron {
+        display: block;
+        width: 30px;
+        height: 30px;
+        border-right: 2px solid rgba(255, 255, 255, 0.7);
+        border-bottom: 2px solid rgba(255, 255, 255, 0.7);
+        transform: rotate(45deg);
+        animation: hero-scroll-bounce 2s infinite;
+    }
+
+    .hero-block.hero-style-solid .hero-scroll-chevron {
+        border-color: rgba(0, 0, 0, 0.3);
+    }
+
+    @keyframes hero-scroll-bounce {
+        0%, 20%, 50%, 80%, 100% { transform: rotate(45deg) translateY(0); }
+        40% { transform: rotate(45deg) translateY(10px); }
+        60% { transform: rotate(45deg) translateY(5px); }
+    }
+
     /* Tablet - 1199px and below */
     @media (max-width: 1199px) {
-        .hero-block {
-            min-height: 70vh;
-        }
+        .hero-block.hero-height-full { min-height: 85vh; }
+        .hero-block.hero-height-large { min-height: 70vh; }
+        .hero-block.hero-height-medium { min-height: 55vh; }
+        .hero-block.hero-vpos-top { padding-top: 80px; }
+        .hero-block.hero-vpos-bottom { padding-bottom: 80px; }
     }
 
     /* Mobile - 767px and below */
     @media (max-width: 767px) {
-        .hero-block {
-            min-height: 60vh;
-        }
+        .hero-block.hero-height-full { min-height: 75vh; }
+        .hero-block.hero-height-large { min-height: 60vh; }
+        .hero-block.hero-height-medium { min-height: 50vh; }
+        .hero-block.hero-vpos-top { padding-top: 60px; }
+        .hero-block.hero-vpos-bottom { padding-bottom: 60px; }
 
         .hero-block .hero-content {
             padding: 0 15px;
@@ -251,5 +332,12 @@ output_block_spacing_css($margin_top, $margin_bottom, $margin_top_other, $margin
             flex-direction: column;
             gap: 12px;
         }
+
+        /* Force center on mobile for better readability */
+        .hero-block.hero-align-right .hero-content {
+            text-align: center;
+            margin: 0 auto;
+        }
+        .hero-block.hero-align-right .hero-buttons { justify-content: center; }
     }
 </style>
