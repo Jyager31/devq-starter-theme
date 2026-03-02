@@ -101,10 +101,10 @@ $overlay_opacity_decimal = intval($overlay_opacity) / 100;
             <?php if ($primary_button || $secondary_button) : ?>
                 <div class="herofullscreen-buttons">
                     <?php if ($primary_button) : ?>
-                        <a href="<?php echo esc_url($primary_button['url']); ?>" class="btn-inline btn-primary" <?php echo !empty($primary_button['target']) ? 'target="' . esc_attr($primary_button['target']) . '"' : ''; ?>><?php echo esc_html($primary_button['title']); ?></a>
+                        <a href="<?php echo esc_url($primary_button['url']); ?>" class="btn" <?php echo !empty($primary_button['target']) ? 'target="' . esc_attr($primary_button['target']) . '"' : ''; ?>><?php echo esc_html($primary_button['title']); ?></a>
                     <?php endif; ?>
                     <?php if ($secondary_button) : ?>
-                        <a href="<?php echo esc_url($secondary_button['url']); ?>" class="btn-inline btn-outline-white" <?php echo !empty($secondary_button['target']) ? 'target="' . esc_attr($secondary_button['target']) . '"' : ''; ?>><?php echo esc_html($secondary_button['title']); ?></a>
+                        <a href="<?php echo esc_url($secondary_button['url']); ?>" class="btn btn-outline-white" <?php echo !empty($secondary_button['target']) ? 'target="' . esc_attr($secondary_button['target']) . '"' : ''; ?>><?php echo esc_html($secondary_button['title']); ?></a>
                     <?php endif; ?>
                 </div>
             <?php endif; ?>

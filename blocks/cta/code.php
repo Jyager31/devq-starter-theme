@@ -79,7 +79,7 @@ if ($background === 'custom' && $custom_background_color) {
             <?php endif; ?>
 
             <?php if ($button) : ?>
-                <a href="<?php echo esc_url($button['url']); ?>" class="btn-inline btn-white" <?php echo !empty($button['target']) ? 'target="' . esc_attr($button['target']) . '"' : ''; ?>><?php echo esc_html($button['title']); ?></a>
+                <a href="<?php echo esc_url($button['url']); ?>" class="btn btn-white" <?php echo !empty($button['target']) ? 'target="' . esc_attr($button['target']) . '"' : ''; ?>><?php echo esc_html($button['title']); ?></a>
             <?php endif; ?>
         </div>
     </div>

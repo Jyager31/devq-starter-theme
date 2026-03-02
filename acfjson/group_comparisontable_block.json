@@ -209,10 +209,46 @@
                     "label": "Column 1",
                     "name": "col_1",
                     "aria-label": "",
-                    "type": "text",
-                    "instructions": "Value for column 1. Use \u2713 or \u2717 for check/cross",
+                    "type": "select",
+                    "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "18.75",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "check": "\u2705 Yes",
+                        "cross": "\u274c No",
+                        "custom": "\u270f Custom Text"
+                    },
+                    "default_value": "check",
+                    "allow_null": 1,
+                    "multiple": 0,
+                    "ui": 0,
+                    "return_format": "value",
+                    "ajax": 0,
+                    "placeholder": "— Select —",
+                    "parent_repeater": "field_comparisontable_features"
+                },
+                {
+                    "key": "field_comparisontable_features_col_1_custom",
+                    "label": "Column 1 Text",
+                    "name": "col_1_custom",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_comparisontable_features_col_1",
+                                "operator": "==",
+                                "value": "custom"
+                            }
+                        ]
+                    ],
                     "wrapper": {
                         "width": "18.75",
                         "class": "",
@@ -230,10 +266,46 @@
                     "label": "Column 2",
                     "name": "col_2",
                     "aria-label": "",
-                    "type": "text",
-                    "instructions": "Value for column 2",
+                    "type": "select",
+                    "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "18.75",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "check": "\u2705 Yes",
+                        "cross": "\u274c No",
+                        "custom": "\u270f Custom Text"
+                    },
+                    "default_value": "check",
+                    "allow_null": 1,
+                    "multiple": 0,
+                    "ui": 0,
+                    "return_format": "value",
+                    "ajax": 0,
+                    "placeholder": "— Select —",
+                    "parent_repeater": "field_comparisontable_features"
+                },
+                {
+                    "key": "field_comparisontable_features_col_2_custom",
+                    "label": "Column 2 Text",
+                    "name": "col_2_custom",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_comparisontable_features_col_2",
+                                "operator": "==",
+                                "value": "custom"
+                            }
+                        ]
+                    ],
                     "wrapper": {
                         "width": "18.75",
                         "class": "",
@@ -251,10 +323,46 @@
                     "label": "Column 3",
                     "name": "col_3",
                     "aria-label": "",
-                    "type": "text",
-                    "instructions": "Value for column 3",
+                    "type": "select",
+                    "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "18.75",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "check": "\u2705 Yes",
+                        "cross": "\u274c No",
+                        "custom": "\u270f Custom Text"
+                    },
+                    "default_value": "check",
+                    "allow_null": 1,
+                    "multiple": 0,
+                    "ui": 0,
+                    "return_format": "value",
+                    "ajax": 0,
+                    "placeholder": "— Select —",
+                    "parent_repeater": "field_comparisontable_features"
+                },
+                {
+                    "key": "field_comparisontable_features_col_3_custom",
+                    "label": "Column 3 Text",
+                    "name": "col_3_custom",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_comparisontable_features_col_3",
+                                "operator": "==",
+                                "value": "custom"
+                            }
+                        ]
+                    ],
                     "wrapper": {
                         "width": "18.75",
                         "class": "",
@@ -272,10 +380,46 @@
                     "label": "Column 4",
                     "name": "col_4",
                     "aria-label": "",
-                    "type": "text",
-                    "instructions": "Value for column 4",
+                    "type": "select",
+                    "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "18.75",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "check": "\u2705 Yes",
+                        "cross": "\u274c No",
+                        "custom": "\u270f Custom Text"
+                    },
+                    "default_value": "check",
+                    "allow_null": 1,
+                    "multiple": 0,
+                    "ui": 0,
+                    "return_format": "value",
+                    "ajax": 0,
+                    "placeholder": "— Select —",
+                    "parent_repeater": "field_comparisontable_features"
+                },
+                {
+                    "key": "field_comparisontable_features_col_4_custom",
+                    "label": "Column 4 Text",
+                    "name": "col_4_custom",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_comparisontable_features_col_4",
+                                "operator": "==",
+                                "value": "custom"
+                            }
+                        ]
+                    ],
                     "wrapper": {
                         "width": "18.75",
                         "class": "",

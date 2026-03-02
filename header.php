@@ -74,7 +74,7 @@ $page_body_scripts = get_field('page_body_scripts');
   <?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
+<body <?php body_class($layout_header_style === 'transparent' ? 'has-transparent-header' : ''); ?>>
   <?php
   // Google Tag Manager (noscript)
   if ($google_tag_manager) : ?>
@@ -123,77 +123,68 @@ $page_body_scripts = get_field('page_body_scripts');
   }
   ?>
 
+  <?php
+  // Per-page transparent header override
+  if (get_field('page_transparent_header')) {
+      $layout_header_style = 'transparent';
+  }
 
-  <!--Desktop Menu-->
-  <div class="container-fluid ">
-    <div class="header-container">
-      <div class="container">
-        <div class="devq-header">
-          <div class="logosection">
-            <a href="<?php echo esc_url(home_url('/')); ?>"><img class="mainLogo" src="<?php echo isset($logo) && $logo ? esc_url($logo['url']) : ''; ?>" alt="<?php echo isset($logo) && $logo ? esc_attr($logo['alt']) : ''; ?>"></a>
-          </div>
-          <div class="menutop">
-            <?php
-            $args = array(
-              'menu' => 'Desktop',
-              'theme_location'   => "primary",
-              'menu_class' => 'main-navigation',
-              'items_wrap'  => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-              'walker' => new fluent_themes_custom_walker_nav_menu
-            );
-            wp_nav_menu($args); ?>
-          </div>
+  // Load the selected header style
+  get_template_part('template-parts/header/style', $layout_header_style);
+  ?>
 
-          <div class="mobilemen">
-            <a class="mburger mburger--collapse" href="#menu">
-              <strong></strong>
-              <strong></strong>
-              <strong></strong>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<style>
+  /* Shared Hamburger Button Styles */
+  .devq-hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 10;
+  }
 
-  <script>
-    document.addEventListener(
-      "DOMContentLoaded", () => {
-        new Mmenu("#menu", {
-          "extensions": [
-            "fx-menu-zoom",
-            "fx-panels-zoom",
-            "pagedim-black",
-            "position-right",
-            "theme-light"
-          ],
+  .devq-hamburger-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 28px;
+    height: 20px;
+    position: relative;
+  }
 
-          "iconbar": {
-            "use": true,
-            "top": [
-              "<a href='<?php echo esc_url(home_url('/')); ?>'><i class='fas fa-home'></i></a>",
-              "<a href='tel:<?php echo esc_attr($contact_phone ?: $phone); ?>'><i class='fas fa-phone'></i></a>"
-            ]
-          },
+  .devq-hamburger-bar {
+    display: block;
+    width: 100%;
+    height: 2.5px;
+    background: #333;
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform-origin: center;
+  }
 
-          "navbars": [{
-            "position": "top",
-            "content": [
-              "<a href='<?php echo esc_url(home_url('/')); ?>'><img class='mobileLogo' src='<?php echo isset($logo) && $logo ? esc_url($logo['url']) : ''; ?>' alt='<?php echo isset($logo) && $logo ? esc_attr($logo['alt']) : ''; ?>'></a>"
-            ],
-            "height": 3
-          }]
-        });
-      }
-    );
-  </script>
+  /* Hamburger → X morph */
+  .devq-hamburger.is-active .devq-hamburger-bar:nth-child(1) {
+    transform: translateY(7.5px) rotate(45deg);
+  }
 
+  .devq-hamburger.is-active .devq-hamburger-bar:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
 
+  .devq-hamburger.is-active .devq-hamburger-bar:nth-child(3) {
+    transform: translateY(-7.5px) rotate(-45deg);
+  }
 
-  <!-- The Mobile Menu -->
-  <div class="mobilemenuwrapper">
-    <nav id="menu">
-      <?php $args = array('menu' => 'Desktop');
-      wp_nav_menu($args); ?>
-    </nav>
-  </div>
+  /* Responsive visibility */
+  .desktopOnly { display: inherit; }
+  .mobileOnly { display: none; }
+
+  @media (max-width: 1199px) {
+    .desktopOnly { display: none !important; }
+    .mobileOnly { display: block !important; }
+    .devq-hamburger { display: block; }
+  }
+</style>

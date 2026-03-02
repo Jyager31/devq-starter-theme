@@ -1,0 +1,84 @@
+{
+    "key": "group_contact_settings",
+    "title": "Contact Settings",
+    "fields": [
+        {
+            "key": "field_contact_phone",
+            "label": "Phone",
+            "name": "contact_phone",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Primary contact phone number.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "e.g. (555) 123-4567",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_contact_email",
+            "label": "Email",
+            "name": "contact_email",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Primary contact email address.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "e.g. info@example.com",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_contact_address",
+            "label": "Address",
+            "name": "contact_address",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Business address displayed in footer and contact sections.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "e.g. 123 Main St, Suite 100, City, State 12345",
+            "rows": 3,
+            "new_lines": "br"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "contact"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Contact information settings for phone, email, and address.",
+    "show_in_rest": 0
+}

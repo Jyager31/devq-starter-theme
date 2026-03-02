@@ -303,9 +303,11 @@ function devq_create_page($args) {
         'post_parent' => absint($args['parent']),
     );
 
-    // Temporarily remove kses filters so HTML inside block comment JSON
-    // doesn't get mangled (e.g. WYSIWYG field content stored in data attrs).
+    // wp_insert_post() calls wp_unslash() internally, which strips backslash
+    // escapes from JSON (e.g. \" in HTML attributes). Pre-slash to compensate.
+    // Also remove kses filters so HTML inside block comment JSON isn't mangled.
     kses_remove_filters();
+    $post_data['post_content'] = wp_slash($post_data['post_content']);
     $post_id = wp_insert_post($post_data, true);
     kses_init_filters();
 

@@ -35,7 +35,7 @@ This directory enables automatic synchronization of ACF field groups using ACF's
 ## Current Files
 
 - `group_image_block.json` — Image block fields (Content, Options, Animation tabs)
-- `group_wysiwyg_block.json` — WYSIWYG block fields (Content, Options, Animation tabs)
+- `group_content_block.json` — Content block fields (Content, Options, Animation tabs)
 - `group_theme_styles.json` — Theme settings fields
 
 ## Important Notes

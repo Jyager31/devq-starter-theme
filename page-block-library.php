@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', function() {
         'heroslider-block': 'Hero Slider',
         'herofullscreen-block': 'Hero Fullscreen',
         'textimage-block': 'Text Image',
-        'wysiwyg-block': 'WYSIWYG',
+        'content-block': 'Content',
         'about-block': 'About',
         'cards-block': 'Cards',
         'team-block': 'Team',

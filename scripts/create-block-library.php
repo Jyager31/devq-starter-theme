@@ -148,9 +148,9 @@ $blocks[] = array(
 );
 
 $blocks[] = array(
-    'name' => 'Wysiwyg',
+    'name' => 'Content',
     'fields' => array(
-        'content' => '<h2>Rich Content Block</h2><p>This is the WYSIWYG block with a <strong>default</strong> max-width setting. It\'s perfect for long-form content, blog-style pages, and general text sections. The content is centered and constrained for optimal readability.</p><p>You can include <a href="#">links</a>, <strong>bold text</strong>, <em>italic text</em>, lists, images, and any other HTML content the WordPress editor supports.</p><ul><li>Full WYSIWYG editor support</li><li>Three width options: narrow, default, and wide</li><li>Clean typography with proper spacing</li></ul><blockquote>This is a blockquote. It stands out from the rest of the content with a left border accent.</blockquote>',
+        'content' => '<h2>Rich Content Block</h2><p>This is the Content block with a <strong>default</strong> max-width setting. It\'s perfect for long-form content, blog-style pages, and general text sections. The content is centered and constrained for optimal readability.</p><p>You can include <a href="#">links</a>, <strong>bold text</strong>, <em>italic text</em>, lists, images, and any other HTML content the WordPress editor supports.</p><ul><li>Full WYSIWYG editor support</li><li>Three width options: narrow, default, and wide</li><li>Clean typography with proper spacing</li></ul><blockquote>This is a blockquote. It stands out from the rest of the content with a left border accent.</blockquote>',
         'max_width' => 'default',
     ),
 );
@@ -496,14 +496,14 @@ $blocks[] = array(
             array('name' => 'Enterprise', 'is_highlighted' => 0, 'button' => array('title' => 'Contact Us', 'url' => '#', 'target' => '')),
         ),
         'features' => array(
-            array('feature_name' => 'Pages', 'col_1' => 'Up to 5', 'col_2' => 'Up to 15', 'col_3' => 'Unlimited'),
-            array('feature_name' => 'Custom Design', 'col_1' => '✗', 'col_2' => '✓', 'col_3' => '✓'),
-            array('feature_name' => 'SEO Setup', 'col_1' => 'Basic', 'col_2' => 'Advanced', 'col_3' => 'Advanced'),
-            array('feature_name' => 'E-Commerce', 'col_1' => '✗', 'col_2' => '✗', 'col_3' => '✓'),
-            array('feature_name' => 'Blog', 'col_1' => '✗', 'col_2' => '✓', 'col_3' => '✓'),
-            array('feature_name' => 'Support', 'col_1' => '30 days', 'col_2' => '90 days', 'col_3' => '1 year'),
-            array('feature_name' => 'Revisions', 'col_1' => '1 round', 'col_2' => '3 rounds', 'col_3' => 'Unlimited'),
-            array('feature_name' => 'Analytics', 'col_1' => '✗', 'col_2' => '✓', 'col_3' => '✓'),
+            array('feature_name' => 'Pages', 'col_1' => 'custom', 'col_1_custom' => 'Up to 5', 'col_2' => 'custom', 'col_2_custom' => 'Up to 15', 'col_3' => 'custom', 'col_3_custom' => 'Unlimited'),
+            array('feature_name' => 'Custom Design', 'col_1' => 'cross', 'col_2' => 'check', 'col_3' => 'check'),
+            array('feature_name' => 'SEO Setup', 'col_1' => 'custom', 'col_1_custom' => 'Basic', 'col_2' => 'custom', 'col_2_custom' => 'Advanced', 'col_3' => 'custom', 'col_3_custom' => 'Advanced'),
+            array('feature_name' => 'E-Commerce', 'col_1' => 'cross', 'col_2' => 'cross', 'col_3' => 'check'),
+            array('feature_name' => 'Blog', 'col_1' => 'cross', 'col_2' => 'check', 'col_3' => 'check'),
+            array('feature_name' => 'Support', 'col_1' => 'custom', 'col_1_custom' => '30 days', 'col_2' => 'custom', 'col_2_custom' => '90 days', 'col_3' => 'custom', 'col_3_custom' => '1 year'),
+            array('feature_name' => 'Revisions', 'col_1' => 'custom', 'col_1_custom' => '1 round', 'col_2' => 'custom', 'col_2_custom' => '3 rounds', 'col_3' => 'custom', 'col_3_custom' => 'Unlimited'),
+            array('feature_name' => 'Analytics', 'col_1' => 'cross', 'col_2' => 'check', 'col_3' => 'check'),
         ),
     ),
 );
@@ -541,10 +541,10 @@ echo "Post ID: {$post_id}\n";
 echo "View: " . get_permalink($post_id) . "\n";
 echo "Edit: " . admin_url("post.php?post={$post_id}&action=edit") . "\n";
 
-// Verify WYSIWYG data made it into post_content
+// Verify Content block data made it into post_content
 $page = get_post($post_id);
-$has_wysiwyg = strpos($page->post_content, 'Rich Content Block') !== false;
-echo $has_wysiwyg ? "\n[OK] WYSIWYG content found in post_content\n" : "\n[WARN] WYSIWYG content NOT found in post_content\n";
+$has_content = strpos($page->post_content, 'Rich Content Block') !== false;
+echo $has_content ? "\n[OK] Content block data found in post_content\n" : "\n[WARN] Content block data NOT found in post_content\n";
 
 echo "\nNote: Image fields are empty — add placeholder images via the editor.\n";
 echo "Note: Logo Bar logos need to be added via the editor.\n";

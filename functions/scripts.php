@@ -15,9 +15,7 @@ function devqbase_scripts()
   // AOS Animation Library
   wp_enqueue_style('aos', $theme_uri . '/assets/css/aos.css');
 
-  // Mobile menu (required)
-  wp_enqueue_style('mmenu', $theme_uri . '/assets/css/mmenu.css');
-  wp_enqueue_style('mburger', $theme_uri . '/assets/css/mburger.css');
+  // Mobile menu (custom — replaced mmenu)
 
   // Grid system (required)
   wp_enqueue_style('reflex', $theme_uri . '/assets/css/reflex.css');
@@ -34,8 +32,8 @@ function devqbase_scripts()
   // Use WordPress bundled jQuery (required)
   wp_enqueue_script('jquery');
 
-  // Mobile menu (required)
-  wp_enqueue_script('mmenu', $theme_uri . '/assets/js/mmenu.js', array('jquery'), '', true);
+  // Mobile menu (custom vanilla JS)
+  wp_enqueue_script('devq-mobile-menu', $theme_uri . '/assets/js/mobile-menu.js', array(), filemtime($theme_dir . '/assets/js/mobile-menu.js'), true);
 
   // Slick slider
   wp_enqueue_script('slick', $theme_uri . '/assets/js/slick.js', array('jquery'), '', true);

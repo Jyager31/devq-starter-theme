@@ -105,14 +105,6 @@ function my_acf_op_init()
             'parent_slug' => $parent['menu_slug'],
         ));
 
-        // Header settings
-        $child = acf_add_options_sub_page(array(
-            'page_title'  => __('Header'),
-            'menu_title'  => __('Header'),
-            'menu_slug'   => 'header',
-            'parent_slug' => $parent['menu_slug'],
-        ));
-
         // Contact settings
         $child = acf_add_options_sub_page(array(
             'page_title'  => __('Contact'),
@@ -142,6 +134,14 @@ function my_acf_op_init()
             'page_title'  => __('Scripts'),
             'menu_title'  => __('Scripts'),
             'menu_slug'   => 'scripts',
+            'parent_slug' => $parent['menu_slug'],
+        ));
+
+        // Layouts settings
+        $child = acf_add_options_sub_page(array(
+            'page_title'  => __('Layouts'),
+            'menu_title'  => __('Layouts'),
+            'menu_slug'   => 'layouts',
             'parent_slug' => $parent['menu_slug'],
         ));
 

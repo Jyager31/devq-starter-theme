@@ -22,7 +22,7 @@ $map_embed = get_field('map_embed');
 $form_shortcode = get_field('form_shortcode');
 
 // Pull contact info from theme settings (ACF options)
-$phone = get_field('contact_phone', 'option') ?: get_field('header_phone', 'option');
+$phone = get_field('contact_phone', 'option');
 $email = get_field('contact_email', 'option');
 $address = get_field('contact_address', 'option');
 

@@ -3,7 +3,7 @@
 // Name
 function name()
 {
-    return esc_html(get_field('name', 'option'));
+    return esc_html(get_field('branding_company_name', 'option'));
 }
 add_shortcode('name', 'name');
 
@@ -11,7 +11,7 @@ add_shortcode('name', 'name');
 // Phone
 function phone()
 {
-    return esc_html(get_field('phone', 'option'));
+    return esc_html(get_field('contact_phone', 'option'));
 }
 add_shortcode('phone', 'phone');
 
@@ -19,17 +19,14 @@ add_shortcode('phone', 'phone');
 // Email
 function email()
 {
-    return esc_html(get_field('email', 'option'));
+    return esc_html(get_field('contact_email', 'option'));
 }
 add_shortcode('email', 'email');
 
 //Address
 function address()
 {
-    $address = get_field('address_1', 'option');
-    $city_state_zip = get_field('city_state_zip_1', 'option');
-
-    return esc_html($address . ', ' . $city_state_zip);
+    return esc_html(get_field('contact_address', 'option'));
 }
 
 add_shortcode('address', 'address');

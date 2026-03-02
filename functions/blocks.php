@@ -52,7 +52,7 @@ function devq_get_blocks()
 {
     return array(
         "Image",
-        "Wysiwyg",
+        "Content",
         "Hero",
         "Hero Split",
         "Hero Video",

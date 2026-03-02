@@ -17,7 +17,7 @@ jQuery( document ).ready(function($) {
 
     // Initialize BeefUp Accordion (FAQ blocks)
     if ($.fn.beefup) {
-        $('.faq-accordion').beefup({
+        $('.faq-item').beefup({
             trigger: '.faq-question',
             content: '.faq-answer',
             openSingle: true,

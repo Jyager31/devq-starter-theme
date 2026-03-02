@@ -7,23 +7,10 @@
 ?>
 
 <?php
-// Get company name from contact settings or fallback to old field
-$company_name = get_field('contact_company_name', 'option') ?: get_field('name', 'option');
-
-// Get page-specific CSS and scripts
-$page_custom_css = get_field('page_custom_css');
-$lower1199 = get_field('lower1199');
-$lower767 = get_field('lower767');
-$page_footer_scripts = get_field('page_footer_scripts');
+// Load the selected footer style
+$layout_footer_style = get_field('layout_footer_style', 'option') ?: 'minimal';
+get_template_part('template-parts/footer/style', $layout_footer_style);
 ?>
-
-<div class="container-fluid">
-	<div class="footerfluid2">
-		<div class="container">
-			<p>Copyright &copy; <?php echo esc_html(date('Y')); ?> <?php echo esc_html($company_name); ?> - Website Powered by <a style="font-weight:600;color:white;text-decoration:none;" target="_blank" href="https://thedevq.com/">DevQ</a></p>
-		</div>
-	</div>
-</div>
 
 <script>
 	jQuery(document).ready(function($) {
@@ -34,6 +21,12 @@ $page_footer_scripts = get_field('page_footer_scripts');
 <?php wp_footer(); ?>
 
 <?php
+// Get page-specific CSS and scripts
+$page_custom_css = get_field('page_custom_css');
+$lower1199 = get_field('lower1199');
+$lower767 = get_field('lower767');
+$page_footer_scripts = get_field('page_footer_scripts');
+
 // Output any additional footer scripts
 if ($page_footer_scripts) {
 	echo wp_kses_post($page_footer_scripts);

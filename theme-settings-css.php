@@ -8,15 +8,11 @@
 
 // Branding settings
 $favicon = get_field('branding_favicon', 'option');
-$logo = get_field('header_logo', 'option');
-$footer_logo = get_field('footer_logo', 'option');
+$logo = get_field('branding_logo', 'option');
 $alt_logo = get_field('branding_alt_logo', 'option');
-$company_name = get_field('contact_company_name', 'option');
+$company_name = get_field('branding_company_name', 'option');
+$cta = get_field('branding_header_cta', 'option');
 $brand_guidelines = get_field('branding_guidelines_pdf', 'option');
-
-// Header settings
-$phone = get_field('header_phone', 'option');
-$cta = get_field('header_cta', 'option');
 
 // Contact settings
 $email = get_field('contact_email', 'option');
@@ -51,13 +47,13 @@ $button_radius = get_field('styles_button_radius', 'option') ?: '4';
 $button_padding = get_field('styles_button_padding', 'option') ?: '10px 20px';
 
 // Style settings - Spacing
-$small_spacing = get_field('styles_small_spacing', 'option') ?: '15';
-$medium_spacing = get_field('styles_medium_spacing', 'option') ?: '30';
-$large_spacing = get_field('styles_large_spacing', 'option') ?: '60';
-$section_top_padding = get_field('styles_section_top_padding', 'option') ?: '80';
-$section_bottom_padding = get_field('styles_section_bottom_padding', 'option') ?: '80';
-$mobile_section_top_padding = get_field('styles_mobile_section_top_padding', 'option') ?: '40';
-$mobile_section_bottom_padding = get_field('styles_mobile_section_bottom_padding', 'option') ?: '40';
+$small_spacing = get_field('spacing_small', 'option') ?: '15';
+$medium_spacing = get_field('spacing_medium', 'option') ?: '30';
+$large_spacing = get_field('spacing_large', 'option') ?: '60';
+$section_top_padding = get_field('styles_section_padding_top', 'option') ?: '80';
+$section_bottom_padding = get_field('styles_section_padding_bottom', 'option') ?: '80';
+$mobile_section_top_padding = get_field('styles_mobile_section_padding_top', 'option') ?: '40';
+$mobile_section_bottom_padding = get_field('styles_mobile_section_padding_bottom', 'option') ?: '40';
 
 // Script settings
 $header_scripts = get_field('scripts_header', 'option');
@@ -65,6 +61,13 @@ $footer_scripts = get_field('scripts_footer', 'option');
 $google_analytics = get_field('scripts_google_analytics', 'option');
 $google_tag_manager = get_field('scripts_google_tag_manager', 'option');
 $facebook_pixel = get_field('scripts_facebook_pixel', 'option');
+
+// Layout style settings
+$layout_header_style = get_field('layout_header_style', 'option') ?: 'standard';
+$layout_mobile_menu_style = get_field('layout_mobile_menu_style', 'option') ?: 'fullscreen';
+$layout_footer_style = get_field('layout_footer_style', 'option') ?: 'minimal';
+$layout_archive_style = get_field('layout_archive_style', 'option') ?: 'grid';
+$layout_single_style = get_field('layout_single_style', 'option') ?: 'classic';
 
 // 404 Page settings
 $error_title = get_field('404_title', 'option') ?: 'Page Not Found';
@@ -102,8 +105,8 @@ if ($fontawesome_kit) {
         --tertiary: <?php echo esc_attr($accent_color); ?>;
 
         /* Typography */
-        --font1: <?php echo esc_attr($heading_font); ?>;
-        --font2: <?php echo esc_attr($body_font); ?>;
+        --font1: <?php echo wp_strip_all_tags($heading_font); ?>;
+        --font2: <?php echo wp_strip_all_tags($body_font); ?>;
         --heading-weight: <?php echo esc_attr($heading_weight); ?>;
         --heading-line-height: <?php echo esc_attr($heading_line_height); ?>;
         --body-weight: <?php echo esc_attr($body_weight); ?>;

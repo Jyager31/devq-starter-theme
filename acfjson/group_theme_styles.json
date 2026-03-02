@@ -3,7 +3,7 @@
     "title": "Theme Style Settings",
     "fields": [
         {
-            "key": "field_styles_colors",
+            "key": "field_styles_colors_tab",
             "label": "Colors",
             "name": "",
             "aria-label": "",
@@ -26,7 +26,7 @@
             "name": "styles_primary_color",
             "aria-label": "",
             "type": "color_picker",
-            "instructions": "Choose the primary brand color",
+            "instructions": "Main brand color used for buttons, links, and accents.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -35,7 +35,7 @@
                 "id": ""
             },
             "default_value": "#007bff",
-            "enable_opacity": false,
+            "enable_opacity": 0,
             "return_format": "string"
         },
         {
@@ -44,7 +44,7 @@
             "name": "styles_secondary_color",
             "aria-label": "",
             "type": "color_picker",
-            "instructions": "Choose the secondary brand color",
+            "instructions": "Secondary color used for footer backgrounds and supporting elements.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -53,7 +53,7 @@
                 "id": ""
             },
             "default_value": "#6c757d",
-            "enable_opacity": false,
+            "enable_opacity": 0,
             "return_format": "string"
         },
         {
@@ -62,7 +62,7 @@
             "name": "styles_accent_color",
             "aria-label": "",
             "type": "color_picker",
-            "instructions": "Choose an accent color for highlights",
+            "instructions": "Accent/tertiary color for highlights and hover states.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -71,11 +71,11 @@
                 "id": ""
             },
             "default_value": "#ffc107",
-            "enable_opacity": false,
+            "enable_opacity": 0,
             "return_format": "string"
         },
         {
-            "key": "field_styles_typography",
+            "key": "field_styles_typography_tab",
             "label": "Typography",
             "name": "",
             "aria-label": "",
@@ -88,35 +88,17 @@
                 "class": "",
                 "id": ""
             },
-            "placement": "top",
+            "placement": "left",
             "endpoint": 0,
             "selected": 0
         },
         {
-            "key": "field_styles_font_integration",
-            "label": "Font Integration",
-            "name": "",
-            "aria-label": "",
-            "type": "message",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "Add custom font embed codes and FontAwesome integration",
-            "new_lines": "wpautop",
-            "esc_html": 0
-        },
-        {
             "key": "field_styles_font_embed",
-            "label": "Google\/Adobe Fonts Embed Code",
+            "label": "Font Embed Code",
             "name": "styles_font_embed",
             "aria-label": "",
             "type": "textarea",
-            "instructions": "Paste your Google Fonts or Adobe Fonts embed code here",
+            "instructions": "Paste the Google Fonts embed &lt;link&gt; tag or @import code here.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -124,10 +106,10 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "<link rel=\"preconnect\" href=\"https:\/\/fonts.googleapis.com\">\r\n<link rel=\"preconnect\" href=\"https:\/\/fonts.gstatic.com\" crossorigin>\r\n<link href=\"https:\/\/fonts.googleapis.com\/css2?family=Montserrat:wght@400;500;700&family=Open+Sans:wght@400;600&display=swap\" rel=\"stylesheet\">",
-            "placeholder": "<link href=\"https:\/\/fonts.googleapis.com\/css2?family=Montserrat:wght@400;500;700&family=Open+Sans:wght@400;600&display=swap\" rel=\"stylesheet\">",
+            "default_value": "",
             "maxlength": "",
-            "rows": 6,
+            "placeholder": "<link href=\"https://fonts.googleapis.com/css2?family=...\" rel=\"stylesheet\">",
+            "rows": 3,
             "new_lines": ""
         },
         {
@@ -136,37 +118,19 @@
             "name": "styles_fontawesome_kit",
             "aria-label": "",
             "type": "text",
-            "instructions": "Enter your FontAwesome Kit ID (e.g., 5f935150b0)",
+            "instructions": "FontAwesome Kit ID (the alphanumeric string from your kit URL).",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
             "default_value": "5f935150b0",
-            "placeholder": "",
+            "maxlength": "",
+            "placeholder": "e.g. 5f935150b0",
             "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_styles_heading_settings",
-            "label": "Heading Font Settings",
-            "name": "",
-            "aria-label": "",
-            "type": "message",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "Configure the appearance of heading text",
-            "new_lines": "wpautop",
-            "esc_html": 0
+            "append": ""
         },
         {
             "key": "field_styles_heading_font",
@@ -174,7 +138,7 @@
             "name": "styles_heading_font",
             "aria-label": "",
             "type": "text",
-            "instructions": "Enter the font family for headings (e.g., 'Montserrat', sans-serif)",
+            "instructions": "CSS font-family value for headings (h1-h6).",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -183,10 +147,10 @@
                 "id": ""
             },
             "default_value": "'Montserrat', sans-serif",
+            "maxlength": "",
             "placeholder": "'Montserrat', sans-serif",
             "prepend": "",
-            "append": "",
-            "maxlength": ""
+            "append": ""
         },
         {
             "key": "field_styles_heading_weight",
@@ -194,7 +158,7 @@
             "name": "styles_heading_weight",
             "aria-label": "",
             "type": "select",
-            "instructions": "Select the weight for headings",
+            "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -203,31 +167,31 @@
                 "id": ""
             },
             "choices": {
-                "300": "Light (300)",
-                "400": "Regular (400)",
-                "500": "Medium (500)",
-                "600": "Semi-Bold (600)",
-                "700": "Bold (700)",
-                "800": "Extra-Bold (800)",
-                "900": "Black (900)"
+                "100": "100 - Thin",
+                "200": "200 - Extra Light",
+                "300": "300 - Light",
+                "400": "400 - Regular",
+                "500": "500 - Medium",
+                "600": "600 - Semi Bold",
+                "700": "700 - Bold",
+                "800": "800 - Extra Bold",
+                "900": "900 - Black"
             },
-            "default_value": 500,
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 1,
+            "default_value": "500",
             "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 1,
             "ajax": 0,
-            "placeholder": "",
-            "create_options": 0,
-            "save_options": 0
+            "placeholder": ""
         },
         {
             "key": "field_styles_heading_line_height",
             "label": "Heading Line Height",
             "name": "styles_heading_line_height",
             "aria-label": "",
-            "type": "range",
-            "instructions": "Set the line height for headings",
+            "type": "text",
+            "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -235,30 +199,11 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": 1.2,
-            "min": 0.80000000000000004,
-            "max": 2,
-            "step": 0.10000000000000001,
+            "default_value": "1.2",
+            "maxlength": "",
+            "placeholder": "1.2",
             "prepend": "",
             "append": ""
-        },
-        {
-            "key": "field_styles_body_settings",
-            "label": "Body Font Settings",
-            "name": "",
-            "aria-label": "",
-            "type": "message",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "Configure the appearance of body text",
-            "new_lines": "wpautop",
-            "esc_html": 0
         },
         {
             "key": "field_styles_body_font",
@@ -266,7 +211,7 @@
             "name": "styles_body_font",
             "aria-label": "",
             "type": "text",
-            "instructions": "Enter the font family for body text (e.g., 'Open Sans', sans-serif)",
+            "instructions": "CSS font-family value for body text.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -275,10 +220,10 @@
                 "id": ""
             },
             "default_value": "'Open Sans', sans-serif",
+            "maxlength": "",
             "placeholder": "'Open Sans', sans-serif",
             "prepend": "",
-            "append": "",
-            "maxlength": ""
+            "append": ""
         },
         {
             "key": "field_styles_body_weight",
@@ -286,42 +231,44 @@
             "name": "styles_body_weight",
             "aria-label": "",
             "type": "select",
-            "instructions": "Select the weight for body text",
+            "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "25",
+                "width": "16",
                 "class": "",
                 "id": ""
             },
             "choices": {
-                "300": "Light (300)",
-                "400": "Regular (400)",
-                "500": "Medium (500)",
-                "600": "Semi-Bold (600)",
-                "700": "Bold (700)"
+                "100": "100 - Thin",
+                "200": "200 - Extra Light",
+                "300": "300 - Light",
+                "400": "400 - Regular",
+                "500": "500 - Medium",
+                "600": "600 - Semi Bold",
+                "700": "700 - Bold",
+                "800": "800 - Extra Bold",
+                "900": "900 - Black"
             },
-            "default_value": 400,
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 1,
+            "default_value": "400",
             "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 1,
             "ajax": 0,
-            "placeholder": "",
-            "create_options": 0,
-            "save_options": 0
+            "placeholder": ""
         },
         {
             "key": "field_styles_body_size",
             "label": "Body Font Size",
             "name": "styles_body_size",
             "aria-label": "",
-            "type": "range",
-            "instructions": "Set the font size for body text",
+            "type": "number",
+            "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "25",
+                "width": "16",
                 "class": "",
                 "id": ""
             },
@@ -329,6 +276,7 @@
             "min": 12,
             "max": 24,
             "step": 1,
+            "placeholder": "",
             "prepend": "",
             "append": "px"
         },
@@ -337,24 +285,83 @@
             "label": "Body Line Height",
             "name": "styles_body_line_height",
             "aria-label": "",
-            "type": "range",
-            "instructions": "Set the line height for body text",
+            "type": "text",
+            "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "25",
+                "width": "16",
                 "class": "",
                 "id": ""
             },
-            "default_value": 1.5,
-            "min": 1,
-            "max": 2,
-            "step": 0.10000000000000001,
+            "default_value": "1.5",
+            "maxlength": "",
+            "placeholder": "1.5",
             "prepend": "",
             "append": ""
         },
         {
-            "key": "field_styles_spacing",
+            "key": "field_styles_buttons_tab",
+            "label": "Buttons",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_styles_button_radius",
+            "label": "Button Border Radius",
+            "name": "styles_button_radius",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "Border radius for buttons across the site.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 4,
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "placeholder": "",
+            "prepend": "",
+            "append": "px"
+        },
+        {
+            "key": "field_styles_button_padding",
+            "label": "Button Padding",
+            "name": "styles_button_padding",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "CSS padding value for buttons (e.g. 10px 20px).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "10px 20px",
+            "maxlength": "",
+            "placeholder": "10px 20px",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_styles_spacing_tab",
             "label": "Spacing",
             "name": "",
             "aria-label": "",
@@ -372,113 +379,77 @@
             "selected": 0
         },
         {
-            "key": "field_styles_spacing_message",
-            "label": "Block Spacing Settings",
-            "name": "",
-            "aria-label": "",
-            "type": "message",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "Configure the default spacing values used by all blocks in the theme. These values will be applied when users select Small, Medium, or Large spacing options in individual blocks. Desktop values apply to screens above 767px, mobile values apply to screens 767px and below.",
-            "new_lines": "wpautop",
-            "esc_html": 0
-        },
-        {
-            "key": "field_styles_spacing_desktop_header",
-            "label": "Desktop Spacing (768px and above)",
-            "name": "",
-            "aria-label": "",
-            "type": "message",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "Spacing values for desktop and tablet devices",
-            "new_lines": "wpautop",
-            "esc_html": 0
-        },
-        {
-            "key": "field_styles_spacing_small",
+            "key": "field_spacing_small",
             "label": "Small Spacing",
             "name": "spacing_small",
             "aria-label": "",
             "type": "number",
-            "instructions": "Default spacing value for 'Small' option in blocks (desktop)",
+            "instructions": "Small spacing value used by block margin options.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "33.33",
+                "width": "33",
                 "class": "",
                 "id": ""
             },
-            "default_value": 20,
-            "placeholder": "",
-            "prepend": "",
-            "append": "px",
+            "default_value": 15,
             "min": 0,
             "max": "",
-            "step": ""
+            "step": 1,
+            "placeholder": "",
+            "prepend": "",
+            "append": "px"
         },
         {
-            "key": "field_styles_spacing_medium",
+            "key": "field_spacing_medium",
             "label": "Medium Spacing",
             "name": "spacing_medium",
             "aria-label": "",
             "type": "number",
-            "instructions": "Default spacing value for 'Medium' option in blocks (desktop)",
+            "instructions": "Medium spacing value used by block margin options.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "33.33",
+                "width": "33",
                 "class": "",
                 "id": ""
             },
-            "default_value": 40,
-            "placeholder": "",
-            "prepend": "",
-            "append": "px",
+            "default_value": 30,
             "min": 0,
             "max": "",
-            "step": ""
+            "step": 1,
+            "placeholder": "",
+            "prepend": "",
+            "append": "px"
         },
         {
-            "key": "field_styles_spacing_large",
+            "key": "field_spacing_large",
             "label": "Large Spacing",
             "name": "spacing_large",
             "aria-label": "",
             "type": "number",
-            "instructions": "Default spacing value for 'Large' option in blocks (desktop)",
+            "instructions": "Large spacing value used by block margin options.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "33.33",
+                "width": "33",
                 "class": "",
                 "id": ""
             },
-            "default_value": 80,
-            "placeholder": "",
-            "prepend": "",
-            "append": "px",
+            "default_value": 60,
             "min": 0,
             "max": "",
-            "step": ""
+            "step": 1,
+            "placeholder": "",
+            "prepend": "",
+            "append": "px"
         },
         {
-            "key": "field_styles_spacing_mobile_header",
-            "label": "Mobile Spacing (767px and below)",
+            "key": "field_styles_section_padding_tab",
+            "label": "Section Padding",
             "name": "",
             "aria-label": "",
-            "type": "message",
+            "type": "tab",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -487,75 +458,97 @@
                 "class": "",
                 "id": ""
             },
-            "message": "Smaller spacing values for mobile devices to optimize screen space",
-            "new_lines": "wpautop",
-            "esc_html": 0
+            "placement": "left",
+            "endpoint": 0,
+            "selected": 0
         },
         {
-            "key": "field_styles_spacing_small_mobile",
-            "label": "Small Spacing (Mobile)",
-            "name": "spacing_small_mobile",
+            "key": "field_styles_section_padding_top",
+            "label": "Section Top Padding",
+            "name": "styles_section_padding_top",
             "aria-label": "",
             "type": "number",
-            "instructions": "Mobile spacing value for 'Small' option in blocks",
+            "instructions": "Default top padding for content sections (desktop).",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "33.33",
+                "width": "25",
                 "class": "",
                 "id": ""
             },
-            "default_value": 15,
-            "placeholder": "",
-            "prepend": "",
-            "append": "px",
+            "default_value": 80,
             "min": 0,
             "max": "",
-            "step": ""
+            "step": 1,
+            "placeholder": "",
+            "prepend": "",
+            "append": "px"
         },
         {
-            "key": "field_styles_spacing_medium_mobile",
-            "label": "Medium Spacing (Mobile)",
-            "name": "spacing_medium_mobile",
+            "key": "field_styles_section_padding_bottom",
+            "label": "Section Bottom Padding",
+            "name": "styles_section_padding_bottom",
             "aria-label": "",
             "type": "number",
-            "instructions": "Mobile spacing value for 'Medium' option in blocks",
+            "instructions": "Default bottom padding for content sections (desktop).",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "33.33",
+                "width": "25",
                 "class": "",
                 "id": ""
             },
-            "default_value": 25,
-            "placeholder": "",
-            "prepend": "",
-            "append": "px",
+            "default_value": 80,
             "min": 0,
             "max": "",
-            "step": ""
+            "step": 1,
+            "placeholder": "",
+            "prepend": "",
+            "append": "px"
         },
         {
-            "key": "field_styles_spacing_large_mobile",
-            "label": "Large Spacing (Mobile)",
-            "name": "spacing_large_mobile",
+            "key": "field_styles_mobile_section_padding_top",
+            "label": "Mobile Section Top",
+            "name": "styles_mobile_section_padding_top",
             "aria-label": "",
             "type": "number",
-            "instructions": "Mobile spacing value for 'Large' option in blocks",
+            "instructions": "Top padding for content sections on mobile (767px and below).",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "33.33",
+                "width": "25",
                 "class": "",
                 "id": ""
             },
             "default_value": 40,
-            "placeholder": "",
-            "prepend": "",
-            "append": "px",
             "min": 0,
             "max": "",
-            "step": ""
+            "step": 1,
+            "placeholder": "",
+            "prepend": "",
+            "append": "px"
+        },
+        {
+            "key": "field_styles_mobile_section_padding_bottom",
+            "label": "Mobile Section Bottom",
+            "name": "styles_mobile_section_padding_bottom",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "Bottom padding for content sections on mobile (767px and below).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 40,
+            "min": 0,
+            "max": "",
+            "step": 1,
+            "placeholder": "",
+            "prepend": "",
+            "append": "px"
         }
     ],
     "location": [
@@ -574,7 +567,6 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": true,
-    "description": "",
-    "show_in_rest": 0,
-    "modified": 1758637932
+    "description": "Theme style settings for colors, typography, buttons, spacing, and section padding.",
+    "show_in_rest": 0
 }

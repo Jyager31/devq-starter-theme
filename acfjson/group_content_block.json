@@ -1,9 +1,9 @@
 {
-    "key": "group_image_block",
-    "title": "Image Block",
+    "key": "group_content_block",
+    "title": "Content Block",
     "fields": [
         {
-            "key": "field_image_content_tab",
+            "key": "field_content_content_tab",
             "label": "Content",
             "name": "",
             "aria-label": "",
@@ -11,115 +11,52 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
+            "wrapper": {"width": "", "class": "", "id": ""},
             "placement": "left",
             "endpoint": 0,
             "selected": 0
         },
         {
-            "key": "field_image_main",
-            "label": "Image",
-            "name": "image",
+            "key": "field_content_content",
+            "label": "Content",
+            "name": "content",
             "aria-label": "",
-            "type": "image",
-            "instructions": "Select the main image",
+            "type": "wysiwyg",
+            "instructions": "",
             "required": 1,
             "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "array",
-            "preview_size": "medium",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": ""
+            "wrapper": {"width": "", "class": "", "id": ""},
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
         },
         {
-            "key": "field_image_fluid",
-            "label": "Fluid Container",
-            "name": "fluid",
+            "key": "field_content_max_width",
+            "label": "Max Width",
+            "name": "max_width",
             "aria-label": "",
-            "type": "true_false",
-            "instructions": "Enable to use container width instead of full width",
+            "type": "select",
+            "instructions": "Controls the maximum width of the content area",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
+            "wrapper": {"width": "50", "class": "", "id": ""},
+            "choices": {
+                "narrow": "Narrow (680px)",
+                "default": "Default (900px)",
+                "wide": "Wide (1100px)"
             },
-            "message": "",
-            "default_value": 0,
-            "ui": 1,
-            "ui_on_text": "",
-            "ui_off_text": ""
+            "default_value": "default",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
         },
         {
-            "key": "field_image_custom_mobile",
-            "label": "Custom Mobile Image",
-            "name": "custom_mobile_image",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "Enable to use a different image for mobile devices",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "",
-            "default_value": 0,
-            "ui": 1,
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_image_mobile",
-            "label": "Mobile Image",
-            "name": "mobile_image",
-            "aria-label": "",
-            "type": "image",
-            "instructions": "Select the mobile image (shown on screens 767px and below)",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_image_custom_mobile",
-                        "operator": "==",
-                        "value": "1"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "array",
-            "preview_size": "medium",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": ""
-        },
-        {
-            "key": "field_image_options_tab",
+            "key": "field_content_options_tab",
             "label": "Options",
             "name": "",
             "aria-label": "",
@@ -127,17 +64,13 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
+            "wrapper": {"width": "", "class": "", "id": ""},
             "placement": "left",
             "endpoint": 0,
             "selected": 0
         },
         {
-            "key": "field_image_margin_top",
+            "key": "field_content_margin_top",
             "label": "Margin Top",
             "name": "margin_top",
             "aria-label": "",
@@ -145,11 +78,7 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
+            "wrapper": {"width": "50", "class": "", "id": ""},
             "choices": {
                 "none": "None",
                 "small": "Small",
@@ -166,7 +95,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_image_margin_top_other",
+            "key": "field_content_margin_top_other",
             "label": "Margin Top Other",
             "name": "margin_top_other",
             "aria-label": "",
@@ -176,17 +105,13 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_image_margin_top",
+                        "field": "field_content_margin_top",
                         "operator": "==",
                         "value": "other"
                     }
                 ]
             ],
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
+            "wrapper": {"width": "50", "class": "", "id": ""},
             "default_value": "",
             "placeholder": "",
             "prepend": "",
@@ -196,7 +121,7 @@
             "step": ""
         },
         {
-            "key": "field_image_margin_bottom",
+            "key": "field_content_margin_bottom",
             "label": "Margin Bottom",
             "name": "margin_bottom",
             "aria-label": "",
@@ -204,11 +129,7 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
+            "wrapper": {"width": "50", "class": "", "id": ""},
             "choices": {
                 "none": "None",
                 "small": "Small",
@@ -225,7 +146,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_image_margin_bottom_other",
+            "key": "field_content_margin_bottom_other",
             "label": "Margin Bottom Other",
             "name": "margin_bottom_other",
             "aria-label": "",
@@ -235,17 +156,13 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_image_margin_bottom",
+                        "field": "field_content_margin_bottom",
                         "operator": "==",
                         "value": "other"
                     }
                 ]
             ],
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
+            "wrapper": {"width": "50", "class": "", "id": ""},
             "default_value": "",
             "placeholder": "",
             "prepend": "",
@@ -255,7 +172,7 @@
             "step": ""
         },
         {
-            "key": "field_image_custom_class",
+            "key": "field_content_custom_class",
             "label": "Custom Class",
             "name": "custom_class",
             "aria-label": "",
@@ -263,11 +180,7 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
+            "wrapper": {"width": "50", "class": "", "id": ""},
             "default_value": "",
             "placeholder": "",
             "prepend": ".",
@@ -275,7 +188,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_image_custom_id",
+            "key": "field_content_custom_id",
             "label": "Custom ID",
             "name": "custom_id",
             "aria-label": "",
@@ -283,11 +196,7 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
+            "wrapper": {"width": "50", "class": "", "id": ""},
             "default_value": "",
             "placeholder": "",
             "prepend": "#",
@@ -295,7 +204,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_image_animation_tab",
+            "key": "field_content_animation_tab",
             "label": "Animation",
             "name": "",
             "aria-label": "",
@@ -303,17 +212,13 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
+            "wrapper": {"width": "", "class": "", "id": ""},
             "placement": "left",
             "endpoint": 0,
             "selected": 0
         },
         {
-            "key": "field_image_animation_type",
+            "key": "field_content_animation_type",
             "label": "Animation Type",
             "name": "animation_type",
             "aria-label": "",
@@ -321,11 +226,7 @@
             "instructions": "Choose the AOS animation effect",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
+            "wrapper": {"width": "50", "class": "", "id": ""},
             "choices": {
                 "fade-up": "Fade Up",
                 "fade-down": "Fade Down",
@@ -359,7 +260,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_image_animation_duration",
+            "key": "field_content_animation_duration",
             "label": "Animation Duration",
             "name": "animation_duration",
             "aria-label": "",
@@ -367,11 +268,7 @@
             "instructions": "Duration in milliseconds",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {
-                "width": "25",
-                "class": "",
-                "id": ""
-            },
+            "wrapper": {"width": "25", "class": "", "id": ""},
             "default_value": 800,
             "placeholder": "",
             "prepend": "",
@@ -381,7 +278,7 @@
             "step": ""
         },
         {
-            "key": "field_image_disable_animation",
+            "key": "field_content_disable_animation",
             "label": "Disable Animation",
             "name": "disable_animation",
             "aria-label": "",
@@ -389,11 +286,7 @@
             "instructions": "Disable the animation effect for this block",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {
-                "width": "25",
-                "class": "",
-                "id": ""
-            },
+            "wrapper": {"width": "25", "class": "", "id": ""},
             "message": "",
             "default_value": 0,
             "ui": 1,
@@ -406,7 +299,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/image"
+                "value": "acf\/content"
             }
         ]
     ],

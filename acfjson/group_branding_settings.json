@@ -1,0 +1,144 @@
+{
+    "key": "group_branding_settings",
+    "title": "Branding Settings",
+    "fields": [
+        {
+            "key": "field_branding_logo",
+            "label": "Logo",
+            "name": "branding_logo",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Primary site logo. Recommended: SVG or transparent PNG.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "preview_size": "medium",
+            "min_width": "",
+            "min_height": "",
+            "max_width": "",
+            "max_height": ""
+        },
+        {
+            "key": "field_branding_alt_logo",
+            "label": "Alt Logo",
+            "name": "branding_alt_logo",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Alternative logo for transparent header scroll state.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "preview_size": "medium",
+            "min_width": "",
+            "min_height": "",
+            "max_width": "",
+            "max_height": ""
+        },
+        {
+            "key": "field_branding_favicon",
+            "label": "Favicon",
+            "name": "branding_favicon",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Site favicon. Recommended: 32x32 or 512x512 PNG.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "preview_size": "thumbnail",
+            "min_width": "",
+            "min_height": "",
+            "max_width": "",
+            "max_height": ""
+        },
+        {
+            "key": "field_branding_company_name",
+            "label": "Company Name",
+            "name": "branding_company_name",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Company or organization name used in footer, copyright, and meta tags.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "e.g. Acme Inc.",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_branding_header_cta",
+            "label": "Header CTA",
+            "name": "branding_header_cta",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "Call-to-action button displayed in the header navigation.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_branding_guidelines_pdf",
+            "label": "Brand Guidelines",
+            "name": "branding_guidelines_pdf",
+            "aria-label": "",
+            "type": "file",
+            "instructions": "Upload brand guidelines PDF for reference.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "mime_types": "pdf"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "branding"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Brand identity settings including logos, favicon, company name, and header CTA.",
+    "show_in_rest": 0
+}

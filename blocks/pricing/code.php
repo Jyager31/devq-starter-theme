@@ -132,7 +132,7 @@ if (!have_rows('plans')) {
                         <?php endif; ?>
 
                         <?php if ($button) : ?>
-                            <a href="<?php echo esc_url($button['url']); ?>" class="btn-inline <?php echo $is_featured ? 'btn-primary' : 'btn-outline'; ?> pricing-button" <?php echo !empty($button['target']) ? 'target="' . esc_attr($button['target']) . '"' : ''; ?>><?php echo esc_html($button['title']); ?></a>
+                            <a href="<?php echo esc_url($button['url']); ?>" class="btn <?php echo $is_featured ? '' : 'btn-outline'; ?> pricing-button" <?php echo !empty($button['target']) ? 'target="' . esc_attr($button['target']) . '"' : ''; ?>><?php echo esc_html($button['title']); ?></a>
                         <?php endif; ?>
                     </div>
                     <?php

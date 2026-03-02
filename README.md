@@ -36,7 +36,7 @@ A production-ready WordPress starter theme with ACF block integration, centraliz
 ### Included Blocks
 
 - **Image** (`blocks/image/`) — Full/contained image with mobile variant support
-- **WYSIWYG** (`blocks/wysiwyg/`) — Rich text content block
+- **Content** (`blocks/content/`) — Rich text content block
 - **Hero** (`blocks/hero/`) — Full-width hero with background image, overlay, heading, and CTA button
 - **Text Image** (`blocks/textimage/`) — Two-column text + image layout with left/right positioning
 - **Cards** (`blocks/cards/`) — Grid of cards (2/3/4 columns) with icon, title, description, and link
@@ -75,7 +75,7 @@ DevQ Starter/
 │   ├── README.md          — Block creation guidelines
 │   ├── BLOCK-TEMPLATE.md  — Quick reference checklist
 │   ├── image/code.php     — Image block (reference implementation)
-│   ├── wysiwyg/code.php   — WYSIWYG block
+│   ├── content/code.php   — Content block
 │   ├── hero/code.php      — Hero block
 │   ├── textimage/code.php — Text + Image block
 │   ├── cards/code.php     — Cards block
@@ -84,7 +84,7 @@ DevQ Starter/
 ├── acfjson/
 │   ├── README.md          — ACF auto-sync documentation
 │   ├── group_image_block.json
-│   ├── group_wysiwyg_block.json
+│   ├── group_content_block.json
 │   ├── group_hero_block.json
 │   ├── group_textimage_block.json
 │   ├── group_cards_block.json

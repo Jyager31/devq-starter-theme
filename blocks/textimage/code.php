@@ -78,7 +78,7 @@ if (!$heading && !$content && !$image) {
                     </div>
                 <?php endif; ?>
                 <?php if ($button) : ?>
-                    <a href="<?php echo esc_url($button['url']); ?>" class="btn-inline btn-primary textimage-button" <?php echo $button['target'] ? 'target="' . esc_attr($button['target']) . '"' : ''; ?>><?php echo esc_html($button['title']); ?></a>
+                    <a href="<?php echo esc_url($button['url']); ?>" class="btn textimage-button" <?php echo $button['target'] ? 'target="' . esc_attr($button['target']) . '"' : ''; ?>><?php echo esc_html($button['title']); ?></a>
                 <?php endif; ?>
             </div>
             <div class="textimage-image">

@@ -78,10 +78,10 @@ if (!$heading && !$image) {
             <?php if ($primary_button || $secondary_button) : ?>
                 <div class="herosplit-buttons">
                     <?php if ($primary_button) : ?>
-                        <a href="<?php echo esc_url($primary_button['url']); ?>" class="btn-inline btn-primary" <?php echo $primary_button['target'] ? 'target="' . esc_attr($primary_button['target']) . '"' : ''; ?>><?php echo esc_html($primary_button['title']); ?></a>
+                        <a href="<?php echo esc_url($primary_button['url']); ?>" class="btn" <?php echo $primary_button['target'] ? 'target="' . esc_attr($primary_button['target']) . '"' : ''; ?>><?php echo esc_html($primary_button['title']); ?></a>
                     <?php endif; ?>
                     <?php if ($secondary_button) : ?>
-                        <a href="<?php echo esc_url($secondary_button['url']); ?>" class="btn-inline btn-outline" <?php echo $secondary_button['target'] ? 'target="' . esc_attr($secondary_button['target']) . '"' : ''; ?>><?php echo esc_html($secondary_button['title']); ?></a>
+                        <a href="<?php echo esc_url($secondary_button['url']); ?>" class="btn btn-outline" <?php echo $secondary_button['target'] ? 'target="' . esc_attr($secondary_button['target']) . '"' : ''; ?>><?php echo esc_html($secondary_button['title']); ?></a>
                     <?php endif; ?>
                 </div>
             <?php endif; ?>

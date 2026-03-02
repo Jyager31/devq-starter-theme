@@ -81,7 +81,7 @@ if (!$heading) {
                 <?php endif; ?>
 
                 <?php if ($button) : ?>
-                    <a href="<?php echo esc_url($button['url']); ?>" class="btn-inline btn-primary" <?php echo !empty($button['target']) ? 'target="' . esc_attr($button['target']) . '"' : ''; ?>><?php echo esc_html($button['title']); ?></a>
+                    <a href="<?php echo esc_url($button['url']); ?>" class="btn" <?php echo !empty($button['target']) ? 'target="' . esc_attr($button['target']) . '"' : ''; ?>><?php echo esc_html($button['title']); ?></a>
                 <?php endif; ?>
 
                 <?php if ($show_stats && have_rows('stats')) : ?>

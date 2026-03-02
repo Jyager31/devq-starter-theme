@@ -1,0 +1,160 @@
+{
+    "key": "group_scripts_settings",
+    "title": "Scripts & Tracking Settings",
+    "fields": [
+        {
+            "key": "field_scripts_tracking_tab",
+            "label": "Tracking",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_scripts_google_analytics",
+            "label": "Google Analytics ID",
+            "name": "scripts_google_analytics",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Google Analytics measurement ID.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "G-XXXXXXXXXX",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_scripts_google_tag_manager",
+            "label": "GTM Container ID",
+            "name": "scripts_google_tag_manager",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Google Tag Manager container ID.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "GTM-XXXXXXX",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_scripts_facebook_pixel",
+            "label": "Facebook Pixel ID",
+            "name": "scripts_facebook_pixel",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Facebook / Meta Pixel ID for conversion tracking.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "XXXXXXXXXXXXXXX",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_scripts_custom_tab",
+            "label": "Custom Scripts",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_scripts_header",
+            "label": "Header Scripts",
+            "name": "scripts_header",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Scripts to include in the &lt;head&gt; section. Include full &lt;script&gt; tags.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "rows": 6,
+            "new_lines": ""
+        },
+        {
+            "key": "field_scripts_footer",
+            "label": "Footer Scripts",
+            "name": "scripts_footer",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Scripts to include before the closing &lt;/body&gt; tag. Include full &lt;script&gt; tags.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "rows": 6,
+            "new_lines": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "scripts"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Analytics IDs, tracking pixels, and custom header/footer scripts.",
+    "show_in_rest": 0
+}

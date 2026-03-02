@@ -62,18 +62,19 @@ if ($col_count < 2 || !$features) {
 }
 
 /**
- * Helper: render a cell value with check/cross icon support
+ * Helper: render a cell value from select field (check/cross/custom)
  */
-function comparisontable_render_value($value) {
-    $value = trim($value);
-    $lower = strtolower($value);
-    if ($value === '&#10003;' || $value === "\xE2\x9C\x93" || mb_strpos($value, "\xE2\x9C\x93") !== false || $lower === 'yes' || $lower === 'true') {
+function comparisontable_render_value($value, $custom_text = '') {
+    if ($value === 'check') {
         return '<i class="fa-solid fa-check comparisontable-check"></i>';
     }
-    if ($value === '&#10007;' || $value === "\xE2\x9C\x97" || mb_strpos($value, "\xE2\x9C\x97") !== false || $lower === 'no' || $lower === 'false') {
+    if ($value === 'cross') {
         return '<i class="fa-solid fa-xmark comparisontable-xmark"></i>';
     }
-    return esc_html($value);
+    if ($value === 'custom' && $custom_text) {
+        return esc_html($custom_text);
+    }
+    return '';
 }
 
 ?>
@@ -122,6 +123,7 @@ function comparisontable_render_value($value) {
                     <?php for ($i = 0; $i < $col_count; $i++) :
                         $col_key = 'col_' . ($i + 1);
                         $value = isset($feature[$col_key]) ? $feature[$col_key] : '';
+                        $custom_text = isset($feature[$col_key . '_custom']) ? $feature[$col_key . '_custom'] : '';
                         $is_highlighted = !empty($columns[$i]['is_highlighted']);
                         $cell_class = 'comparisontable-cell comparisontable-value ' . $row_class;
                         if ($is_highlighted) {
@@ -129,7 +131,7 @@ function comparisontable_render_value($value) {
                         }
                         ?>
                         <div class="<?php echo esc_attr($cell_class); ?>">
-                            <?php echo comparisontable_render_value($value); ?>
+                            <?php echo comparisontable_render_value($value, $custom_text); ?>
                         </div>
                     <?php endfor; ?>
                 <?php endforeach; ?>

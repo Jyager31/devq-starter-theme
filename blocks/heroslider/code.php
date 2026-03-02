@@ -131,7 +131,7 @@ $slider_config = array(
 
                         <?php if ($slide['button']) : ?>
                             <div class="heroslider-buttons">
-                                <a href="<?php echo esc_url($slide['button']['url']); ?>" class="btn-inline btn-primary" <?php echo !empty($slide['button']['target']) ? 'target="' . esc_attr($slide['button']['target']) . '"' : ''; ?>><?php echo esc_html($slide['button']['title']); ?></a>
+                                <a href="<?php echo esc_url($slide['button']['url']); ?>" class="btn" <?php echo !empty($slide['button']['target']) ? 'target="' . esc_attr($slide['button']['target']) . '"' : ''; ?>><?php echo esc_html($slide['button']['title']); ?></a>
                             </div>
                         <?php endif; ?>
                     </div>

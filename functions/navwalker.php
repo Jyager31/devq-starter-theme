@@ -84,3 +84,35 @@ class fluent_themes_custom_walker_nav_menu extends Walker_Nav_Menu
         $output .= apply_filters('walker_nav_menu_start_el', $item_output, $item, $depth, $args, $id);
     }
 } //End Walker_Nav_Menu
+
+
+/**
+ * Mobile Nav Walker
+ * Adds sub-menu toggle buttons for mobile menu accordion behavior.
+ */
+class DevQ_Mobile_Nav_Walker extends Walker_Nav_Menu
+{
+    function start_lvl(&$output, $depth = 0, $args = array())
+    {
+        $output .= '<ul class="sub-menu">';
+    }
+
+    function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0)
+    {
+        $classes = empty($item->classes) ? array() : (array) $item->classes;
+        $has_children = in_array('menu-item-has-children', $classes);
+        $class_names = esc_attr(implode(' ', array_filter($classes)));
+
+        $output .= '<li class="' . $class_names . '">';
+
+        $attributes  = !empty($item->target) ? ' target="' . esc_attr($item->target) . '"' : '';
+        $attributes .= !empty($item->xfn)    ? ' rel="'    . esc_attr($item->xfn) . '"' : '';
+        $attributes .= !empty($item->url)    ? ' href="'   . esc_attr($item->url) . '"' : '';
+
+        $output .= '<a' . $attributes . '>' . apply_filters('the_title', $item->title, $item->ID) . '</a>';
+
+        if ($has_children) {
+            $output .= '<button class="devq-submenu-toggle" aria-label="Toggle submenu"><i class="fas fa-chevron-down"></i></button>';
+        }
+    }
+}

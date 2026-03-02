@@ -84,32 +84,7 @@ h5 {
   font-size: 1.25rem;
 }
 
-.bigger-title {
-  font-size: 4rem;
-}
 
-.sub-title {
-  font-size: 24px;
-}
-
-.cs-topper {
-  font-family: var(--font2);
-  text-transform: uppercase;
-  font-size: 13px;
-  font-weight: 800;
-  margin-top: 0;
-  color: var(--secondary);
-  letter-spacing: 3px;
-}
-
-.cs-title {
-  font-size: 34px;
-  margin: 0;
-  line-height: 1;
-  font-weight: 800;
-  max-width: 530px;
-  color: var(--primary);
-}
 
 /* -----------------------------------------------------------------------------
  * Layout
@@ -139,251 +114,111 @@ h5 {
 .btn {
   text-decoration: none;
   background: var(--primary);
-  color: white;
-  display: flex;
+  color: #fff;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 50px;
-  width: 300px;
-  padding: var(--button-padding, 15px);
+  gap: 8px;
+  padding: var(--button-padding, 12px 28px);
+  font-family: var(--font1);
+  font-size: 15px;
   font-weight: 600;
+  letter-spacing: 0.02em;
   text-align: center;
   transition: var(--transition-default);
   border: 2px solid var(--primary);
   border-radius: var(--button-radius, 4px);
+  cursor: pointer;
+  min-width: 250px;
 }
 
 .btn i {
-  margin-right: 10px;
   font-size: 14px;
 }
 
 .btn:hover {
-  background: var(--tertiary) !important;
-  color: black;
-  border: 2px solid var(--tertiary);
+  background: var(--secondary);
+  color: #fff;
+  border-color: var(--secondary);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* Button Variants */
 .btn.btn-secondary {
   background: var(--secondary);
-  border: 2px solid var(--secondary);
+  border-color: var(--secondary);
 }
 
 .btn.btn-secondary:hover {
   background: var(--primary);
-  color: black;
+  border-color: var(--primary);
+  color: #fff;
 }
 
 .btn.btn-tertiary {
   background: var(--tertiary);
-  border: 2px solid var(--tertiary);
+  border-color: var(--tertiary);
+  color: var(--primary);
+}
+
+.btn.btn-tertiary:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
 }
 
 .btn.btn-white {
-  background: white;
+  background: #fff;
   color: var(--primary);
+  border-color: #fff;
 }
 
-.btn.white:hover {
+.btn.btn-white:hover {
   background: var(--primary);
-  color: white;
+  color: #fff;
+  border-color: var(--primary);
 }
 
-.btn.btn-secondary.border {
+.btn.btn-outline {
   background: transparent;
-  color: white;
-  border: 2px solid var(--secondary);
-}
-
-.btn.btn-secondary.border:hover {
-  background: var(--secondary);
-  border: 2px solid var(--secondary);
-  color: black;
-}
-
-/* -----------------------------------------------------------------------------
- * Header & Navigation
- * -------------------------------------------------------------------------- */
-.devq-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-  padding: 15px 0;
-}
-
-.mainLogo {
-  padding: 0;
-  display: block;
-  width: 200px;
-  height: auto;
-  margin: 0;
-  position: relative;
-}
-
-/* Main Menu */
-.menutop ul {
-  display: flex;
-  list-style: none;
-}
-
-.menutop ul li a {
-  text-decoration: none;
-  margin-left: 30px;
-  font-weight: 500;
-  color: initial;
-  font-size: 18px;
-  transition: var(--transition-fast);
-  display: flex;
-  align-items: center;
-}
-
-.menutop ul li a:hover {
-  color: var(--secondary);
-}
-
-/* Dropdown Menu */
-.dropdown-menu {
-  display: none;
-  transform-origin: center top 0;
-  transition: var(--transition-fast);
-  min-width: 270px;
-  left: -10px;
-  overflow: hidden;
-  padding-top: 10px;
-}
-
-ul.dropdown-menu {
-  display: none;
-}
-
-.dropdown:hover ul.dropdown-menu {
-  display: block;
-  position: absolute;
-  color: white;
-  padding-top: 10px;
-  z-index: var(--z-index-dropdown);
-}
-
-.dropdown-menu a {
-  margin: 0 !important;
-}
-
-.dropdown-menu li a {
-  background: var(--primary);
-  padding: 10px 15px;
-  color: white !important;
-  display: block;
-  border-bottom: 1px solid white;
-  transition: var(--transition-fast);
-}
-
-.dropdown-menu li:last-child a {
-  border-bottom: 0;
-}
-
-.dropdown-menu li a:hover {
-  background: var(--secondary);
-  color: white !important;
-}
-
-a.dropdown-toggle i {
-  padding-left: 5px;
-  font-size: 14px;
-}
-
-.menu-depth-1,
-.menu-item-has-children {
-  position: relative;
-}
-
-/* Mobile Menu */
-nav#menu:not(.mm-menu) {
-  display: none;
-}
-
-.mm-menu {
-  --mm-color-background: #fff;
-}
-
-.mm-listitem__text, .mm-navbar__title>span {
-  font-weight: 600;
   color: var(--primary);
+  border-color: var(--primary);
 }
 
-/* Hamburger Menu */
-.mburger {
+.btn.btn-outline:hover {
+  background: var(--primary);
   color: #fff;
+  border-color: var(--primary);
 }
 
-.mburger:hover,
-.mburger:focus,
-.mburger:active {
+.btn.btn-outline-secondary {
+  background: transparent;
   color: #fff;
+  border-color: var(--secondary);
 }
 
-.mburger strong {
-  display: block;
-  position: absolute;
-  left: calc(var(--mb-button-size)*((1 - var(--mb-bar-width))/2));
-  width: calc(var(--mb-button-size)*var(--mb-bar-width));
-  height: var(--mb-bar-height);
-  background: black;
-  color: inherit;
-  opacity: 1;
-  border-radius: 0;
-}
-
-.mburger strong:nth-of-type(1) {
-  bottom: calc(45% + var(--mb-bar-spacing));
-}
-
-.mburger strong:nth-of-type(3) {
-  top: calc(45% + var(--mb-bar-spacing));
-}
-
-.mburger span {
-  font-weight: 600;
-  font-size: 16px;
-  text-decoration: none;
-}
-
-/* Mobile Header */
-.flextophead {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-img.mobilelogo {
-  width: 230px;
-  margin: 0 15px;
-}
-
-.mobilemen {
-  margin: -10px 10px 0 0;
-  display: none;
-}
-
-img.mobileLogo {
-  padding: 30px;
-}
-
-/* -----------------------------------------------------------------------------
- * Footer
- * -------------------------------------------------------------------------- */
-.footerfluid2 {
-  padding: 15px 0;
+.btn.btn-outline-secondary:hover {
   background: var(--secondary);
+  color: #fff;
+  border-color: var(--secondary);
 }
 
-.footerfluid2 p {
-  color: white;
-  margin: 0;
-  padding: 10px 0;
-  font-size: 16px;
+.btn.btn-outline-white {
+  background: transparent;
+  color: #fff;
+  border-color: #fff;
 }
+
+.btn.btn-outline-white:hover {
+  background: #fff;
+  color: var(--primary);
+  border-color: #fff;
+}
+
+/* Header & navigation styles are in template-parts/header/ */
+/* Footer styles are in template-parts/footer/ */
+/* Mobile menu styles are in template-parts/mobile-menu/ */
 
 /* -----------------------------------------------------------------------------
  * Utility Classes
@@ -418,65 +253,6 @@ img.mobileLogo {
 
 .section-dark .cs-topper {
   color: var(--tertiary);
-}
-
-/* Inline button style */
-.btn-inline {
-  display: inline-block;
-  padding: var(--button-padding, 15px 30px);
-  font-weight: 600;
-  text-align: center;
-  text-decoration: none;
-  transition: var(--transition-default);
-  border-radius: var(--button-radius, 4px);
-  cursor: pointer;
-  border: 2px solid transparent;
-}
-
-.btn-inline.btn-primary {
-  background: var(--primary);
-  color: #fff;
-  border-color: var(--primary);
-}
-
-.btn-inline.btn-primary:hover {
-  background: var(--tertiary);
-  color: #000;
-  border-color: var(--tertiary);
-}
-
-.btn-inline.btn-outline {
-  background: transparent;
-  color: var(--primary);
-  border-color: var(--primary);
-}
-
-.btn-inline.btn-outline:hover {
-  background: var(--primary);
-  color: #fff;
-}
-
-.btn-inline.btn-white {
-  background: #fff;
-  color: var(--primary);
-  border-color: #fff;
-}
-
-.btn-inline.btn-white:hover {
-  background: var(--tertiary);
-  color: #000;
-  border-color: var(--tertiary);
-}
-
-.btn-inline.btn-outline-white {
-  background: transparent;
-  color: #fff;
-  border-color: #fff;
-}
-
-.btn-inline.btn-outline-white:hover {
-  background: #fff;
-  color: var(--primary);
 }
 
 /* -----------------------------------------------------------------------------
@@ -515,21 +291,6 @@ img.mobileLogo {
  * -------------------------------------------------------------------------- */
 @media (max-width: 1199px) {
 
-  /* Header & Navigation */
-  .mainLogo {
-    margin: 0 auto;
-    width: 200px;
-    height: auto;
-  }
-
-  .menutop {
-    display: none;
-  }
-
-  .mobilemen {
-    display: inherit;
-  }
-
   /* Utility Classes */
   .mobileonly,
   .mobileOnly {
@@ -539,19 +300,15 @@ img.mobileLogo {
   .desktopOnly {
     display: none;
   }
-
-  /* Footer */
-  .footerfluidcolor {
-    padding: 70px 0 40px;
-  }
-
-  .footerfluid2 p {
-    text-align: center;
-  }
 }
 
 /* Mobile Styles - 767px and below */
 @media (max-width: 767px) {
+
+  .btn {
+    width: 100%;
+    min-width: unset;
+  }
 
   /* Typography */
   h1 {

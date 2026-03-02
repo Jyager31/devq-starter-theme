@@ -54,7 +54,7 @@ Add the human-readable name to the `$basefunctions` array in `functions/blocks.p
 ```php
 $basefunctions = array(
     "Image",
-    "Wysiwyg",
+    "Content",
     "Your New Block",  // Add here
 );
 ```
@@ -235,6 +235,20 @@ Animation Type choices: fade-up, fade-down, fade-left, fade-right, fade-up-right
 - **Mobile:** `@media (max-width: 767px)`
 - Only use these two breakpoints. Do NOT use 991px.
 
+### Buttons
+
+Use the `.btn` class system for all buttons. Do NOT use `.btn-inline`.
+
+| Class | Usage |
+|-------|-------|
+| `btn` | Primary button (solid primary bg, white text) |
+| `btn btn-secondary` | Secondary color variant |
+| `btn btn-tertiary` | Tertiary color variant |
+| `btn btn-white` | White bg, primary text (for dark backgrounds) |
+| `btn btn-outline` | Transparent bg, primary border/text |
+| `btn btn-outline-secondary` | Transparent bg, secondary border |
+| `btn btn-outline-white` | Transparent bg, white border/text (for dark backgrounds) |
+
 ## Escaping Rules
 
 - Text content: `esc_html()`
@@ -312,7 +326,7 @@ The spacing system is centralized in `functions/spacing.php`:
 | Block | Slug | Description |
 |-------|------|-------------|
 | Text Image | `acf/textimage` | Two-column text + image with position toggle |
-| WYSIWYG | `acf/wysiwyg` | Rich text content with width options (narrow/default/wide) |
+| Content | `acf/content` | Rich text content with width options (narrow/default/wide) |
 | About | `acf/about` | Company intro with image, text, optional stat boxes |
 | Blog Posts | `acf/blogposts` | Dynamic post grid via WP_Query, category filter, 2/3/4 columns |
 | Tabs | `acf/tabs` | Tabbed content (horizontal/vertical), accordion on mobile |
@@ -436,9 +450,9 @@ $post_id = devq_create_page(array(
             ),
         ),
         array(
-            'name' => 'Wysiwyg',
+            'name' => 'Content',
             'fields' => array(
-                'wysiwyg' => '<p>Company description here.</p>',
+                'content' => '<p>Company description here.</p>',
             ),
         ),
     ),
