@@ -339,6 +339,30 @@ function devq_register_rest_routes() {
             return current_user_can('edit_pages');
         },
     ));
+
+    register_rest_route('devq/v1', '/create-menu', array(
+        'methods' => 'POST',
+        'callback' => 'devq_rest_create_menu',
+        'permission_callback' => function () {
+            return current_user_can('edit_theme_options');
+        },
+    ));
+
+    register_rest_route('devq/v1', '/setup-front-page', array(
+        'methods' => 'POST',
+        'callback' => 'devq_rest_setup_front_page',
+        'permission_callback' => function () {
+            return current_user_can('manage_options');
+        },
+    ));
+
+    register_rest_route('devq/v1', '/site-info', array(
+        'methods' => 'GET',
+        'callback' => 'devq_rest_site_info',
+        'permission_callback' => function () {
+            return current_user_can('edit_pages');
+        },
+    ));
 }
 add_action('rest_api_init', 'devq_register_rest_routes');
 
@@ -377,6 +401,131 @@ function devq_rest_create_page($request) {
         'edit_url' => get_edit_post_link($result, 'raw'),
         'view_url' => get_permalink($result),
     ), 201);
+}
+
+/**
+ * REST API callback for creating a navigation menu from page IDs.
+ *
+ * Expects JSON body:
+ * - menu_name (string, optional) — defaults to "Primary Menu"
+ * - page_ids (array of int) — ordered list of page IDs for menu items
+ *
+ * @param WP_REST_Request $request
+ * @return WP_REST_Response
+ */
+function devq_rest_create_menu($request) {
+    $params = $request->get_json_params();
+
+    if (empty($params['page_ids']) || !is_array($params['page_ids'])) {
+        return new WP_REST_Response(array('error' => 'page_ids array is required'), 400);
+    }
+
+    $menu_name = !empty($params['menu_name']) ? sanitize_text_field($params['menu_name']) : 'Primary Menu';
+    $menu_exists = wp_get_nav_menu_object($menu_name);
+
+    // Delete existing menu if it exists so we can recreate it
+    if ($menu_exists) {
+        wp_delete_nav_menu($menu_exists->term_id);
+    }
+
+    $menu_id = wp_create_nav_menu($menu_name);
+    if (is_wp_error($menu_id)) {
+        return new WP_REST_Response(array('error' => $menu_id->get_error_message()), 500);
+    }
+
+    $menu_order = 1;
+    $items_created = 0;
+    foreach ($params['page_ids'] as $page_id) {
+        $page_id = absint($page_id);
+        $page = get_post($page_id);
+        if (!$page || $page->post_type !== 'page') {
+            continue;
+        }
+
+        wp_update_nav_menu_item($menu_id, 0, array(
+            'menu-item-title'     => get_the_title($page_id),
+            'menu-item-object-id' => $page_id,
+            'menu-item-object'    => 'page',
+            'menu-item-type'      => 'post_type',
+            'menu-item-status'    => 'publish',
+            'menu-item-position'  => $menu_order,
+        ));
+        $menu_order++;
+        $items_created++;
+    }
+
+    // Assign to primary location
+    $locations = get_theme_mod('nav_menu_locations');
+    if (!is_array($locations)) {
+        $locations = array();
+    }
+    $locations['primary'] = $menu_id;
+    set_theme_mod('nav_menu_locations', $locations);
+
+    return new WP_REST_Response(array(
+        'menu_id' => $menu_id,
+        'menu_name' => $menu_name,
+        'items_created' => $items_created,
+    ), 201);
+}
+
+/**
+ * REST API callback for setting a page as the static front page.
+ *
+ * Expects JSON body:
+ * - page_id (int) — the page ID to set as front page
+ *
+ * @param WP_REST_Request $request
+ * @return WP_REST_Response
+ */
+function devq_rest_setup_front_page($request) {
+    $params = $request->get_json_params();
+
+    if (empty($params['page_id'])) {
+        return new WP_REST_Response(array('error' => 'page_id is required'), 400);
+    }
+
+    $page_id = absint($params['page_id']);
+    $page = get_post($page_id);
+
+    if (!$page || $page->post_type !== 'page') {
+        return new WP_REST_Response(array('error' => 'Invalid page ID'), 404);
+    }
+
+    update_option('show_on_front', 'page');
+    update_option('page_on_front', $page_id);
+
+    return new WP_REST_Response(array(
+        'page_id' => $page_id,
+        'title' => get_the_title($page_id),
+        'message' => 'Front page set successfully',
+    ), 200);
+}
+
+/**
+ * REST API callback for site info — returns site URL, active theme, available blocks, and presets.
+ *
+ * @param WP_REST_Request $request
+ * @return WP_REST_Response
+ */
+function devq_rest_site_info($request) {
+    $blocks = array();
+    if (function_exists('devq_get_blocks')) {
+        $blocks = devq_get_blocks();
+    }
+
+    $presets = array();
+    if (function_exists('devq_get_page_presets')) {
+        $presets = array_keys(devq_get_page_presets());
+    }
+
+    return new WP_REST_Response(array(
+        'site_url' => get_site_url(),
+        'theme' => get_stylesheet(),
+        'parent_theme' => get_template(),
+        'blocks' => $blocks,
+        'presets' => $presets,
+    ), 200);
 }
 
 /**

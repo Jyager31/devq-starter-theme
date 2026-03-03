@@ -25,21 +25,24 @@ class fluent_themes_custom_walker_nav_menu extends Walker_Nav_Menu
     // add main/sub classes to li's and links
     function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0)
     {
-        global $wp_query, $wpdb;
+        global $wp_query;
         $indent = ($depth > 0 ? str_repeat("\t", $depth) : ''); // code indent
+
+        // passed classes
+        $classes = empty($item->classes) ? array() : (array) $item->classes;
+
+        // WordPress adds 'menu-item-has-children' automatically — no DB query needed
+        $has_children = in_array('menu-item-has-children', $classes);
 
         // depth dependent classes
         $depth_classes = array(
-            ($depth == 0 ? '' : ''), //class for the top level menu which got sub-menu
-            ($depth >= 1 ? '' : 'dropdown'), //class for the level-1 sub-menu which got level-2 sub-menu
-            ($depth >= 2 ? 'sub-sub-menu-item' : ''), //class for the level-2 sub-menu which got level-3 sub-menu
+            ($depth >= 1 ? '' : 'dropdown'),
+            ($depth >= 2 ? 'sub-sub-menu-item' : ''),
             ($depth % 2 ? 'menu-item-odd' : 'menu-item-even'),
             'menu-item-depth-' . $depth
         );
         $depth_class_names = esc_attr(implode(' ', $depth_classes));
 
-        // passed classes
-        $classes = empty($item->classes) ? array() : (array) $item->classes;
         $class_names = esc_attr(implode(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item)));
 
         // build html
@@ -50,15 +53,8 @@ class fluent_themes_custom_walker_nav_menu extends Walker_Nav_Menu
         $attributes .= !empty($item->target)     ? ' target="' . esc_attr($item->target) . '"' : '';
         $attributes .= !empty($item->xfn)        ? ' rel="'    . esc_attr($item->xfn) . '"' : '';
         $attributes .= !empty($item->url)        ? ' href="'   . esc_attr($item->url) . '"' : '';
-        //$attributes .= ' class="' . ( $depth > 0 ? '' : '' ) . '"';
 
-        // Check if menu item is in main menu
-        $has_children = $wpdb->get_var($wpdb->prepare(
-            "SELECT COUNT(meta_id) FROM {$wpdb->postmeta} WHERE meta_key = '_menu_item_menu_item_parent' AND meta_value = %d",
-            $item->ID
-        ));
-
-        if ($depth == 0 && $has_children > 0) {
+        if ($depth == 0 && $has_children) {
             // These lines adds your custom class and attribute
             $attributes .= ' class="dropdown-toggle"';
             $attributes .= ' data-toggle="dropdown"';
@@ -73,7 +69,7 @@ class fluent_themes_custom_walker_nav_menu extends Walker_Nav_Menu
         //$item_output .= $description.$args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after; //If you want the description to be output before </a>
 
         // Add the caret if menu level is 0
-        if ($depth == 0 && $has_children > 0) {
+        if ($depth == 0 && $has_children) {
             $item_output .= '<i class="fas fa-caret-down"></i>';
         }
 

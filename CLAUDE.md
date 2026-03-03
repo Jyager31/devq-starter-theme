@@ -46,6 +46,57 @@ Use semver: `MAJOR.MINOR.PATCH`
 
 Per-site customizations (colors, fonts, extra blocks, templates) belong in child themes, not in this repo. Copy `devq-starter-child/` as a starting point for each client.
 
+## Field Naming Convention
+
+All new blocks MUST follow this naming convention. Existing blocks may use legacy names (documented below) but new work should be consistent.
+
+### Standard Field Names
+
+| Purpose | Field Name | Type | Notes |
+|---------|-----------|------|-------|
+| Main heading | `heading` | text | Never use `title` at block level |
+| Above heading | `eyebrow` | text | Small label above heading |
+| Below heading | `subheading` | text | Never use `subtitle` or `description` at block level |
+| Rich text body | `content` | wysiwyg | Never use `text` or `body` |
+| Single button | `button` | link | For blocks with one CTA |
+| Primary button | `primary_button` | link | For blocks with two CTAs |
+| Secondary button | `secondary_button` | link | For blocks with two CTAs |
+| Main image | `image` | image | Generic image field |
+| Background image | `background_image` | image | For hero/section backgrounds |
+| Background color | `background_color` | color_picker | — |
+| Background style | `background` | select | light/dark/primary/secondary |
+| Overlay opacity | `overlay_opacity` | number | 0-100 percentage |
+| Overlay color | `overlay_color` | color_picker | — |
+| Layout toggle | `image_position` | select | left/right |
+| Column count | `columns` | select | 2/3/4 |
+| Display style | `style` | select | Block-specific options |
+| Form embed | `form_shortcode` | text | Gravity Forms shortcode |
+
+### Repeater Item Fields
+
+| Purpose | Field Name | Notes |
+|---------|-----------|-------|
+| Item heading | `title` | Use `title` inside repeaters (not `heading`) |
+| Item body | `description` | Use `description` inside repeaters (not `content`) |
+| Item image | `image` | Generic |
+| Person photo | `photo` | For team/testimonial repeaters |
+| Person name | `name` | — |
+| Person role | `role` | Job title / position |
+| Person quote | `quote` | For testimonial repeaters |
+| Logo image | `logo` | For logo bar / marquee repeaters |
+| Item link | `link` | — |
+| Icon class | `icon_class` | FontAwesome class string |
+| Featured flag | `is_featured` | true_false for highlighted items |
+| Star rating | `rating` | number 1-5 |
+
+### Legacy Field Names (existing blocks)
+
+These fields exist in current blocks and should NOT be renamed (would break client sites):
+- FAQ uses `question`/`answer` instead of `title`/`description` — acceptable, domain-specific
+- Banner uses `text` instead of `content` — legacy, use `content` for new blocks
+- Stats repeater uses `number`/`label`/`prefix`/`suffix` — acceptable, domain-specific
+- Pricing repeater uses `price`/`period`/`features` — acceptable, domain-specific
+
 ## Creating a New Block
 
 ### Step 1: Register the Block
@@ -295,13 +346,15 @@ Use the `.btn` class system for all buttons. Do NOT use `.btn-inline`.
 
 Always loaded:
 - **jQuery** (WordPress bundled)
-- **Slick** — Carousel/slider
 - **AOS** — Scroll animations (initialized in footer)
-- **Mmenu** — Mobile menu
-- **BeefUp** — Accordion (used by FAQ block, initialized in `custom.js`)
+- **Mobile Menu** — Custom vanilla JS (`assets/js/mobile-menu.js`)
+
+Conditionally loaded (auto-detected from page content):
+- **Slick** — Carousel/slider (loaded when Hero Slider or Testimonials blocks present)
+- **BeefUp** — Accordion (loaded when FAQ block present)
+- **Magnific Popup** — Lightbox/modal (loaded when Gallery block present)
 
 Available but commented out in `functions/scripts.php` (uncomment when needed):
-- **Magnific Popup** — Lightbox/modal
 - **jQuery Validate** — Form validation
 
 ## Repeater Field Pattern
@@ -404,6 +457,48 @@ The spacing system is centralized in `functions/spacing.php`:
 | Process | `acf/process` | Numbered steps with icons |
 | Features List | `acf/featureslist` | Two-column icon + text feature items |
 | Timeline | `acf/timeline` | Alternating vertical timeline for milestones |
+
+## Child Theme Blocks
+
+Child themes can override existing blocks and register new ones without modifying the parent theme.
+
+### Override Precedence
+
+| Asset | Resolution | Mechanism |
+|-------|-----------|-----------|
+| `code.php` | Child theme first | ACF's `locate_template()` fallback |
+| `style.css` | Child theme first | `register_acf_block_types()` checks `get_stylesheet_directory()` before `get_template_directory()` |
+| `script.js` | Child theme first | Same as style.css |
+| ACF JSON | Child theme first | `acf/settings/load_json` in `functions/acf.php` |
+
+### Adding a New Block from a Child Theme
+
+1. Add the block name via the `devq_blocks` filter in the child theme's `functions.php`:
+   ```php
+   add_filter('devq_blocks', function ($blocks) {
+       $blocks[] = 'My Custom Block';
+       return $blocks;
+   });
+   ```
+2. Create `blocks/mycustomblock/code.php` in the child theme
+3. Create `acfjson/group_mycustomblock_block.json` in the child theme
+4. Optionally add `blocks/mycustomblock/style.css` and/or `script.js`
+
+The block is automatically allowed in the editor — `devq_allowed_block_types()` calls `devq_get_blocks()`, which applies the filter.
+
+### Overriding an Existing Block
+
+- **Template:** Copy the parent's `blocks/[name]/code.php` to the same path in the child theme. No filter needed.
+- **Styles:** Copy `blocks/[name]/style.css` to the child theme. The child version replaces (not supplements) the parent's.
+- **Scripts:** Copy `blocks/[name]/script.js` to the child theme. Same behavior as styles.
+
+### Removing a Parent Block
+
+```php
+add_filter('devq_blocks', function ($blocks) {
+    return array_diff($blocks, array('Marquee', 'Timeline'));
+});
+```
 
 ## New Site Setup
 

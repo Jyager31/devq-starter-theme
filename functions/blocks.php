@@ -50,7 +50,7 @@ function devq_filtername($name)
 
 function devq_get_blocks()
 {
-    return array(
+    $blocks = array(
         "Image",
         "Content",
         "Hero",
@@ -82,6 +82,8 @@ function devq_get_blocks()
         "Comparison Table",
         "Before After",
     );
+
+    return apply_filters('devq_blocks', $blocks);
 }
 
 
@@ -93,15 +95,22 @@ function register_acf_block_types()
 
     $basefunctions = devq_get_blocks();
 
-    $basepath = get_template_directory();
-    $templatepath = get_template_directory_uri();
+    $parent_path = get_template_directory();
+    $parent_uri  = get_template_directory_uri();
+    $child_path  = get_stylesheet_directory();
+    $child_uri   = get_stylesheet_directory_uri();
+    $has_child   = ($child_path !== $parent_path);
 
     foreach ($basefunctions as $name) {
         $filteredname = devq_filtername($name);
+        $block_rel = "/blocks/" . $filteredname;
 
         $args = array(
             'name'              => $filteredname,
             'title'             => __($name, 'devq'),
+            // ACF uses locate_template() for render_template, which checks
+            // the child theme first — so child themes can override code.php
+            // by placing blocks/[name]/code.php in their theme directory.
             'render_template'   => 'blocks/' . $filteredname . '/code.php',
             'category'          => 'devq',
             'icon'              => $icon,
@@ -109,7 +118,7 @@ function register_acf_block_types()
             'align'             => 'wide',
             'supports'          => array('align' => array('wide', 'full', 'center')),
             'keywords'          => array($name),
-            'enqueue_style'     => 'blocks/' . $filteredname . '/style.css',
+            'enqueue_style'     => '',
             'enqueue_script'    => '',
             'example'           => array(
                 'attributes' => array(
@@ -122,12 +131,20 @@ function register_acf_block_types()
             )
         );
 
-        if (file_exists($basepath . "/blocks/" . $filteredname . "/style.css")) {
-            $args['enqueue_style'] = $templatepath . "/blocks/" . $filteredname . "/style.css";
+        // Child-theme-first asset resolution for style.css
+        if ($has_child && file_exists($child_path . $block_rel . "/style.css")) {
+            $args['enqueue_style'] = $child_uri . $block_rel . "/style.css";
+        } elseif (file_exists($parent_path . $block_rel . "/style.css")) {
+            $args['enqueue_style'] = $parent_uri . $block_rel . "/style.css";
         }
-        if (file_exists($basepath . "/blocks/" . $filteredname . "/script.js")) {
-            $args['enqueue_script'] = $templatepath . "/blocks/" . $filteredname . "/script.js";
+
+        // Child-theme-first asset resolution for script.js
+        if ($has_child && file_exists($child_path . $block_rel . "/script.js")) {
+            $args['enqueue_script'] = $child_uri . $block_rel . "/script.js";
+        } elseif (file_exists($parent_path . $block_rel . "/script.js")) {
+            $args['enqueue_script'] = $parent_uri . $block_rel . "/script.js";
         }
+
         acf_register_block_type($args);
     }
 }

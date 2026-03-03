@@ -66,6 +66,7 @@ require get_template_directory() . '/functions/emailnotifications.php';
 require get_template_directory() . '/functions/page-builder.php';
 require get_template_directory() . '/functions/page-presets.php';
 require get_template_directory() . '/functions/animations.php';
+require get_template_directory() . '/functions/theme-disconnect.php';
 require get_template_directory() . '/functions/theme-updater.php';
 
 

@@ -1,6 +1,34 @@
 <?php
 
 /**
+ * Check if the current page/post contains a specific ACF block.
+ * Works on singular pages; returns true on archives/search to be safe.
+ */
+function devq_page_has_block($block_slug)
+{
+  if (!is_singular()) {
+    return true;
+  }
+  return has_block('acf/' . $block_slug);
+}
+
+/**
+ * Check if the current page uses any of the given block slugs.
+ */
+function devq_page_has_any_block($slugs)
+{
+  if (!is_singular()) {
+    return true;
+  }
+  foreach ($slugs as $slug) {
+    if (has_block('acf/' . $slug)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+/**
  * Enqueue scripts and styles.
  */
 function devqbase_scripts()
@@ -10,12 +38,8 @@ function devqbase_scripts()
 
   // --- Always loaded CSS ---
 
-  wp_enqueue_style('slick', $theme_uri . '/assets/css/slick.css');
-
-  // AOS Animation Library
+  // AOS Animation Library (used by nearly all blocks)
   wp_enqueue_style('aos', $theme_uri . '/assets/css/aos.css');
-
-  // Mobile menu (custom — replaced mmenu)
 
   // Grid system (required)
   wp_enqueue_style('reflex', $theme_uri . '/assets/css/reflex.css');
@@ -23,9 +47,23 @@ function devqbase_scripts()
   // Main theme stylesheet (required)
   wp_enqueue_style('devq-style', $theme_uri . '/style.css', array(), filemtime($theme_dir . '/style.css'));
 
-  // --- Conditionally loaded CSS (uncomment when needed for a project) ---
-  wp_enqueue_style('magnific-popup', $theme_uri . '/assets/css/magnific-popup.css');
-  wp_enqueue_style('jquery-beefup', $theme_uri . '/assets/css/jquery.beefup.css');
+  // --- Conditionally loaded CSS (auto-detected from page blocks) ---
+
+  $needs_slick = devq_page_has_any_block(array('heroslider', 'testimonials'));
+  $needs_beefup = devq_page_has_block('faq');
+  $needs_magnific = devq_page_has_block('gallery');
+
+  if ($needs_slick) {
+    wp_enqueue_style('slick', $theme_uri . '/assets/css/slick.css');
+  }
+
+  if ($needs_beefup) {
+    wp_enqueue_style('jquery-beefup', $theme_uri . '/assets/css/jquery.beefup.css');
+  }
+
+  if ($needs_magnific) {
+    wp_enqueue_style('magnific-popup', $theme_uri . '/assets/css/magnific-popup.css');
+  }
 
   // --- Always loaded JS ---
 
@@ -35,20 +73,29 @@ function devqbase_scripts()
   // Mobile menu (custom vanilla JS)
   wp_enqueue_script('devq-mobile-menu', $theme_uri . '/assets/js/mobile-menu.js', array(), filemtime($theme_dir . '/assets/js/mobile-menu.js'), true);
 
-  // Slick slider
-  wp_enqueue_script('slick', $theme_uri . '/assets/js/slick.js', array('jquery'), '', true);
-
-  // AOS Animation Library
+  // AOS Animation Library (used by nearly all blocks)
   wp_enqueue_script('aos', $theme_uri . '/assets/js/aos.js', array('jquery'), '', true);
 
-  // Custom theme JS (required)
+  // Custom theme JS (required — init code checks for library existence before calling)
   wp_enqueue_script('devq-custom', $theme_uri . '/assets/js/custom.js', array('jquery'), filemtime($theme_dir . '/assets/js/custom.js'), true);
 
-  // --- Conditionally loaded JS (uncomment when needed for a project) ---
-  wp_enqueue_script('magnific-popup', $theme_uri . '/assets/js/jquery.magnific-popup.min.js', array('jquery'), '', true);
+  // --- Conditionally loaded JS (auto-detected from page blocks) ---
+
+  if ($needs_slick) {
+    wp_enqueue_script('slick', $theme_uri . '/assets/js/slick.js', array('jquery'), '', true);
+  }
+
+  if ($needs_beefup) {
+    wp_enqueue_script('jquery-beefup', $theme_uri . '/assets/js/jquery.beefup.min.js', array('jquery'), '', true);
+  }
+
+  if ($needs_magnific) {
+    wp_enqueue_script('magnific-popup', $theme_uri . '/assets/js/jquery.magnific-popup.min.js', array('jquery'), '', true);
+  }
+
+  // --- Uncomment when needed for a project ---
   // wp_enqueue_script('jquery-validate', $theme_uri . '/assets/js/jquery.validate.min.js', array('jquery'), '', true);
   // wp_enqueue_script('jquery-validate-additional', $theme_uri . '/assets/js/additional-methods.min.js', array('jquery'), '', true);
-  wp_enqueue_script('jquery-beefup', $theme_uri . '/assets/js/jquery.beefup.min.js', array('jquery'), '', true);
 }
 add_action('wp_enqueue_scripts', 'devqbase_scripts');
 
