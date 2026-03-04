@@ -127,7 +127,7 @@ $text_class = $is_dark_bg ? 'hero-text-light' : 'hero-text-dark';
                         <a href="<?php echo esc_url($primary_button['url']); ?>" class="btn" <?php echo !empty($primary_button['target']) ? 'target="' . esc_attr($primary_button['target']) . '"' : ''; ?>><?php echo esc_html($primary_button['title']); ?></a>
                     <?php endif; ?>
 
-                    <?php if ($secondary_button) : ?>
+                    <?php if ($secondary_button && !empty($secondary_button['url']) && !empty($secondary_button['title'])) : ?>
                         <a href="<?php echo esc_url($secondary_button['url']); ?>" class="btn <?php echo $is_dark_bg ? 'btn-outline-white' : 'btn-outline'; ?>" <?php echo !empty($secondary_button['target']) ? 'target="' . esc_attr($secondary_button['target']) . '"' : ''; ?>><?php echo esc_html($secondary_button['title']); ?></a>
                     <?php endif; ?>
                 </div>

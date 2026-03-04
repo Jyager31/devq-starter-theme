@@ -122,7 +122,7 @@ if (!have_rows('plans')) {
                         <?php endif; ?>
 
                         <?php if ($features) :
-                            $feature_lines = explode("\n", $features);
+                            $feature_lines = preg_split('/\r\n|\r|\n/', $features);
                             ?>
                             <ul class="pricing-features">
                                 <?php foreach ($feature_lines as $feature) :
